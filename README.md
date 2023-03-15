@@ -360,15 +360,9 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
 ### Prototipo de baja y alta fidelidad
 
 <div align="center">
-<img height="350" alt="prototipo-papel" src="">
-<img height="350" alt="prototipo-papel-carta" src=""> 
+<img height="350" alt="prototipo baja fidelidad" src="https://raw.githubusercontent.com/MariferVL/Social-Network/main/src/images/Prototipobaja1.jpg">
+<img height="350" alt="prototipo-alta-fidelidad" src="https://user-images.githubusercontent.com/120422565/225206876-dd363d2b-8a01-475d-a666-dd0603437e5e.svg">
 <br/>
-<img width="400" alt="prototipo-baja-fidelidad2" src="">
-<img width="400" alt="prototipo-baja-fidelidad" src="">
-<br/>
-<img width="300" alt="prototipo-alta-fidelidad" src="https://user-images.githubusercontent.com/120422565/225206876-dd363d2b-8a01-475d-a666-dd0603437e5e.svg">
-<br/>
-<img width="400" alt="prototipo-alta-fidelidad2" src="https://user-images.githubusercontent.com/99364311/225190285-4dcf8006-10a4-4700-a11b-274054a00b8f.png">
 </div>
 
  
