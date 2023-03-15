@@ -215,7 +215,7 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
       </ul>  
   </details>
   <details>
-     <summary>7. Investigación</summary>
+     <summary>8. Firebase</summary>
       <ul>
         <li>
           - [ ] Firebase Auth
@@ -285,25 +285,78 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
 <details>
   <summary><b>Usuario 1</b></summary>
   <ul>
-    <li></li>
+    <li> Yo como estudiante universitario quiero saber donde se realizan eventos culturales de muestra de obras artísticas para poder asistir e invitar a mis amigos. </li>
+  </ul> 
+  <ol> <b>Criterios de Aceptación</b>
+   <li>Se puede registrar a la aplicación utilizando su correo </li>
+    <li>Puede agregar a personas a la app </li>
+     <li>Comparte imágenes, y post</li>
+     <li>Puede buscar eventos e información de otras personas</li>
+  </ol> 
+  <ul> <b> Definición de terminado </b>
+   <li>Debe ser una SPA.</li>
+   <li>Debe ser responsive.</li>
+   <li>Deben haber recibido code review de al menos una compañera de otro equipo.</li>
+   <li>Hicieron los test unitarios</li>
+   <li>Testearon manualmente buscando errores e imperfecciones simples.</li>
+   <li>Hicieron pruebas de usabilidad e incorporaron el feedback de los usuarios como mejoras.</li>
+   <li>Desplegaron su aplicación y etiquetaron la versión (git tag)</li>
+    
   </ul> 
 </details>
 <details>
   <summary><b>Usuario 2</b></summary>
   <ul>
+    <li>Yo como trabajadora en oficina quiero saber qué planes tienen mis compañeros para salir de casa, mirar sus post y ponerme de acuerdo con ellos.</li>
+  </ul> 
+  <ol> <b>Criterios de aceptación </b>
+   <li>Se puede registrar a la aplicación utilizando su correo</li>
+  <li>Puede agregar a personas a la app</li>
+  <li>Comparte imágenes, y post</li>
+  <li>Puede buscar eventos e información de otras personas</li>
+  <li>Puede ponerse en contacto con mas personas agregadas a su red</li>
     <li></li>
+  </ol> 
+  <ul> <b> Definición de terminado </b>
+   <li>Debe ser una SPA.</li>
+   <li>Debe ser responsive.</li>
+   <li>Deben haber recibido code review de al menos una compañera de otro equipo.</li>
+   <li>Hicieron los test unitarios</li>
+   <li>Testearon manualmente buscando errores e imperfecciones simples.</li>
+   <li>Hicieron pruebas de usabilidad e incorporaron el feedback de los usuarios como mejoras.</li>
+   <li>Desplegaron su aplicación y etiquetaron la versión (git tag)</li>
+    
   </ul> 
 </details>
 <details>
   <summary><b>Usuario 3</b></summary>
   <ul>
-    <li></li>
+    <li>Yo como  usuario de redes sociales quiero poder,  dar like a los post y poderlos eliminar, y poder llevar un conteo de los likes que recibo.</li>
   </ul> 
+  <ol> <b> Criterios de aceptación </b>
+    <li>Se puede registrar a la aplicación utilizando su correo</li>
+   <li>Puede agregar a personas a la app</li>
+  <li>Comparte imágenes, y post</li>
+  <li>Puede dar y quitar likes</li>
+  <li>Lleva un conteo de likes</li>
+  <li>Puede eliminar un post</li>
+  <li>Recibe confirmación para eliminar un post</li>
+  </ol> 
+  <ul> <b> Definición de terminado </b>
+   <li>Debe ser una SPA.</li>
+   <li>Debe ser responsive.</li>
+   <li>Deben haber recibido code review de al menos una compañera de otro equipo.</li>
+   <li>Hicieron los test unitarios</li>
+   <li>Testearon manualmente buscando errores e imperfecciones simples.</li>
+   <li>Hicieron pruebas de usabilidad e incorporaron el feedback de los usuarios como mejoras.</li>
+   <li>Desplegaron su aplicación y etiquetaron la versión (git tag)</li>
+  </ul>
 </details>
 
  
   <br/>
   <br/>
+  
 ### Prototipo de baja y alta fidelidad
 
 <div align="center">
@@ -313,15 +366,15 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
 <img width="400" alt="prototipo-baja-fidelidad2" src="">
 <img width="400" alt="prototipo-baja-fidelidad" src="">
 <br/>
+<img width="300" alt="prototipo-alta-fidelidad" src="https://user-images.githubusercontent.com/120422565/225206876-dd363d2b-8a01-475d-a666-dd0603437e5e.svg">
+<br/>
 <img width="400" alt="prototipo-alta-fidelidad2" src="https://user-images.githubusercontent.com/99364311/225190285-4dcf8006-10a4-4700-a11b-274054a00b8f.png">
 </div>
 
  
  ### Código
 <div align="center">
-<img width="400" alt="data-postman" src="">
-<img width="400" alt="params-postman" src="">
-<img width="400" alt="data-postman" src="">
+
 </div>
 
 <br/>
@@ -330,13 +383,7 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
 
 ## 4. Producto
 
-Durante milenios, la humanidad ha estado empleando la astrología y la carta astral como una forma de adivinar el futuro y registrar el paso del tiempo. Una carta astral es un mapa que muestra la alineación planetaria en el momento exacto en el que naciste, así que nunca dos cartas son iguales. 
-Al elaborar el mapa de la ubicación de los planetas y signos zodiacales en las casas astrológicas al momento de tu nacimiento, puedes tener una mayor comprensión de quién eres.
- <br/>
-<div align="center">
-<img width="500" alt="producto-inicial" src="">
-<img width="500" alt="producto-funcion" src="">
-</div>
+
 
 <br/>
 <p align="left"><a href="#volver">Volver</a></p>
