@@ -270,14 +270,39 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
     </li>
   </ul>  
 </details>
+  <br/>
+  <br/>
+
+### Modelo de Negocio Canvas
+<div align="center">
+<img height="440" alt="modelo canvas" src="https://user-images.githubusercontent.com/99364311/225202517-9fa7e231-015d-494e-8f4c-2b442217941e.svg">
+  <br/>
+  <br/>
+ </div>
 
 ### Historias de Usuario
-<li> Como amiga quiero filtrar la información por elemento astrológico para evaluar mi compatibilidad con mis amigos.</li>
-<li> Como pareja quiero saber el signo ascendente de mi pareja para potencializar nuestra relación. </li>
-<li> Como fan quiero ordenar la información por cantantes para saber con cuáles artistas comparto signo zodiacal. </li>
-<li> Como asesor quiero saber el signo zodiacal de mis clientes para entender sus necesidades de compra. </li>
-<li> Como astróloga quiero saber el porcentaje de personas de signos aire menores de 50 años. </li>
+<details>
+  <summary><b>Usuario 1</b></summary>
+  <ul>
+    <li></li>
+  </ul> 
+</details>
+<details>
+  <summary><b>Usuario 2</b></summary>
+  <ul>
+    <li></li>
+  </ul> 
+</details>
+<details>
+  <summary><b>Usuario 3</b></summary>
+  <ul>
+    <li></li>
+  </ul> 
+</details>
 
+ 
+  <br/>
+  <br/>
 ### Prototipo de baja y alta fidelidad
 
 <div align="center">
