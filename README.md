@@ -8,14 +8,14 @@
  <br/>
  <br/>
 
-<img src="https://user-images.githubusercontent.com/99364311/225190685-b400caa4-87a3-4d29-baf3-4c8298226218.png" alt="Logo" width="220px">
+<img src="https://user-images.githubusercontent.com/99364311/225190685-b400caa4-87a3-4d29-baf3-4c8298226218.png" alt="Logo" width="660px">
 <br/>
  <br/>
  <br/>
 
 <b>Autoras</b>
 <br/>
-[Gabriela Gomez](https://github.com/GaabsG)
+[Gabriela Gomez](https://github.com/GaabsG)<br/>
 [María-Fernanda Villalobos](https://github.com/MariferVL) <br/>
 [Xóchitl Jara](https://github.com/Xoch09)
 
@@ -281,11 +281,11 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
 ### Prototipo de baja y alta fidelidad
 
 <div align="center">
-<img height="350" alt="prototipo-papel" src="https://user-images.githubusercontent.com/120422565/215957059-41f0126f-18a8-419d-a811-45aeac0a3100.png">
-<img height="350" alt="prototipo-papel-carta" src="https://user-images.githubusercontent.com/120422565/215957073-0d7d0aa4-2757-484c-adf7-87578b2e9985.png"> 
+<img height="350" alt="prototipo-papel" src="">
+<img height="350" alt="prototipo-papel-carta" src=""> 
 <br/>
-<img width="400" alt="prototipo-baja-fidelidad2" src="https://user-images.githubusercontent.com/120422565/215957529-49b7e0f2-6151-43ea-9ef5-a352df42f41b.png">
-<img width="400" alt="prototipo-baja-fidelidad" src="https://user-images.githubusercontent.com/120422565/215957538-142e916a-c2bb-4b4f-bd45-b40fa29760a5.png">
+<img width="400" alt="prototipo-baja-fidelidad2" src="">
+<img width="400" alt="prototipo-baja-fidelidad" src="">
 <br/>
 <img width="400" alt="prototipo-alta-fidelidad2" src="https://user-images.githubusercontent.com/99364311/225190285-4dcf8006-10a4-4700-a11b-274054a00b8f.png">
 </div>
@@ -293,9 +293,9 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
  
  ### Código
 <div align="center">
-<img width="400" alt="data-postman" src="https://user-images.githubusercontent.com/99364311/219038157-6e44b4db-34c3-4c3d-8248-0ffd005612ee.png">
-<img width="400" alt="params-postman" src="https://user-images.githubusercontent.com/99364311/219038173-113ad858-4d1a-4068-93d1-c2ae046c8772.png">
-<img width="400" alt="data-postman" src="https://user-images.githubusercontent.com/99364311/219038183-0fbce798-50a6-4611-a630-6e2a1b892858.png">
+<img width="400" alt="data-postman" src="">
+<img width="400" alt="params-postman" src="">
+<img width="400" alt="data-postman" src="">
 </div>
 
 <br/>
@@ -308,8 +308,8 @@ Durante milenios, la humanidad ha estado empleando la astrología y la carta ast
 Al elaborar el mapa de la ubicación de los planetas y signos zodiacales en las casas astrológicas al momento de tu nacimiento, puedes tener una mayor comprensión de quién eres.
  <br/>
 <div align="center">
-<img width="500" alt="producto-inicial" src="https://user-images.githubusercontent.com/120422565/224591457-effa6c69-d833-4838-8376-8a7429b3d527.png">
-<img width="500" alt="producto-funcion" src="https://user-images.githubusercontent.com/120422565/224591374-53f0e908-2c97-490b-95df-c429d65e6db0.png">
+<img width="500" alt="producto-inicial" src="">
+<img width="500" alt="producto-funcion" src="">
 </div>
 
 <br/>
