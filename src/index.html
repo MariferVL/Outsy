@@ -10,7 +10,7 @@
     <meta name="author" content="Gabriela G. Marifer V, Xóchitl L" />
     <base href="https:///" target="_blank">
     <title>Outsy</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./scss/style.scss">
   </head>
 
   <body>
@@ -72,7 +72,7 @@
       </nav>
     </header>
     <main>
-      <section>
+      <section id="Main">
         <div id="carouselExampleIndicators" class="carousel slide">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -100,9 +100,210 @@
           </button>
         </div>
       </section>
+      <section id="Features">
+        <div class="container px-4 py-5" id="custom-cards">
+          <h2 class="pb-2 border-bottom">Custom cards</h2>
+      
+          <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+            <div class="col">
+              <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                  <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
+                  <ul class="d-flex list-unstyled mt-auto">
+                    <li class="me-auto">
+                      <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                    </li>
+                    <li class="d-flex align-items-center me-3">
+                      <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                      <small>Earth</small>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                      <small>3d</small>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col">
+              <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                  <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
+                  <ul class="d-flex list-unstyled mt-auto">
+                    <li class="me-auto">
+                      <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                    </li>
+                    <li class="d-flex align-items-center me-3">
+                      <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                      <small>Pakistan</small>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                      <small>4d</small>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col">
+              <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                  <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+                  <ul class="d-flex list-unstyled mt-auto">
+                    <li class="me-auto">
+                      <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                    </li>
+                    <li class="d-flex align-items-center me-3">
+                      <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                      <small>California</small>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                      <small>5d</small>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </section>
+
+      <section id="Testimonials" class="gradient-custom">
+        <article>
+          <div class="container my-5 py-5">
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-12">
+                <div class="text-center mb-4 pb-2">
+                  <i class="fas fa-quote-left fa-3x text-white"></i>
+                </div>
+        
+                <div class="card">
+                  <div class="card-body px-4 py-5">
+                    <!-- Carousel wrapper -->
+                    <div id="carouselDarkVariant" class="carousel slide carousel-dark" data-mdb-ride="carousel">
+                      <!-- Indicators -->
+                      <div class="carousel-indicators mb-0">
+                        <button data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="0" class="active"
+                          aria-current="true" aria-label="Slide 1"></button>
+                        <button data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="1"
+                          aria-label="Slide 1"></button>
+                        <button data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="2"
+                          aria-label="Slide 1"></button>
+                      </div>
+        
+                      <!-- Inner -->
+                      <div class="carousel-inner pb-5">
+                        <!-- Single item -->
+                        <div class="carousel-item active">
+                          <div class="row d-flex justify-content-center">
+                            <div class="col-lg-10 col-xl-8">
+                              <div class="row">
+                                <div class="col-lg-4 d-flex justify-content-center">
+                                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
+                                    class="rounded-circle shadow-1 mb-4 mb-lg-0" alt="woman avatar" width="150"
+                                    height="150" />
+                                </div>
+                                <article
+                                  class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
+                                  <h4 class="mb-4">Maria Smantha - Web Developer</h4>
+                                  <p class="mb-0 pb-3">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+                                    aliquam amet animi blanditiis consequatur debitis dicta
+                                    distinctio, enim error eum iste libero modi nam natus
+                                    perferendis possimus quasi sint sit tempora voluptatem. Est,
+                                    exercitationem id ipsa ipsum laboriosam perferendis.
+                                  </p>
+                                </article>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+        
+                        <!-- Single item -->
+                        <div class="carousel-item">
+                          <div class="row d-flex justify-content-center">
+                            <div class="col-lg-10 col-xl-8">
+                              <div class="row">
+                                <div class="col-lg-4 d-flex justify-content-center">
+                                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+                                    class="rounded-circle shadow-1 mb-4 mb-lg-0" alt="woman avatar" width="150"
+                                    height="150" />
+                                </div>
+                                <article
+                                  class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
+                                  <h4 class="mb-4">Lisa Cudrow - Graphic Designer</h4>
+                                  <p class="mb-0 pb-3">
+                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                    accusantium doloremque laudantium, totam rem aperiam, eaque
+                                    ipsa quae ab illo inventore veritatis et quasi architecto
+                                    beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+                                    quia voluptas sit aspernatur.
+                                  </p>
+                                </article>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+        
+                        <!-- Single item -->
+                        <div class="carousel-item">
+                          <div class="row d-flex justify-content-center">
+                            <div class="col-lg-10 col-xl-8">
+                              <div class="row">
+                                <div class="col-lg-4 d-flex justify-content-center">
+                                  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
+                                    class="rounded-circle shadow-1 mb-4 mb-lg-0" alt="woman avatar" width="150"
+                                    height="150" />
+                                </div>
+                                <article
+                                  class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
+                                  <h4 class="mb-4">John Smith - Marketing Specialist</h4>
+                                  <p class="mb-0 pb-3">
+                                    At vero eos et accusamus et iusto odio dignissimos qui
+                                    blanditiis praesentium voluptatum deleniti atque corrupti quos
+                                    dolores et quas molestias excepturi sint occaecati cupiditate
+                                    non provident, similique sunt in culpa qui officia mollitia
+                                    animi id laborum et dolorum fuga.
+                                  </p>
+                                </article>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Inner -->
+        
+                      <!-- Controls -->
+                      <button class="carousel-control-prev" type="button" data-mdb-target="#carouselDarkVariant"
+                        data-mdb-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-mdb-target="#carouselDarkVariant"
+                        data-mdb-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                    <!-- Carousel wrapper -->
+                  </div>
+                </div>
+        
+                <div class="text-center mt-4 pt-2">
+                  <i class="fas fa-quote-right fa-3x text-white"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
     </main>
-    <section> 
-      <div class="container">
+          <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
           <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc</p>
       
@@ -119,7 +320,6 @@
           </ul>
         </footer>
       </div>
-    </section>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
