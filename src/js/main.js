@@ -1,7 +1,3 @@
-import { myFunction } from '../lib/index';
-
-myFunction();
-
 // When the user scrolls down 80px from the top of the document,
 // resize the navbar's padding and the logo's font size
 
@@ -19,3 +15,5 @@ function scrollFunction() {
 window.onscroll = function () {
   scrollFunction();
 };
+
+
