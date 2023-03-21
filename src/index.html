@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -11,337 +11,387 @@
   <meta name="author" content="Gabriela G. Marifer V, Xóchitl L" />
   <base href="https:///" target="_blank">
   <title>Outsy</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <!-- Custom styles -->
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
+  <div class="container">
+    <header id="home"
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Outsy">
+          <use xlink:href="#outsy" />
+        </svg>
+      </a>
 
-  <header>
-    <nav class="px-3 py-2 text-bg-dark">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Outsy">
-              <use xlink:href="#Outsy" />
-            </svg>
-          </a>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#home" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+      </ul>
 
-          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-            <li>
-              <a href="#" class="nav-link text-secondary">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#home" />
-                </svg>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#speedometer2" />
-                </svg>
-                Panel
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#table" />
-                </svg>
-                Favoritos
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#grid" />
-                </svg>
-                Notificaciones
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                  <use xlink:href="#people-circle" />
-                </svg>
-                Perfil
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="col-md-3 text-end">
+        <button type="button" class="btn btn-outline-primary me-2">Login</button>
+        <button type="button" class="btn btn-primary">Sign-up</button>
       </div>
-      </div>
-      <div class="px-3 py-2 border-bottom mb-3">
-        <div class="container d-flex flex-wrap justify-content-center">
-          <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-          </form>
-
-          <div class="text-end">
-            <button type="button" class="btn btn-light text-dark me-2">Login</button>
-            <button type="button" class="btn btn-primary">Sign-up</button>
-          </div>
-        </div>
-    </nav>
-  </header>
+    </header>
+  </div>
   <main>
-    <section id="Main">
-      <div id="carouselExampleIndicators" class="carousel slide">
+
+    <section id="main" class="container-fluid position-relative p-0">
+      <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="images/2.png" class="d-block w-100" alt="personas cenando al aire libre">
+            <img src="images/2.png" width="75%">
+            <div class="container">
+              <div class="carousel-caption text-start">
+                <h1>Example headline.</h1>
+                <p>Some representative placeholder content for the first slide of the carousel.</p>
+                <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+              </div>
+            </div>
           </div>
           <div class="carousel-item">
-            <img src="images/3.png" class="d-block w-100" alt="multitud en concierto con luces">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#777" />
+            </svg>
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Another example headline.</h1>
+                <p>Some representative placeholder content for the second slide of the carousel.</p>
+                <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+              </div>
+            </div>
           </div>
           <div class="carousel-item">
-            <img src="images/4.png" class="d-block w-100" alt="personas acomodandose en teatro">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="100%" height="100%" fill="#777" />
+            </svg>
+            <div class="container">
+              <div class="carousel-caption text-end">
+                <h1>One more for good measure.</h1>
+                <p>Some representative placeholder content for the third slide of this carousel.</p>
+                <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </section>
     <section id="Features">
-      <div class="container px-4 py-5" id="custom-cards">
-        <h2 class="pb-2 border-bottom">Custom cards</h2>
+      <!-- Marketing messaging and featurettes
+  ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
 
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-          <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-              style="background-image: url('unsplash-photo-1.jpg');">
-              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
-                <ul class="d-flex list-unstyled mt-auto">
-                  <li class="me-auto">
-                    <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
-                      class="rounded-circle border border-white">
-                  </li>
-                  <li class="d-flex align-items-center me-3">
-                    <svg class="bi me-2" width="1em" height="1em">
-                      <use xlink:href="#geo-fill" />
-                    </svg>
-                    <small>Earth</small>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <svg class="bi me-2" width="1em" height="1em">
-                      <use xlink:href="#calendar3" />
-                    </svg>
-                    <small>3d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
+      <div class="container marketing">
+        <!-- START THE FEATURETTES -->
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-muted">It’ll blow
+                your mind.</span></h2>
+            <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose
+              here.</p>
           </div>
-
-          <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-              style="background-image: url('unsplash-photo-2.jpg');">
-              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
-                <ul class="d-flex list-unstyled mt-auto">
-                  <li class="me-auto">
-                    <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
-                      class="rounded-circle border border-white">
-                  </li>
-                  <li class="d-flex align-items-center me-3">
-                    <svg class="bi me-2" width="1em" height="1em">
-                      <use xlink:href="#geo-fill" />
-                    </svg>
-                    <small>Pakistan</small>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <svg class="bi me-2" width="1em" height="1em">
-                      <use xlink:href="#calendar3" />
-                    </svg>
-                    <small>4d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-              style="background-image: url('unsplash-photo-3.jpg');">
-              <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
-                <ul class="d-flex list-unstyled mt-auto">
-                  <li class="me-auto">
-                    <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
-                      class="rounded-circle border border-white">
-                  </li>
-                  <li class="d-flex align-items-center me-3">
-                    <svg class="bi me-2" width="1em" height="1em">
-                      <use xlink:href="#geo-fill" />
-                    </svg>
-                    <small>California</small>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <svg class="bi me-2" width="1em" height="1em">
-                      <use xlink:href="#calendar3" />
-                    </svg>
-                    <small>5d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div class="col-md-5">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
+            </svg>
           </div>
         </div>
-      </div>
 
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for
+                yourself.</span></h2>
+            <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this
+              layout would work with some actual real-world content in place.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
+            </svg>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span
+                class="text-muted">Checkmate.</span>
+            </h2>
+            <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
+              intended to be actually read, simply here to give you a better view of what this would look like with some
+              actual content. Your content.</p>
+          </div>
+          <div class="col-md-5">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
+            </svg>
+          </div>
+        </div>
+      </div><!-- /.container -->
+
+      <hr class="featurette-divider">
 
     </section>
 
-    <section id="Testimonials" class="gradient-custom">
+    <section id="Testimonials">
       <article>
-        <div class="container my-5 py-5">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-12">
-              <div class="text-center mb-4 pb-2">
-                <i class="fas fa-quote-left fa-3x text-white"></i>
-              </div>
-
-              <div class="card">
-                <div class="card-body px-4 py-5">
-                  <!-- Carousel wrapper -->
-                  <div id="carouselDarkVariant" class="carousel slide carousel-dark" data-mdb-ride="carousel">
-                    <!-- Indicators -->
-                    <div class="carousel-indicators mb-0">
-                      <button data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                      <button data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="1"
-                        aria-label="Slide 1"></button>
-                      <button data-mdb-target="#carouselDarkVariant" data-mdb-slide-to="2"
-                        aria-label="Slide 1"></button>
-                    </div>
-
-                    <!-- Inner -->
-                    <div class="carousel-inner pb-5">
-                      <!-- Single item -->
-                      <div class="carousel-item active">
-                        <div class="row d-flex justify-content-center">
-                          <div class="col-lg-10 col-xl-8">
-                            <div class="row">
-                              <div class="col-lg-4 d-flex justify-content-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
-                                  class="rounded-circle shadow-1 mb-4 mb-lg-0" alt="woman avatar" width="150"
-                                  height="150" />
-                              </div>
-                              <article
-                                class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
-                                <h4 class="mb-4">Maria Smantha - Web Developer</h4>
-                                <p class="mb-0 pb-3">
-                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-                                  aliquam amet animi blanditiis consequatur debitis dicta
-                                  distinctio, enim error eum iste libero modi nam natus
-                                  perferendis possimus quasi sint sit tempora voluptatem. Est,
-                                  exercitationem id ipsa ipsum laboriosam perferendis.
-                                </p>
-                              </article>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Single item -->
-                      <div class="carousel-item">
-                        <div class="row d-flex justify-content-center">
-                          <div class="col-lg-10 col-xl-8">
-                            <div class="row">
-                              <div class="col-lg-4 d-flex justify-content-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-                                  class="rounded-circle shadow-1 mb-4 mb-lg-0" alt="woman avatar" width="150"
-                                  height="150" />
-                              </div>
-                              <article
-                                class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
-                                <h4 class="mb-4">Lisa Cudrow - Graphic Designer</h4>
-                                <p class="mb-0 pb-3">
-                                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                  accusantium doloremque laudantium, totam rem aperiam, eaque
-                                  ipsa quae ab illo inventore veritatis et quasi architecto
-                                  beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
-                                  quia voluptas sit aspernatur.
-                                </p>
-                              </article>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Single item -->
-                      <div class="carousel-item">
-                        <div class="row d-flex justify-content-center">
-                          <div class="col-lg-10 col-xl-8">
-                            <div class="row">
-                              <div class="col-lg-4 d-flex justify-content-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
-                                  class="rounded-circle shadow-1 mb-4 mb-lg-0" alt="woman avatar" width="150"
-                                  height="150" />
-                              </div>
-                              <article
-                                class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
-                                <h4 class="mb-4">John Smith - Marketing Specialist</h4>
-                                <p class="mb-0 pb-3">
-                                  At vero eos et accusamus et iusto odio dignissimos qui
-                                  blanditiis praesentium voluptatum deleniti atque corrupti quos
-                                  dolores et quas molestias excepturi sint occaecati cupiditate
-                                  non provident, similique sunt in culpa qui officia mollitia
-                                  animi id laborum et dolorum fuga.
-                                </p>
-                              </article>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Inner -->
-
-                    <!-- Controls -->
-                    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselDarkVariant"
-                      data-mdb-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-mdb-target="#carouselDarkVariant"
-                      data-mdb-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
+        <!-- Carousel wrapper -->
+        <div id="usersTestimonials" class="carousel carousel-dark slide text-center" data-mdb-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#usersTestimonials" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#usersTestimonials" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#usersTestimonials" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <!-- Inner -->
+          <div class="carousel-inner">
+            <!-- Single item -->
+            <div class="carousel-item active" data-bs-interval="1000">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="avatar" />
+                    <h5 class="mb-3">Anna Deynah</h5>
+                    <p>UX Designer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id
+                      officiis hic tenetur quae quaerat ad velit ab hic tenetur.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                    </ul>
                   </div>
-                  <!-- Carousel wrapper -->
+
+                  <div class="col-lg-4 d-none d-lg-block">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar" />
+                    <h5 class="mb-3">John Doe</h5>
+                    <p>Web Developer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
+                      suscipit laboriosam, nisi ut aliquid commodi.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li>
+                        <i class="fas fa-star-half-alt fa-sm"></i>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="col-lg-4 d-none d-lg-block">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" />
+                    <h5 class="mb-3">Maria Kate</h5>
+                    <p>Photographer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                      praesentium voluptatum deleniti atque corrupti.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="far fa-star fa-sm"></i></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <div class="text-center mt-4 pt-2">
-                <i class="fas fa-quote-right fa-3x text-white"></i>
+            <!-- Single item -->
+            <div class="carousel-item" data-bs-interval="200">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(3).webp" alt="avatar" />
+                    <h5 class="mb-3">John Doe</h5>
+                    <p>UX Designer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id
+                      officiis hic tenetur quae quaerat ad velit ab hic tenetur.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                    </ul>
+                  </div>
+
+                  <div class="col-lg-4 d-none d-lg-block">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" />
+                    <h5 class="mb-3">Alex Rey</h5>
+                    <p>Web Developer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
+                      suscipit laboriosam, nisi ut aliquid commodi.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li>
+                        <i class="fas fa-star-half-alt fa-sm"></i>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="col-lg-4 d-none d-lg-block">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(5).webp" alt="avatar" />
+                    <h5 class="mb-3">Maria Kate</h5>
+                    <p>Photographer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                      praesentium voluptatum deleniti atque corrupti.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="far fa-star fa-sm"></i></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="carousel-item">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(6).webp" alt="avatar" />
+                    <h5 class="mb-3">Anna Deynah</h5>
+                    <p>UX Designer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id
+                      officiis hic tenetur quae quaerat ad velit ab hic tenetur.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                    </ul>
+                  </div>
+
+                  <div class="col-lg-4 d-none d-lg-block">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(8).webp" alt="avatar" />
+                    <h5 class="mb-3">John Doe</h5>
+                    <p>Web Developer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
+                      suscipit laboriosam, nisi ut aliquid commodi.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li>
+                        <i class="fas fa-star-half-alt fa-sm"></i>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="col-lg-4 d-none d-lg-block">
+                    <img class="rounded-circle shadow-1-strong mb-4"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(7).webp" alt="avatar" />
+                    <h5 class="mb-3">Maria Kate</h5>
+                    <p>Photographer</p>
+                    <p class="text-muted">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                      praesentium voluptatum deleniti atque corrupti.
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="fas fa-star fa-sm"></i></li>
+                      <li><i class="far fa-star fa-sm"></i></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <!-- Inner -->
         </div>
+        <!-- Carousel wrapper -->
       </article>
     </section>
+
   </main>
+  <!-- FOOTER -->
   <div class="container">
     <footer class="py-5">
       <div class="row">
@@ -392,7 +442,7 @@
       </div>
 
       <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-        <p>&copy; 2022 Company, Inc. All rights reserved.</p>
+        <p>&copy; 2023 Outsy, Inc. All rights reserved.</p>
         <ul class="list-unstyled d-flex">
           <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
                 <use xlink:href="#twitter" />
@@ -407,10 +457,22 @@
       </div>
     </footer>
   </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
+    </script>
   <script type="module" src="./js/main.js"></script>
+
 </body>
 
 </html>
