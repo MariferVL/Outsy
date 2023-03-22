@@ -1,6 +1,4 @@
-
-
-export const home=`
+export const viewHome = `
 
     <section id="main" class="container-fluid position-relative p-0">
       <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -63,9 +61,9 @@ export const home=`
   ================================================== -->
       <!-- Wrap the rest of the page in another container to center all the content. -->
 
-      <div class="container marketing">
-        <!-- START THE FEATURETTES -->
-        <div class="row featurette">
+      <div id="features" class="container marketing">
+        <!-- START THE FEATURETES -->
+        <div  class="row featurette">
           <div class="col-md-7">
             <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-muted">It’ll blow
                 your mind.</span></h2>
@@ -127,7 +125,7 @@ export const home=`
 
     </section>
 
-    <section id="Testimonials">
+    <section id="testimonials">
       <article>
         <!-- Carousel wrapper -->
         <div id="usersTestimonials" class="carousel carousel-dark slide text-center" data-mdb-ride="carousel">

@@ -1,4 +1,4 @@
-export const postIt = `
+export const viewProfile = `
 <body class="bg-light">
     
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
@@ -101,4 +101,4 @@ export const postIt = `
             </div>
         </div>
     </div> 
-    `
+    `;

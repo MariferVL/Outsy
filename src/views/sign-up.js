@@ -1,5 +1,4 @@
-
-export const signUp=`<section class="background-radial-gradient overflow-hidden">
+export const viewSignUp = `<section class="background-radial-gradient overflow-hidden">
 <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
   <div class="row gx-lg-5 align-items-center mb-5">
     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
@@ -24,14 +23,15 @@ export const signUp=`<section class="background-radial-gradient overflow-hidden"
           <form> 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control" />
-              <label class="form-label" for="form3Example3">Correo Electrónico</label>
+              <input type="email" id="email" class="form-control" />
+              <label class="form-label" for="email">Correo Electrónico</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="form3Example4" class="form-control" />
-              <label class="form-label" for="form3Example4">Contraseña</label>
+              <input type="password" id="password" class="form-control" />
+              <label class="form-label" for="password">Contraseña</label>
+              <input id="validatePassword"/>
             </div>
 
             <!-- Checkbox -->
