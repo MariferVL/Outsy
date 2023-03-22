@@ -1,6 +1,5 @@
 import { ROUTER } from './router/router.js';
 import { paths } from './router/routes.js';
-import { validateData } from '../lib/autentication.js';
 
 let Router;
 
@@ -28,11 +27,12 @@ window.onload = () => {
 
   document.getElementById('signIn').addEventListener('click', () => { Router.load('signIn'); });
   document.getElementById('signUp').addEventListener('click', () => { Router.load('signUp'); });
+  document.getElementById('signUp2').addEventListener('click', () => { Router.load('signUp'); });
   document.getElementById('about').addEventListener('click', () => { Router.load('about'); });
   document.getElementById('subm').addEventListener('click', () => { Router.load('feed'); });
 };
 
-document.getElementById('validSub').addEventListener('click', validateData());
+
 // When the user scrolls down 80px from the top of the document,
 // resize the navbar's padding and the logo's font size
 
