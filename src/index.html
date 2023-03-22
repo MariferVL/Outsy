@@ -21,7 +21,8 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
+<body >
+ <section id="base">
   <div class="container">
     <header id="home"
       class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -34,9 +35,9 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#home" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
+        <li><a href="#" id="about" class="nav-link px-2 link-dark">About</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">Testimonials</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
       </ul>
 
       <div class="col-md-3 text-end">
@@ -46,8 +47,11 @@
     </header>
   </div>
 
-  <div id="root"></div> <!--se imprimeaquí Home de inner hatml, home.js>
+  <main id="root">
   
+  </main> <!--se imprime aquí contenido de views -->
+
+</section>
   <!-- FOOTER -->
   <div class="container">
     <footer class="py-5">
@@ -127,8 +131,11 @@
   <!-- Font Awesome -->
   <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
     integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
-    </script>
+  </script>
+
   <script type="module" src="./js/main.js"></script>
+  <script type="module" src="./router/routes.js"></script>
+  <script src="./router/router.js"></script>
 
 </body>
 

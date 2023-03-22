@@ -1,4 +1,4 @@
-      <!-- Three columns of text below the carousel -->
+export const home=`
       <div class="row">
         <div class="col-lg-4">
           <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
@@ -32,4 +32,4 @@
           <p>And lastly this, the third column of representative placeholder content.</p>
           <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
+      </div><!-- /.row -->`
