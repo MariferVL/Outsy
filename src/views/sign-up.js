@@ -25,6 +25,7 @@ export const viewSignUp = `<section class="background-radial-gradient overflow-h
             <div class="form-outline mb-4">
               <input type="email" id="email" class="form-control" />
               <label class="form-label" for="email">Correo Electrónico</label>
+              <input id="validateEmail"/>
             </div>
 
             <!-- Password input -->
@@ -43,7 +44,7 @@ export const viewSignUp = `<section class="background-radial-gradient overflow-h
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">
+            <button id="validSub" class="btn btn-primary btn-block mb-4">
               Ingresar
             </button>
 
