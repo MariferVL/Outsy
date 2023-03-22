@@ -15,7 +15,7 @@ export const viewHome = `
               <div class="carousel-caption text-start">
                 <h1>Example headline.</h1>
                 <p>Some representative placeholder content for the first slide of the carousel.</p>
-                <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                <p><a class="btn btn-lg btn-primary" id="signUp2">Sign up today</a></p>
               </div>
             </div>
           </div>
