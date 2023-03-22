@@ -3,11 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from "firebase/auth";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyAMoIZnaqiWN7MrGggAkrPwJqTMUN-_xXE',
   authDomain: 'outsy-mxg.firebaseapp.com',
@@ -24,9 +20,7 @@ const analytics = getAnalytics(app);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-/**
- * Handles the sign in button press.
- */
+// Handles the sign in button press.
 function toggleSignIn() {
   if (firebase.auth().currentUser) {
     firebase.auth().signOut();
@@ -34,11 +28,11 @@ function toggleSignIn() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     if (email.length < 4) {
-      alert("Please enter an email address.");
+      alert("Por favor, ingresa un correo electrónico.");
       return;
     }
     if (password.length < 4) {
-      alert("Please enter a password.");
+      alert("Por favor, ingresa una contraseña.");
       return;
     }
     // Sign in with email and pass.
@@ -50,29 +44,27 @@ function toggleSignIn() {
         const errorCode = error.code;
         const errorMessage = error.message;
         if (errorCode === "auth/wrong-password") {
-          alert("Wrong password.");
+          alert("Contraseña Errónea.");
         } else {
           alert(errorMessage);
         }
         console.log(error);
-        document.getElementById("quickstart-sign-in").disabled = false;
+        document.getElementById("sign-in").disabled = false;
       });
   }
-  document.getElementById("quickstart-sign-in").disabled = true;
+  document.getElementById("sign-in").disabled = true;
 }
 
-/**
- * Handles the sign up button press.
- */
+//Handles the sign up button press.
 function handleSignUp() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   if (email.length < 4) {
-    alert("Please enter an email address.");
+    alert("Por favor, ingresa un correo electrónico.");
     return;
   }
   if (password.length < 4) {
-    alert("Please enter a password.");
+    alert("Por favor, ingresa una contraseña.");
     return;
   }
   // Create user with email and pass.
@@ -84,7 +76,7 @@ function handleSignUp() {
       const errorCode = error.code;
       const errorMessage = error.message;
       if (errorCode == "auth/weak-password") {
-        alert("The password is too weak.");
+        alert("Esta contraseña es muy insegura");
       } else {
         alert(errorMessage);
       }
@@ -92,16 +84,14 @@ function handleSignUp() {
     });
 }
 
-/**
- * Sends an email verification to the user.
- */
+//Sends an email verification to the user.
 function sendEmailVerification() {
   firebase
     .auth()
     .currentUser.sendEmailVerification()
     .then(function () {
       // Email Verification sent!
-      alert("Email Verification Sent!");
+      alert("Verificación de correo electrónico Enviada.");
     });
 }
 
@@ -112,7 +102,7 @@ function sendPasswordReset() {
     .sendPasswordResetEmail(email)
     .then(function () {
       // Password Reset Email Sent!
-      alert("Password Reset Email Sent!");
+      alert("Renovación de Contraseña enviada a Correo Electrónico");
     })
     .catch(function (error) {
       // Handle Errors here.
@@ -135,7 +125,7 @@ function sendPasswordReset() {
 function initApp() {
   // Listening for auth state changes.
   firebase.auth().onAuthStateChanged(function (user) {
-    document.getElementById("quickstart-verify-email").disabled = true;
+    document.getElementById("verify-email").disabled = true;
     if (user) {
       // User is signed in.
       const displayName = user.displayName;
@@ -145,36 +135,36 @@ function initApp() {
       const isAnonymous = user.isAnonymous;
       const uid = user.uid;
       const providerData = user.providerData;
-      document.getElementById("quickstart-sign-in-status").textContent =
-        "Signed in";
-      document.getElementById("quickstart-sign-in").textContent = "Sign out";
-      document.getElementById("quickstart-account-details").textContent =
+      document.getElementById("sign-in-status").textContent =
+        "Ingresado";
+      document.getElementById("sign-in").textContent = "Cerrar Sesión";
+      document.getElementById("account-details").textContent =
         JSON.stringify(user, null, "  ");
       if (!emailVerified) {
-        document.getElementById("quickstart-verify-email").disabled = false;
+        document.getElementById("verify-email").disabled = false;
       }
     } else {
       // User is signed out.
-      document.getElementById("quickstart-sign-in-status").textContent =
-        "Signed out";
-      document.getElementById("quickstart-sign-in").textContent = "Sign in";
-      document.getElementById("quickstart-account-details").textContent =
+      document.getElementById("sign-in-status").textContent =
+        "Cerró sesión";
+      document.getElementById("sign-in").textContent = "Ingresar";
+      document.getElementById("account-details").textContent =
         "null";
     }
-    document.getElementById("quickstart-sign-in").disabled = false;
+    document.getElementById("sign-in").disabled = false;
   });
 
   document
-    .getElementById("quickstart-sign-in")
+    .getElementById("sign-in")
     .addEventListener("click", toggleSignIn, false);
   document
-    .getElementById("quickstart-sign-up")
+    .getElementById("sign-up")
     .addEventListener("click", handleSignUp, false);
   document
-    .getElementById("quickstart-verify-email")
+    .getElementById("verify-email")
     .addEventListener("click", sendEmailVerification, false);
   document
-    .getElementById("quickstart-password-reset")
+    .getElementById("password-reset")
     .addEventListener("click", sendPasswordReset, false);
 }
 
