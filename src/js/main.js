@@ -25,12 +25,8 @@ window.onscroll = function () {
   scrollFunction();
 };
 
-
 document.getElementById("about").addEventListener("click", ROUTER.load('about'))
-
 
 /* const contentRoot = document.getElementById("root");
 contentRoot.innerHTML =  */
-
-
 
