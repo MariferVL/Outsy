@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getAuth } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -25,58 +25,60 @@ function toggleSignIn() {
   if (firebase.auth().currentUser) {
     firebase.auth().signOut();
   } else {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const validPassword = document.getElementById('validatePassword');
+    const validEmail = document.getElementById('validateEmail').value;
     if (email.length < 4) {
-      alert("Por favor, ingresa un correo electrónico.");
+      validEmail.innerText('Por favor, ingresa un correo electrónico.');
       return;
     }
     if (password.length < 4) {
-      alert("Por favor, ingresa una contraseña.");
+      validPassword.innerText('Por favor, ingresa una contraseña.');
       return;
     }
     // Sign in with email and pass.
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .catch(function (error) {
+      .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        if (errorCode === "auth/wrong-password") {
-          alert("Contraseña Errónea.");
+        if (errorCode === 'auth/wrong-password') {
+          password.setCustomValidity('Contraseña Errónea.');
         } else {
           alert(errorMessage);
         }
         console.log(error);
-        document.getElementById("sign-in").disabled = false;
+        document.getElementById('sign-in').disabled = false;
       });
   }
-  document.getElementById("sign-in").disabled = true;
+  document.getElementById('sign-in').disabled = true;
 }
 
-//Handles the sign up button press.
+// Handles the sign up button press.
 function handleSignUp() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
   if (email.length < 4) {
-    alert("Por favor, ingresa un correo electrónico.");
+    alert('Por favor, ingresa un correo electrónico.');
     return;
   }
   if (password.length < 4) {
-    alert("Por favor, ingresa una contraseña.");
+    validPassword.innerText('Por favor, ingresa una contraseña.');
     return;
   }
   // Create user with email and pass.
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .catch(function (error) {
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode == "auth/weak-password") {
-        alert("Esta contraseña es muy insegura");
+      if (errorCode === 'auth/weak-password') {
+        alert('Esta contraseña es muy insegura');
       } else {
         alert(errorMessage);
       }
@@ -84,33 +86,33 @@ function handleSignUp() {
     });
 }
 
-//Sends an email verification to the user.
+// Sends an email verification to the user.
 function sendEmailVerification() {
   firebase
     .auth()
     .currentUser.sendEmailVerification()
-    .then(function () {
+    .then(() => {
       // Email Verification sent!
-      alert("Verificación de correo electrónico Enviada.");
+      alert('Verificación de correo electrónico Enviada.');
     });
 }
 
 function sendPasswordReset() {
-  const email = document.getElementById("email").value;
+  const email = document.getElementById('email').value;
   firebase
     .auth()
     .sendPasswordResetEmail(email)
-    .then(function () {
+    .then(() => {
       // Password Reset Email Sent!
-      alert("Renovación de Contraseña enviada a Correo Electrónico");
+      alert('Renovación de Contraseña enviada a Correo Electrónico');
     })
-    .catch(function (error) {
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode == "auth/invalid-email") {
+      if (errorCode === 'auth/invalid-email') {
         alert(errorMessage);
-      } else if (errorCode == "auth/user-not-found") {
+      } else if (errorCode === 'auth/user-not-found') {
         alert(errorMessage);
       }
       console.log(error);
@@ -124,8 +126,8 @@ function sendPasswordReset() {
  */
 function initApp() {
   // Listening for auth state changes.
-  firebase.auth().onAuthStateChanged(function (user) {
-    document.getElementById("verify-email").disabled = true;
+  firebase.auth().onAuthStateChanged((user) => {
+    document.getElementById('verify-email').disabled = true;
     if (user) {
       // User is signed in.
       const displayName = user.displayName;
@@ -135,37 +137,37 @@ function initApp() {
       const isAnonymous = user.isAnonymous;
       const uid = user.uid;
       const providerData = user.providerData;
-      document.getElementById("sign-in-status").textContent =
-        "Ingresado";
-      document.getElementById("sign-in").textContent = "Cerrar Sesión";
-      document.getElementById("account-details").textContent =
-        JSON.stringify(user, null, "  ");
+      document.getElementById('sign-in-status').textContent =
+        'Ingresado';
+      document.getElementById('sign-in').textContent = 'Cerrar Sesión';
+      document.getElementById('account-details').textContent =
+        JSON.stringify(user, null, '  ');
       if (!emailVerified) {
-        document.getElementById("verify-email").disabled = false;
+        document.getElementById('verify-email').disabled = false;
       }
     } else {
       // User is signed out.
-      document.getElementById("sign-in-status").textContent =
-        "Cerró sesión";
-      document.getElementById("sign-in").textContent = "Ingresar";
-      document.getElementById("account-details").textContent =
-        "null";
+      document.getElementById('sign-in-status').textContent =
+        'Cerró sesión';
+      document.getElementById('sign-in').textContent = 'Ingresar';
+      document.getElementById('account-details').textContent =
+        'null';
     }
-    document.getElementById("sign-in").disabled = false;
+    document.getElementById('sign-in').disabled = false;
   });
 
   document
-    .getElementById("sign-in")
-    .addEventListener("click", toggleSignIn, false);
+    .getElementById('sign-in')
+    .addEventListener('click', toggleSignIn, false);
   document
-    .getElementById("sign-up")
-    .addEventListener("click", handleSignUp, false);
+    .getElementById('sign-up')
+    .addEventListener('click', handleSignUp, false);
   document
-    .getElementById("verify-email")
-    .addEventListener("click", sendEmailVerification, false);
+    .getElementById('verify-email')
+    .addEventListener('click', sendEmailVerification, false);
   document
-    .getElementById("password-reset")
-    .addEventListener("click", sendPasswordReset, false);
+    .getElementById('password-reset')
+    .addEventListener('click', sendPasswordReset, false);
 }
 
 window.onload = function () {
