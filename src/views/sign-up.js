@@ -25,14 +25,12 @@ export const viewSignUp = `<section class="background-radial-gradient overflow-h
             <div class="form-outline mb-4">
               <input type="email" id="email" class="form-control" />
               <label class="form-label" for="email">Correo Electrónico</label>
-              <input id="validateEmail"/>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
               <input type="password" id="password" class="form-control" />
               <label class="form-label" for="password">Contraseña</label>
-              <input id="validatePassword"/>
             </div>
 
             <!-- Checkbox -->
