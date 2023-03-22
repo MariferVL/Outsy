@@ -1,4 +1,5 @@
-export const profile = `  <body class="bg-light">
+export const viewFeed = `  
+<body class="bg-light">
     
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
   <div class="container-fluid">
@@ -134,4 +135,5 @@ export const profile = `  <body class="bg-light">
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
       <script src="offcanvas-navbar.js"></script>
-  </body>`
+  </body>
+  `;
