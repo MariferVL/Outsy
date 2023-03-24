@@ -5,6 +5,7 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js'
 
+
 const firebaseConfig = {
   apiKey: 'AIzaSyAMoIZnaqiWN7MrGggAkrPwJqTMUN-_xXE',
   authDomain: 'outsy-mxg.firebaseapp.com',
@@ -16,15 +17,15 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
-const analytics = getAnalytics();
-export const auth = firebase.getAuth();
+const analytics = getAnalytics(app);
+export const auth = getAuth(app);
 
 
 
 
 const functionsDiv = { toggleSignIn, handleSignUp, sendEmailVerification, sendPasswordReset, initApp }
 
-export  default {firebase, functionsDiv};
+export  default {app, functionsDiv};
 
