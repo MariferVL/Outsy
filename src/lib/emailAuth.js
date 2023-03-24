@@ -1,18 +1,4 @@
-
-
-
-/* createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  }); */
-
+import firebase,{ auth } from "./barrel";
 // Global input email and password
 const email = document.getElementById('email').value;
 const password = document.getElementById('password').value;
