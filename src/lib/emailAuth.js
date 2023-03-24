@@ -1,40 +1,34 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyAMoIZnaqiWN7MrGggAkrPwJqTMUN-_xXE',
-  authDomain: 'outsy-mxg.firebaseapp.com',
-  projectId: 'outsy-mxg',
-  storageBucket: 'outsy-mxg.appspot.com',
-  messagingSenderId: '1058170420655',
-  appId: '1:1058170420655:web:06d17c4cc4440b35d0035a',
-  measurementId: 'G-MF6SX17B18',
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+
+/* createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  }); */
+
+// Global input email and password
+const email = document.getElementById('email').value;
+const password = document.getElementById('password').value;
 
 // Handles the sign in button press.
 function toggleSignIn() {
   if (firebase.auth().currentUser) {
     firebase.auth().signOut();
   } else {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const validPassword = document.getElementById('validatePassword');
-    const validEmail = document.getElementById('validateEmail').value;
+    // FIXME: Aquí quitamos las variables email y password 
     if (email.length < 4) {
-      validEmail.innerText('Por favor, ingresa un correo electrónico.');
+      email.setCustomValidity('Por favor, ingresa un correo electrónico.');
       return;
     }
     if (password.length < 4) {
-      validPassword.innerText('Por favor, ingresa una contraseña.');
+      password.setCustomValidity('Por favor, ingresa una contraseña.');
       return;
     }
     // Sign in with email and pass.
@@ -48,7 +42,7 @@ function toggleSignIn() {
         if (errorCode === 'auth/wrong-password') {
           password.setCustomValidity('Contraseña Errónea.');
         } else {
-          alert(errorMessage);
+          password.setCustomValidity(errorMessage);
         }
         console.log(error);
         document.getElementById('sign-in').disabled = false;
@@ -59,14 +53,13 @@ function toggleSignIn() {
 
 // Handles the sign up button press.
 function handleSignUp() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  // FIXME: Aquí quitamos las variables email y password 
   if (email.length < 4) {
-    alert('Por favor, ingresa un correo electrónico.');
+    email.setCustomValidity('Por favor, ingresa un correo electrónico.');
     return;
   }
   if (password.length < 4) {
-    validPassword.innerText('Por favor, ingresa una contraseña.');
+    password.setCustomValidity('Por favor, ingresa una contraseña.');
     return;
   }
   // Create user with email and pass.
@@ -78,9 +71,9 @@ function handleSignUp() {
       const errorCode = error.code;
       const errorMessage = error.message;
       if (errorCode === 'auth/weak-password') {
-        alert('Esta contraseña es muy insegura');
+        password.setCustomValidity('Esta contraseña es muy insegura');
       } else {
-        alert(errorMessage);
+        password.setCustomValidity(errorMessage);
       }
       console.log(error);
     });
@@ -93,17 +86,19 @@ function sendEmailVerification() {
     .currentUser.sendEmailVerification()
     .then(() => {
       // Email Verification sent!
+      // TODO: Hacer un innerHTML o una imagen hecha para sustituir el alert
       alert('Verificación de correo electrónico Enviada.');
     });
 }
 
 function sendPasswordReset() {
-  const email = document.getElementById('email').value;
+  // FIXME: Aquí quitamos la variable email
   firebase
     .auth()
     .sendPasswordResetEmail(email)
     .then(() => {
       // Password Reset Email Sent!
+      // TODO: Hacer un innerHTML o una imagen hecha para sustituir el alert
       alert('Renovación de Contraseña enviada a Correo Electrónico');
     })
     .catch((error) => {
@@ -137,6 +132,7 @@ function initApp() {
       const isAnonymous = user.isAnonymous;
       const uid = user.uid;
       const providerData = user.providerData;
+      // TODO: Cambiar nombres en HTML de ID para navbar en feed
       document.getElementById('sign-in-status').textContent =
         'Ingresado';
       document.getElementById('sign-in').textContent = 'Cerrar Sesión';
@@ -156,6 +152,7 @@ function initApp() {
     document.getElementById('sign-in').disabled = false;
   });
 
+      // TODO: Cambiar nombres en HTML de ID para navbar en feed
   document
     .getElementById('sign-in')
     .addEventListener('click', toggleSignIn, false);
@@ -170,6 +167,6 @@ function initApp() {
     .addEventListener('click', sendPasswordReset, false);
 }
 
-window.onload = function () {
-  initApp();
-};
+
+
+export { toggleSignIn, handleSignUp, sendEmailVerification, sendPasswordReset, initApp }

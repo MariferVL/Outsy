@@ -1,5 +1,6 @@
 import { ROUTER } from './router/router.js';
 import { paths } from './router/routes.js';
+import funct from "./lib/barrel.js";
 
 let Router;
 
@@ -25,12 +26,16 @@ window.onload = () => {
     scrollFunction();
   };
 
-  document.getElementById('signIn').addEventListener('click', () => { Router.load('signIn'); });
-  document.getElementById('signUp').addEventListener('click', () => { Router.load('signUp'); });
-  document.getElementById('signUp2').addEventListener('click', () => { Router.load('signUp'); });
+  document.getElementById('signIn').addEventListener('click', () => { Router.loadBody('signIn'); });
+  document.getElementById('signUp').addEventListener('click', () => { Router.loadBody('signUp'), funct.initApp() });
+  document.getElementById('signUp2').addEventListener('click', () => { Router.loadBody('signUp'); });
   document.getElementById('about').addEventListener('click', () => { Router.load('about'); });
-  document.getElementById('subm').addEventListener('click', () => { Router.load('feed'); });
 };
+
+/* // Initialize authentication email/password
+window.onload = function () {
+  funct.initApp();
+}; */
 
 
 // When the user scrolls down 80px from the top of the document,

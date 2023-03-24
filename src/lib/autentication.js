@@ -1,32 +1,30 @@
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
 
 const email = document.getElementById('email').value;
 const password = document.getElementById('password').value;
 
 function validateData() {
-  let valid = true;
+  console.log('entro a validateDta');
+  let result;
   if (email.length < 8) {
-    return email.setCustomValidity('Por favor, ingresa un correo electrónico válido.');
-  } if (email.length >= 8) {
-    return true;
-  } if (password.length < 8) {
-    return password.setCustomValidity('Tu contraseña debe contener al menos 8 caracteres');
-  } if (password.length >= 8) {
-    return true;
+    console.log('entro al If');
+    result = email.setCustomValidity('Por favor, ingresa un correo electrónico válido.');
+  } else if (email.length >= 8) {
+    console.log('entro al 1er else If');
+    result = true;
   }
+  if (password.length < 8) {
+    console.log('entro al 2ndo else If');
+    result = password.setCustomValidity('Tu contraseña debe contener al menos 8 caracteres');
+  } else if (password.length >= 8) {
+    console.log('entro al 3er else If');
+    result = true;
+  } else {
+    console.log('entro al else');
+  }
+  return result;
 }
 
-document.getElementById('validSub').addEventListener('click', validateData());
 
-const auth = getAuth();
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+
+
