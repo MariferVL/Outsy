@@ -1,15 +1,15 @@
-import { ROUTER } from './router/router.js';
-import { paths } from './router/routes.js';
+import { ROUTER } from "./router/router.js";
+import { paths } from "./router/routes.js";
 import funct from "./lib/barrel.js";
-
+import { initApp } from "./lib/emailAuth.js";
 
 function scrollFunction() {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    document.getElementById('navbar').style.padding = '30px 10px';
-    document.getElementById('logo').style.fontSize = '25px';
+    document.getElementById("navbar").style.padding = "30px 10px";
+    document.getElementById("logo").style.fontSize = "25px";
   } else {
-    document.getElementById('navbar').style.padding = '80px 10px';
-    document.getElementById('logo').style.fontSize = '35px';
+    document.getElementById("navbar").style.padding = "80px 10px";
+    document.getElementById("logo").style.fontSize = "35px";
   }
 }
 
@@ -18,30 +18,52 @@ window.onscroll = function () {
   scrollFunction();
 };
 
-
-let Router;
-
 function initializeRouter() {
-  Router = new ROUTER(paths);
-  Router.load('home');
+  const Router = new ROUTER(paths);
+  Router.load("home");
+
+  const signInHandler = () => {
+    Router.loadBody("signIn");
+  };
+  const signUpHandler = () => {
+    Router.loadBody("signUp");
+  };
+  const aboutHandler = () => {
+    Router.load("about");
+  };
+
+  document.getElementById("signIn").addEventListener("click", signInHandler);
+  document.getElementById("signUp").addEventListener("click", signUpHandler);
+  document.getElementById("signUp2").addEventListener("click", signUpHandler);
+  document.getElementById("about").addEventListener("click", aboutHandler);
 }
 
-window.onload = () => {
-  initializeRouter();
-  document.getElementById('signIn').addEventListener('click', () => { Router.loadBody('signIn'); });
-  document.getElementById('signUp').addEventListener('click', () => { Router.loadBody('signUp'), funct.initApp() });
-  document.getElementById('signUp2').addEventListener('click', () => { Router.loadBody('signUp'); });
-  document.getElementById('about').addEventListener('click', () => { Router.load('about'); });
-};
+initializeRouter();
+document.addEventListener("DOMContentLoaded", function () {
+  // Esperar a que se cree la vista de inicio de sesión
+  const loginView = document.getElementById("signInView");
+  const logupView = document.getElementById("signUpView");
+
+  if (loginView || logupView) {
+    initApp();
+  }
+});
+// let Router;
+
+// function initializeRouter() {
+//   Router = new ROUTER(paths);
+//   Router.load('home');
+// }
+
+// window.onload = () => {
+//   initializeRouter();
+//   document.getElementById('signIn').addEventListener('click', () => { Router.loadBody('signIn'); });
+//   document.getElementById('signUp').addEventListener('click', () => { Router.loadBody('signUp'); });
+//   document.getElementById('signUp2').addEventListener('click', () => { Router.loadBody('signUp'); });
+//   document.getElementById('about').addEventListener('click', () => { Router.load('about'); });
+// };
 
 /* // Initialize authentication email/password
 window.onload = function () {
   funct.initApp();
 }; */
-
-
-// When the user scrolls down 80px from the top of the document,
-// resize the navbar's padding and the logo's font size
-
-/* const contentRoot = document.getElementById("root");
-contentRoot.innerHTML =  */
