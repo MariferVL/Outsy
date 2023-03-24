@@ -1,5 +1,5 @@
 export const viewAbout = `
-      <div class="row">
+      <div id="about" class="row">
         <div class="col-lg-4">
           <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
             role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
