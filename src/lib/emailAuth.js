@@ -1,4 +1,4 @@
-import firebase,{ auth } from "./barrel";
+import firebase, { auth } from "./barrel";
 // Global input email and password
 
 
@@ -8,7 +8,7 @@ function toggleSignIn() {
     firebase.auth().signOut();
   } else {
     const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
+    const password = document.getElementById('password').value;
     if (email.length < 4) {
       email.setCustomValidity('Por favor, ingresa un correo electrónico.');
       return;
@@ -37,10 +37,27 @@ const password = document.getElementById('password').value;
   document.getElementById('sign-in').disabled = true;
 }
 
+function showPassword() {
+  console.log("No sabemos porque no funciona, pero entró");
+  const showPasswordCheckbox = document.getElementById('showPassword');
+  const password = document.getElementById('password');
+
+  showPasswordCheckbox.addEventListener('change', () => {
+    console.log("Aquí entro al listener");
+    if (showPasswordCheckbox.checked) {
+      console.log("Aquí entro al if, debería mostrar contraseña");
+      password.type = 'text';
+    } else {
+      password.type = 'password';
+    }
+  })
+};
+
 // Handles the sign up button press.
 function handleSignUp() {
+  showPassword();
   const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
+  const password = document.getElementById('password').value;
   if (email.length < 4) {
     email.setCustomValidity('Por favor, ingresa un correo electrónico.');
     return;
@@ -139,7 +156,7 @@ function initApp() {
     document.getElementById('sign-in').disabled = false;
   });
 
-      // TODO: Cambiar nombres en HTML de ID para navbar en feed
+  // TODO: Cambiar nombres en HTML de ID para navbar en feed
   document
     .getElementById('sign-in')
     .addEventListener('click', toggleSignIn, false);
