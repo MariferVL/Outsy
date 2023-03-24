@@ -1,22 +1,32 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
 import funct from "./lib/barrel.js";
-import { initApp } from "./lib/emailAuth.js";
+
 
 function scrollFunction() {
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    document.getElementById("navbar").style.padding = "30px 10px";
-    document.getElementById("logo").style.fontSize = "25px";
-  } else {
-    document.getElementById("navbar").style.padding = "80px 10px";
-    document.getElementById("logo").style.fontSize = "35px";
+  const navbar = document.getElementById("navbar");
+  const logo = document.getElementById("logo");
+  if (navbar && logo) {
+    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+      navbar.style.padding = "30px 10px";
+      logo.style.fontSize = "25px";
+    } else {
+      navbar.style.padding = "80px 10px";
+      logo.style.fontSize = "35px";
+    }
   }
 }
 
-// eslint-disable-next-line func-names
-window.onscroll = function () {
-  scrollFunction();
-};
+// Scroll just show with home and about view
+document.addEventListener("DOMContentLoaded", function () {
+  const homeView = document.getElementById("main");
+  const aboutView = document.getElementById("about");
+
+  if (homeView || aboutView) {
+    scrollFunction();
+  }
+});
+
 
 function initializeRouter() {
   const Router = new ROUTER(paths);
@@ -39,15 +49,17 @@ function initializeRouter() {
 }
 
 initializeRouter();
+
+// Call initApp if views are created
 document.addEventListener("DOMContentLoaded", function () {
-  // Esperar a que se cree la vista de inicio de sesión
   const loginView = document.getElementById("signInView");
   const logupView = document.getElementById("signUpView");
 
   if (loginView || logupView) {
-    initApp();
+    funct.initApp();
   }
 });
+
 // let Router;
 
 // function initializeRouter() {
