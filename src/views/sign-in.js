@@ -43,7 +43,7 @@ export const viewSignIn = `
                 </div>
   
                 <!-- Submit button -->
-                <button id="subm" class="btn btn-primary btn-block mb-4">
+                <button id="sign-in" class="btn btn-primary btn-block mb-4">
                   Ingresar
                 </button>
   

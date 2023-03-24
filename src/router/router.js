@@ -21,6 +21,14 @@ class ROUTER {
     $CONTAINER.innerHTML = template;
     window.history.pushState({}, 'done', path);
   }
+
+  loadBody(page = 'home') {
+    const { paths } = this;
+    const { path, template } = paths[page] || paths.error;
+    const $CONTAINER = document.getElementById('base');
+    $CONTAINER.innerHTML = template;
+    window.history.pushState({}, 'done', path);
+  }
 }
 
 export { ROUTER };

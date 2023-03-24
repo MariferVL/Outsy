@@ -42,7 +42,7 @@ export const viewSignUp = `<section class="background-radial-gradient overflow-h
             </div>
 
             <!-- Submit button -->
-            <button id="validSub" class="btn btn-primary btn-block mb-4">
+            <button id="sign-up" class="btn btn-primary btn-block mb-4">
               Ingresar
             </button>
 
