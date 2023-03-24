@@ -31,19 +31,28 @@ export const viewSignUp = `<section id="signUpView" class="background-radial-gra
             <div class="form-outline mb-4">
               <input type="password" id="password" class="form-control" />
               <label class="form-label" for="password">Contraseña</label>
+              <input type="checkbox" id="showPassword" name="showPassword">
+              <label for="showPassword">Mostrar contraseña</label>
+            </div>
+
+            <!-- Repeat password input -->
+            <div class="form-outline mb-4">
+              <input type="password" id="repeatPassword" class="form-control" />
+              <label class="form-label" for="repeatPassword">Repetir Contraseña</label>
             </div>
 
             <!-- Checkbox -->
             <div class="form-check d-flex justify-content-center mb-4">
               <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
               <label class="form-check-label" for="form2Example33">
-                Recuerdame
+               <!-- TODO: Agregar link en términos y condiciones -->
+                Acepto los términos y condiciones
               </label>
             </div>
 
             <!-- Submit button -->
             <button id="sign-up" class="btn btn-primary btn-block mb-4">
-              Ingresar
+              Registrarme
             </button>
 
             <!-- Register buttons -->
