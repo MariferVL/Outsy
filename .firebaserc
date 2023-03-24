@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "outsy-mxg",
+    "staging": "outsy-mxg"
+  },
+  "targets": {},
+  "etags": {}
+}
