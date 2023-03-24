@@ -1,4 +1,4 @@
-export const viewSignUp = `<section class="background-radial-gradient overflow-hidden">
+export const viewSignUp = `<section id="signUpView" class="background-radial-gradient overflow-hidden">
 <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
   <div class="row gx-lg-5 align-items-center mb-5">
     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
