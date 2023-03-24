@@ -1,14 +1,14 @@
 import firebase,{ auth } from "./barrel";
 // Global input email and password
-const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
+
 
 // Handles the sign in button press.
 function toggleSignIn() {
   if (firebase.auth().currentUser) {
     firebase.auth().signOut();
   } else {
-    // FIXME: Aquí quitamos las variables email y password 
+    const email = document.getElementById('email').value;
+const password = document.getElementById('password').value;
     if (email.length < 4) {
       email.setCustomValidity('Por favor, ingresa un correo electrónico.');
       return;
@@ -39,7 +39,8 @@ function toggleSignIn() {
 
 // Handles the sign up button press.
 function handleSignUp() {
-  // FIXME: Aquí quitamos las variables email y password 
+  const email = document.getElementById('email').value;
+const password = document.getElementById('password').value;
   if (email.length < 4) {
     email.setCustomValidity('Por favor, ingresa un correo electrónico.');
     return;
@@ -78,7 +79,7 @@ function sendEmailVerification() {
 }
 
 function sendPasswordReset() {
-  // FIXME: Aquí quitamos la variable email
+  const email = document.getElementById('email').value;
   firebase
     .auth()
     .sendPasswordResetEmail(email)
