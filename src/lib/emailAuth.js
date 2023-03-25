@@ -1,114 +1,149 @@
-import { default as firebase } from "firebase/auth";
-import app from "./barrel.js";
-// Global input email and password
+import { authApp } from "./barrel.js";
+import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
-const auth = firebase.getAuth(app);
+function showPassword() {
+  const showPasswordCheckbox = document.getElementById("showPassword");
+  const password = document.getElementById("password");
 
-// Handles the sign in button press.
+  showPasswordCheckbox.addEventListener("change", () => {
+    if (showPasswordCheckbox.checked) {
+      password.type = "text";
+    } else {
+      password.type = "password";
+    }
+  });
+}
+
+/**
+ * Handles the sign in button press.
+ */
+
 function toggleSignIn() {
-  if (firebase.currentUser) {
-    firebase.signOut()
+  if (firebase.auth().currentUser) {
+    firebase.auth().signOut(authApp);
   } else {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const email = emailInput.value;
+    const password = passwordInput.value;
     if (email.length < 4) {
-      email.setCustomValidity('Por favor, ingresa un correo electrónico.');
+      emailInput.setCustomValidity("Por favor, ingresa un correo electrónico.");
       return;
     }
     if (password.length < 4) {
-      password.setCustomValidity('Por favor, ingresa una contraseña.');
+      passwordInput.setCustomValidity("Por favor, ingresa una contraseña.");
       return;
     }
     // Sign in with email and pass.
-    firebase.signInWithEmailAndPassword(email, password)
-      .catch((error) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(authApp, email, password)
+      .catch(function (error) {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
-          password.setCustomValidity('Contraseña Errónea.');
+        if (errorCode === "auth/wrong-password") {
+          passwordInput.setCustomValidity("Contraseña Errónea.");
         } else {
-          password.setCustomValidity(errorMessage);
+          passwordInput.setCustomValidity(errorMessage);
         }
         console.log(error);
       });
   }
-  document.getElementById('password-reset').addEventListener('click', sendPasswordReset, false);
-};
+  document
+    .getElementById("password-reset")
+    .addEventListener("click", sendPasswordReset, false);
+}
 
-function showPassword() {
-  const showPasswordCheckbox = document.getElementById('showPassword');
-  const password = document.getElementById('password');
-
-  showPasswordCheckbox.addEventListener('change', () => {
-    if (showPasswordCheckbox.checked) {
-      password.type = 'text';
-    } else {
-      password.type = 'password';
-    }
-  })
-};
-
-// Handles the sign up button press.
+/**
+ * Handles the sign up button press.
+ */
 function handleSignUp() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const email = emailInput.value;
+  const password = passwordInput.value;
   if (email.length < 4) {
-    email.setCustomValidity('Por favor, ingresa un correo electrónico.');
+    emailInput.setCustomValidity("Por favor, ingresa un correo electrónico.");
     return;
   }
   if (password.length < 4) {
-    password.setCustomValidity('Por favor, ingresa una contraseña.');
+    passwordInput.setCustomValidity("Por favor, ingresa una contraseña.");
     return;
-  } else {
-    sendEmailVerification()
   }
   // Create user with email and pass.
-  firebase.libsAuth.auth.createUserWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-      // Usuario registrado correctamente
-      const user = userCredential.user;
-      console.log(`Usuario registrado con éxito: ${user.email}`);
-      sendEmailVerification(user)
-  })
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(authApp, email, password)
+    .then((cred) => {
+      console.log("Usuario registrado con éxito", cred.user);
+
+      // Envío del correo electrónico de verificación después de que el usuario haya iniciado sesión
+      firebase
+        .auth()
+        .onAuthStateChanged((user) => {
+          if (user) {
+            user
+              .sendEmailVerification()
+              .then(() => {
+                console.log("Correo electrónico de verificación enviado.");
+                // Realizar cualquier acción necesaria después del envío del correo electrónico
+              })
+              .catch((error) => {
+                console.error(
+                  "Error al enviar correo electrónico de verificación",
+                  error
+                );
+                // Realizar cualquier acción necesaria en caso de error al enviar el correo electrónico
+              });
+          }
+        });
+    })
     .catch((error) => {
+      console.error("Error al registrar usuario", error);
+      // Realizar cualquier acción necesaria en caso de error al registrar usuario
+    })
+    .catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode === 'auth/weak-password') {
-        password.setCustomValidity('Esta contraseña es muy insegura');
+      if (errorCode == "auth/weak-password") {
+        alert("Esta contraseña es muy insegura");
       } else {
-        password.setCustomValidity(errorMessage);
+        alert(errorMessage);
       }
       console.log(error);
     });
+  // sendVerification();
+  return;
 }
 
-// Sends an email verification to the user.
-function sendEmailVerification(user) {
-  firebase.libsAuth.auth.currentUser.sendEmailVerification()
-    .then(() => {
-      // Email Verification sent!
-      // TODO: Hacer un innerHTML o una imagen hecha para sustituir el alert
-      alert('Verificación de correo electrónico Enviada.');
-    });
-}
+// /**
+//  * Sends an email verification to the user.
+//  */
+// function sendVerification() {
+//   firebase.auth().currentUser.sendEmailVerification().then(function () {
+//     // Email Verification sent!
+//     alert("Email Verification Sent!");
+//   });
+// }
 
 function sendPasswordReset() {
-  const email = document.getElementById('email').value;
-  firebase.libsAuth.auth.sendPasswordResetEmail(email)
-    .then(() => {
+  const emailInput = document.getElementById("email");
+  const email = emailInput.value;
+  firebase.auth().sendPasswordResetEmail(authApp, email)
+    .then(function () {
       // Password Reset Email Sent!
-      // TODO: Hacer un innerHTML o una imagen hecha para sustituir el alert
-      alert('Renovación de Contraseña enviada a Correo Electrónico');
+      alert("Password Reset Email Sent!");
     })
-    .catch((error) => {
+    .catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode === 'auth/invalid-email') {
+      if (errorCode == "auth/invalid-email") {
         alert(errorMessage);
-      } else if (errorCode === 'auth/user-not-found') {
+      } else if (errorCode == "auth/user-not-found") {
         alert(errorMessage);
       }
       console.log(error);
@@ -117,17 +152,15 @@ function sendPasswordReset() {
 
 /**
  * initApp handles setting up UI event listeners and registering Firebase auth listeners:
- *  - firebase.libsAuth.auth.onAuthStateChanged: This listener is called when the user is signed in or
+ *  - onAuthStateChanged: This listener is called when the user is signed in or
  *    out, and that is where we update the UI.
  */
 function initApp() {
   showPassword();
   // Listening for auth state changes.
-  firebase.onAuthStateChanged
-  firebase.libsAuth.auth.onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged(authApp, function (user) {
     if (user) {
       // User is signed in.
-      // TODO: Revisar los datos que almacena la data
       const displayName = user.displayName;
       const email = user.email;
       const emailVerified = user.emailVerified;
@@ -137,24 +170,14 @@ function initApp() {
       const providerData = user.providerData;
     }
   });
-
-
-  // TODO: Cambiar nombres en HTML de ID para navbar en feed
-  const signIn =  document.getElementById('sign-in');
-  const signOut = document.getElementById('sign-up');
+  const signIn = document.getElementById("sign-in");
+  const signOut = document.getElementById("sign-up");
 
   if (signIn) {
-    signIn.addEventListener('click', toggleSignIn, false);
+    signIn.addEventListener("click", toggleSignIn, false);
   } else if (signOut) {
-    signOut.addEventListener('click', handleSignUp, false);
+    signOut.addEventListener("click", handleSignUp, false);
   }
- 
-  // FIXME: Mover el listener al feed para cerrar sesión
- /*    document
-    .getElementById('signOut')
-    .addEventListener('click', toggleSignIn, false); */
 }
 
-
-
-export { toggleSignIn, initApp }
+export { toggleSignIn, initApp };

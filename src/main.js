@@ -1,6 +1,6 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
-import { togginitApp } from "./lib/barrel.js";
+import { toggleSignIn, initApp } from "./lib/barrel.js";
 
 
 function scrollFunction() {

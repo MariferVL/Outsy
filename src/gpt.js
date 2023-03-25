@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
 
-
+const user = userCredential.user;
 firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userCredential) => {
     // Usuario registrado correctamente
