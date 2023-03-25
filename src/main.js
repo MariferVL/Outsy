@@ -1,6 +1,6 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
-import { toggleSignIn, initApp } from "./lib/barrel.js";
+import { initApp } from "./lib/barrel.js";
 
 
 function scrollFunction() {
@@ -49,37 +49,9 @@ function initializeRouter() {
   document.getElementById("signUp2").addEventListener("click", signUpHandler);
   document.getElementById("about").addEventListener("click", aboutHandler);
 
-  // Call initApp if views are created
-  // FIXME: Investigar si hay una mejor manera de hacer esta llamada
-/*   const loginView = document.getElementById("signInView");
-  const logupView = document.getElementById("signUpView");
-  if (loginView || logupView) {
-    console.log("entro al if de main");
-    obj.funct.initApp()
-  } */
 }
 
 initializeRouter();
 
 
 
-
-// let Router;
-
-// function initializeRouter() {
-//   Router = new ROUTER(paths);
-//   Router.load('home');
-// }
-
-// window.onload = () => {
-//   initializeRouter();
-//   document.getElementById('signIn').addEventListener('click', () => { Router.loadBody('signIn'); });
-//   document.getElementById('signUp').addEventListener('click', () => { Router.loadBody('signUp'); });
-//   document.getElementById('signUp2').addEventListener('click', () => { Router.loadBody('signUp'); });
-//   document.getElementById('about').addEventListener('click', () => { Router.load('about'); });
-// };
-
-/* // Initialize authentication email/password
-window.onload = function () {
-  funct.initApp();
-}; */
