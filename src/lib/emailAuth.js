@@ -1,11 +1,11 @@
-import firebase, { auth } from "./barrel";
+import { auth } from "./barrel.js";
 // Global input email and password
 
 
 // Handles the sign in button press.
 function toggleSignIn() {
-  if (firebase.auth().currentUser) {
-    firebase.auth().signOut();
+  if (auth.currentUser) {
+    auth.signOut();
   } else {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -18,9 +18,7 @@ function toggleSignIn() {
       return;
     }
     // Sign in with email and pass.
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+    auth.signInWithEmailAndPassword(email, password)
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -31,21 +29,17 @@ function toggleSignIn() {
           password.setCustomValidity(errorMessage);
         }
         console.log(error);
-        document.getElementById('sign-in').disabled = false;
       });
   }
-  document.getElementById('sign-in').disabled = true;
-}
+  document.getElementById('password-reset').addEventListener('click', sendPasswordReset, false);
+};
 
 function showPassword() {
-  console.log("No sabemos porque no funciona, pero entró");
   const showPasswordCheckbox = document.getElementById('showPassword');
   const password = document.getElementById('password');
 
   showPasswordCheckbox.addEventListener('change', () => {
-    console.log("Aquí entro al listener");
     if (showPasswordCheckbox.checked) {
-      console.log("Aquí entro al if, debería mostrar contraseña");
       password.type = 'text';
     } else {
       password.type = 'password';
@@ -55,7 +49,6 @@ function showPassword() {
 
 // Handles the sign up button press.
 function handleSignUp() {
-  showPassword();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   if (email.length < 4) {
@@ -65,11 +58,14 @@ function handleSignUp() {
   if (password.length < 4) {
     password.setCustomValidity('Por favor, ingresa una contraseña.');
     return;
+  } else {
+    sendEmailVerification()
   }
   // Create user with email and pass.
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
+  auth.createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Usuario registrado correctamente
+  })
     .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -85,9 +81,7 @@ function handleSignUp() {
 
 // Sends an email verification to the user.
 function sendEmailVerification() {
-  firebase
-    .auth()
-    .currentUser.sendEmailVerification()
+  auth.currentUser.sendEmailVerification()
     .then(() => {
       // Email Verification sent!
       // TODO: Hacer un innerHTML o una imagen hecha para sustituir el alert
@@ -97,9 +91,7 @@ function sendEmailVerification() {
 
 function sendPasswordReset() {
   const email = document.getElementById('email').value;
-  firebase
-    .auth()
-    .sendPasswordResetEmail(email)
+  auth.sendPasswordResetEmail(email)
     .then(() => {
       // Password Reset Email Sent!
       // TODO: Hacer un innerHTML o una imagen hecha para sustituir el alert
@@ -120,15 +112,16 @@ function sendPasswordReset() {
 
 /**
  * initApp handles setting up UI event listeners and registering Firebase auth listeners:
- *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+ *  - auth.onAuthStateChanged: This listener is called when the user is signed in or
  *    out, and that is where we update the UI.
  */
 function initApp() {
+  showPassword();
   // Listening for auth state changes.
-  firebase.auth().onAuthStateChanged((user) => {
-    document.getElementById('verify-email').disabled = true;
+  auth.onAuthStateChanged((user) => {
     if (user) {
       // User is signed in.
+      // TODO: Revisar los datos que almacena la data
       const displayName = user.displayName;
       const email = user.email;
       const emailVerified = user.emailVerified;
@@ -136,41 +129,26 @@ function initApp() {
       const isAnonymous = user.isAnonymous;
       const uid = user.uid;
       const providerData = user.providerData;
-      // TODO: Cambiar nombres en HTML de ID para navbar en feed
-      document.getElementById('sign-in-status').textContent =
-        'Ingresado';
-      document.getElementById('sign-in').textContent = 'Cerrar Sesión';
-      document.getElementById('account-details').textContent =
-        JSON.stringify(user, null, '  ');
-      if (!emailVerified) {
-        document.getElementById('verify-email').disabled = false;
-      }
-    } else {
-      // User is signed out.
-      document.getElementById('sign-in-status').textContent =
-        'Cerró sesión';
-      document.getElementById('sign-in').textContent = 'Ingresar';
-      document.getElementById('account-details').textContent =
-        'null';
     }
-    document.getElementById('sign-in').disabled = false;
   });
 
+
   // TODO: Cambiar nombres en HTML de ID para navbar en feed
-  document
-    .getElementById('sign-in')
-    .addEventListener('click', toggleSignIn, false);
-  document
-    .getElementById('sign-up')
-    .addEventListener('click', handleSignUp, false);
-  document
-    .getElementById('verify-email')
-    .addEventListener('click', sendEmailVerification, false);
-  document
-    .getElementById('password-reset')
-    .addEventListener('click', sendPasswordReset, false);
+  const signIn =  document.getElementById('sign-in');
+  const signOut = document.getElementById('sign-up');
+
+  if (signIn) {
+    signIn.addEventListener('click', toggleSignIn, false);
+  } else if (signOut) {
+    signOut.addEventListener('click', handleSignUp, false);
+  }
+ 
+  // FIXME: Mover el listener al feed para cerrar sesión
+ /*    document
+    .getElementById('signOut')
+    .addEventListener('click', toggleSignIn, false); */
 }
 
 
 
-export { toggleSignIn, handleSignUp, sendEmailVerification, sendPasswordReset, initApp }
+export { toggleSignIn, initApp }
