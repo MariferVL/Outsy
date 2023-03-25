@@ -21,11 +21,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+const authApp = getAuth(app);
 
 export { toggleSignIn, initApp }
 
-export  default auth;
+export  default authApp;
 // export { default as firebase } from  './node_modules/firebase/app';
 // export { default as firestore } from "./node_modules/firebase/firestore";
 

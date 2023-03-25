@@ -1,5 +1,6 @@
-import authApp from "./barrel.js";
 import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+import authApp from "./barrel";
+
 
 function showPassword() {
   const showPasswordCheckbox = document.getElementById("showPassword");
