@@ -1,6 +1,6 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
-import obj from "./lib/barrel.js";
+import { togginitApp } from "./lib/barrel.js";
 
 
 function scrollFunction() {
@@ -34,11 +34,11 @@ function initializeRouter() {
 
   const signInHandler = () => {
     Router.loadBody("signIn");
-    obj.funct.initApp()
+    initApp()
   };
   const signUpHandler = () => {
     Router.loadBody("signUp");
-    obj.funct.initApp()
+    initApp()
   };
   const aboutHandler = () => {
     Router.load("about");

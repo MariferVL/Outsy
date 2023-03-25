@@ -1,11 +1,13 @@
-import { auth } from "./barrel.js";
+import { default as firebase } from "firebase/auth";
+import app from "./barrel.js";
 // Global input email and password
 
+const auth = firebase.getAuth(app);
 
 // Handles the sign in button press.
 function toggleSignIn() {
-  if (auth.currentUser) {
-    auth.signOut();
+  if (firebase.currentUser) {
+    firebase.signOut()
   } else {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -18,7 +20,7 @@ function toggleSignIn() {
       return;
     }
     // Sign in with email and pass.
-    auth.signInWithEmailAndPassword(email, password)
+    firebase.signInWithEmailAndPassword(email, password)
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -62,9 +64,12 @@ function handleSignUp() {
     sendEmailVerification()
   }
   // Create user with email and pass.
-  auth.createUserWithEmailAndPassword(email, password)
+  firebase.libsAuth.auth.createUserWithEmailAndPassword(email, password)
   .then((userCredential) => {
-    // Usuario registrado correctamente
+      // Usuario registrado correctamente
+      const user = userCredential.user;
+      console.log(`Usuario registrado con éxito: ${user.email}`);
+      sendEmailVerification(user)
   })
     .catch((error) => {
       // Handle Errors here.
@@ -80,8 +85,8 @@ function handleSignUp() {
 }
 
 // Sends an email verification to the user.
-function sendEmailVerification() {
-  auth.currentUser.sendEmailVerification()
+function sendEmailVerification(user) {
+  firebase.libsAuth.auth.currentUser.sendEmailVerification()
     .then(() => {
       // Email Verification sent!
       // TODO: Hacer un innerHTML o una imagen hecha para sustituir el alert
@@ -91,7 +96,7 @@ function sendEmailVerification() {
 
 function sendPasswordReset() {
   const email = document.getElementById('email').value;
-  auth.sendPasswordResetEmail(email)
+  firebase.libsAuth.auth.sendPasswordResetEmail(email)
     .then(() => {
       // Password Reset Email Sent!
       // TODO: Hacer un innerHTML o una imagen hecha para sustituir el alert
@@ -112,13 +117,14 @@ function sendPasswordReset() {
 
 /**
  * initApp handles setting up UI event listeners and registering Firebase auth listeners:
- *  - auth.onAuthStateChanged: This listener is called when the user is signed in or
+ *  - firebase.libsAuth.auth.onAuthStateChanged: This listener is called when the user is signed in or
  *    out, and that is where we update the UI.
  */
 function initApp() {
   showPassword();
   // Listening for auth state changes.
-  auth.onAuthStateChanged((user) => {
+  firebase.onAuthStateChanged
+  firebase.libsAuth.auth.onAuthStateChanged((user) => {
     if (user) {
       // User is signed in.
       // TODO: Revisar los datos que almacena la data
