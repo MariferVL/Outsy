@@ -1,12 +1,13 @@
 import { toggleSignIn, initApp } from "./emailAuth.js"
 
+// import { default as firestore } from "firebase/firestore";
 import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
 // import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
 // Add Firebase products to use
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js' 
+// import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js' 
 
- const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyAMoIZnaqiWN7MrGggAkrPwJqTMUN-_xXE",
   authDomain: "outsy-mxg.firebaseapp.com",
   databaseURL: "https://outsy-mxg-default-rtdb.firebaseio.com",
@@ -20,11 +21,11 @@ import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
-export const authApp = getAuth(app);
+const auth = getAuth(app);
 
 export { toggleSignIn, initApp }
 
-// export  default firebase;
+export  default auth;
 // export { default as firebase } from  './node_modules/firebase/app';
 // export { default as firestore } from "./node_modules/firebase/firestore";
 
