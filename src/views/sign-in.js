@@ -30,8 +30,10 @@ export const viewSignIn = `
   
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4" class="form-control" />
-                  <label class="form-label" for="form3Example4">Contraseña</label>
+                  <input type="password" id="password" class="form-control" />
+                  <label class="form-label" for="password">Contraseña</label> <br>
+                  <input type="checkbox" id="showPassword" name="showPassword">
+                  <label for="showPassword">Mostrar contraseña</label>
                 </div>
   
                 <!-- Checkbox -->
@@ -41,6 +43,13 @@ export const viewSignIn = `
                     Recuerdame
                   </label>
                 </div>
+
+                <!-- Simple link -->
+                <button type="button" class="btn btn-link btn-floating mx-1" id="password-reset">¿Olvidaste tu constraseña?</button> 
+                
+                <!-- Register buttons -->
+                <div class="text-center">
+                <p>¿No estás registrado? <a href="#!">Registrate</a></p>
   
                 <!-- Submit button -->
                 <button id="sign-in" class="btn btn-primary btn-block mb-4">

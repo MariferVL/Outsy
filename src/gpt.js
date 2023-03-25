@@ -64,3 +64,52 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+
+
+// POSIBLES ERRORES DE AUTENTICACIÓN 
+
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
+
+
+firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Usuario registrado correctamente
+  })
+  .catch((error) => {
+    // Error al registrar usuario
+  });
+
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // Usuario autenticado correctamente
+  } else {
+    // Usuario no autenticado
+  }
+});
+
+
+
+const user = firebase.auth().currentUser;
+if (user) {
+  // Acceder a las propiedades o métodos del objeto
+} else {
+  // Usuario no autenticado
+}
+
+
+firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Usuario registrado correctamente
+    const user = userCredential.user;
+    console.log(`Usuario registrado con éxito: ${user.email}`);
+    // Puedes realizar otras acciones aquí, como enviar un correo electrónico de confirmación o redirigir al usuario a otra página
+  })
+  .catch((error) => {
+    // Error al registrar usuario
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(`Error al registrar usuario: ${errorMessage} (${errorCode})`);
+  });

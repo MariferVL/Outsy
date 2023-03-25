@@ -1,6 +1,6 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
-import funct from "./lib/barrel.js";
+import obj from "./lib/barrel.js";
 
 
 function scrollFunction() {
@@ -34,9 +34,11 @@ function initializeRouter() {
 
   const signInHandler = () => {
     Router.loadBody("signIn");
+    obj.funct.initApp()
   };
   const signUpHandler = () => {
     Router.loadBody("signUp");
+    obj.funct.initApp()
   };
   const aboutHandler = () => {
     Router.load("about");
@@ -46,19 +48,21 @@ function initializeRouter() {
   document.getElementById("signUp").addEventListener("click", signUpHandler);
   document.getElementById("signUp2").addEventListener("click", signUpHandler);
   document.getElementById("about").addEventListener("click", aboutHandler);
+
+  // Call initApp if views are created
+  // FIXME: Investigar si hay una mejor manera de hacer esta llamada
+/*   const loginView = document.getElementById("signInView");
+  const logupView = document.getElementById("signUpView");
+  if (loginView || logupView) {
+    console.log("entro al if de main");
+    obj.funct.initApp()
+  } */
 }
 
 initializeRouter();
 
-// Call initApp if views are created
-document.addEventListener("DOMContentLoaded", function () {
-  const loginView = document.getElementById("signInView");
-  const logupView = document.getElementById("signUpView");
 
-  if (loginView || logupView) {
-    funct.initApp();
-  }
-});
+
 
 // let Router;
 

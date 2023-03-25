@@ -1,4 +1,5 @@
-export const viewSignUp = `<section id="signUpView" class="background-radial-gradient overflow-hidden">
+export const viewSignUp = `
+<section id="signUpView" class="background-radial-gradient overflow-hidden">
 <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
   <div class="row gx-lg-5 align-items-center mb-5">
     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
@@ -30,7 +31,7 @@ export const viewSignUp = `<section id="signUpView" class="background-radial-gra
             <!-- Password input -->
             <div class="form-outline mb-4">
               <input type="password" id="password" class="form-control" />
-              <label class="form-label" for="password">Contraseña</label>
+              <label class="form-label" for="password">Contraseña</label> <br>
               <input type="checkbox" id="showPassword" name="showPassword">
               <label for="showPassword">Mostrar contraseña</label>
             </div>
@@ -44,10 +45,9 @@ export const viewSignUp = `<section id="signUpView" class="background-radial-gra
             <!-- Checkbox -->
             <div class="form-check d-flex justify-content-center mb-4">
               <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-              <label class="form-check-label" for="form2Example33">
-               <!-- TODO: Agregar link en términos y condiciones -->
-                Acepto los términos y condiciones
-              </label>
+              <label class="form-check-label text-black" for="form2Example33">
+                      Acepto los <a href="#!" class="text-blue"><u>Términos y Condiciones</u></a>
+                    </label>
             </div>
 
             <!-- Submit button -->

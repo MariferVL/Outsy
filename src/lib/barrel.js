@@ -1,4 +1,4 @@
-import { toggleSignIn, handleSignUp, sendEmailVerification, sendPasswordReset, initApp } from "./emailAuth.js"
+import { toggleSignIn, initApp } from "./emailAuth.js"
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js'
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
 // Add Firebase products to use
@@ -25,7 +25,7 @@ export const auth = getAuth(app);
 
 
 
-const functionsDiv = { toggleSignIn, handleSignUp, sendEmailVerification, sendPasswordReset, initApp }
+const funct = { toggleSignIn, initApp }
 
-export  default {app, functionsDiv};
+ export  default {app, funct};
 
