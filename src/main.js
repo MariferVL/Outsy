@@ -1,6 +1,6 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
-import { initApp } from "./lib/barrel.js";
+import { initApp, toggleSignIn } from "./lib/barrel.js";
 
 
 function scrollFunction() {
@@ -34,11 +34,13 @@ function initializeRouter() {
 
   const signInHandler = () => {
     Router.loadBody("signIn");
-    initApp()
+    enableButtons("sign-in");
+    
   };
   const signUpHandler = () => {
     Router.loadBody("signUp");
-    initApp()
+    enableButtons("sign-up");
+    
   };
   const aboutHandler = () => {
     Router.load("about");
@@ -50,6 +52,60 @@ function initializeRouter() {
   document.getElementById("about").addEventListener("click", aboutHandler);
 
 }
+
+/**
+ * Change button attribute to disable
+ */
+function enableButtons(idElement) {
+  const elementButton = document.getElementById(idElement);
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  if (detectElement(idElement)) {
+    if (validateInput(emailInput) && validateInput(passwordInput)){
+      elementButton.disabled = true;  
+
+    } 
+  } 
+  return emailInput.value, passwordInput.value;
+}
+
+
+
+//FIXME: terminar
+function validateInput(input){
+  if (input.length < 4) {
+    emailInput.setCustomValidity("Por favor, ingresa un correo electrónico.");
+  }
+    return;
+  }
+
+ emailInput.setCustomValidity("Por favor, ingresa un correo electrónico.");
+  
+
+/**
+ * Detect elements from views DOM with ID
+ */
+function detectElement(elementID) {
+  const element = document.getElementById(elementID);
+  let detected = false;
+  if (element) {
+    detected = true;
+  } 
+  return detected;  
+}
+
+// function detectButton(){
+//   const signIn = document.getElementById("sign-in");
+//   const signOut = document.getElementById("sign-up");
+  
+//   if (signIn) {
+    
+//     signIn.addEventListener("click", toggleSignIn, false);
+    
+//   } else if (signOut) {
+//     signOut.addEventListener("click", handleSignUp, false);
+//   }
+// }
 
 initializeRouter();
 

@@ -51,7 +51,7 @@ export const viewSignUp = `
             </div>
 
             <!-- Submit button -->
-            <button id="sign-up" class="btn btn-primary btn-block mb-4">
+            <button id="sign-up" class="btn btn-primary btn-block mb-4" disabled>
               Registrarme
             </button>
 

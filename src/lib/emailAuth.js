@@ -1,7 +1,6 @@
 import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 import authApp from "./barrel.js";
 
-
 function showPassword() {
   const showPasswordCheckbox = document.getElementById("showPassword");
   const password = document.getElementById("password");
@@ -13,25 +12,31 @@ function showPassword() {
       password.type = "password";
     }
   });
+  // For tests
+  return showPasswordCheckbox.checked;
 }
 
 /**
  * Handles the sign in button press.
  */
-
 function toggleSignIn() {
+  let inputValidation = false;
   if (firebase.currentUser) {
     auth.signOut(authApp);
   } else {
+    const signUpButton = document.getElementById("sign-up");
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const email = emailInput.value;
     const password = passwordInput.value;
     if (email.length < 4) {
+      signUpButton.disabled = true;
+      inputValidation = true;
       emailInput.setCustomValidity("Por favor, ingresa un correo electrónico.");
       return;
     }
     if (password.length < 4) {
+      inputValidation = true;
       passwordInput.setCustomValidity("Por favor, ingresa una contraseña.");
       return;
     }
@@ -53,31 +58,23 @@ function toggleSignIn() {
   document
     .getElementById("password-reset")
     .addEventListener("click", sendPasswordReset, false);
+  //TODO: crear return
+  return inputValidation;
 }
 
 /**
  * Handles the sign up button press.
  */
 function handleSignUp() {
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const email = emailInput.value;
-  const password = passwordInput.value;
-  if (email.length < 4) {
-    emailInput.setCustomValidity("Por favor, ingresa un correo electrónico.");
-    return;
-  }
-  if (password.length < 4) {
-    passwordInput.setCustomValidity("Por favor, ingresa una contraseña.");
-    return;
-  }
+  let verification = false;
+
+
   // Create user with email and pass.
   auth
     .createUserWithEmailAndPassword(authApp, email, password)
     .then((cred) => {
-      console.log('Usuario registrado con éxito', cred.user);
-      sendVerification(cred.user);
-
+      console.log("Usuario registrado con éxito", cred.user);
+      verification = sendVerification(cred.user);
     })
     .catch(function (error) {
       // Handle Errors here.
@@ -89,9 +86,8 @@ function handleSignUp() {
         alert(errorMessage);
       }
       console.log(error);
-    }
-    );
-  return;
+    });
+  return verification;
 }
 
 /**
@@ -101,6 +97,7 @@ function sendVerification(user) {
   auth.sendEmailVerification(user).then(function () {
     // Email Verification sent!
     alert("Email Verification Sent!");
+    return user.emailVerified;
   });
 }
 
@@ -146,14 +143,6 @@ function initApp() {
       const providerData = user.providerData;
     }
   });
-  const signIn = document.getElementById("sign-in");
-  const signOut = document.getElementById("sign-up");
 
-  if (signIn) {
-    signIn.addEventListener("click", toggleSignIn, false);
-  } else if (signOut) {
-    signOut.addEventListener("click", handleSignUp, false);
-  }
-}
 
 export { toggleSignIn, initApp };
