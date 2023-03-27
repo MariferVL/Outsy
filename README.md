@@ -73,7 +73,7 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
      <summary>1. CSS</summary>
       <ul>
         <li>
-        - [] Uso de selectores de CSS
+        - [x] Uso de selectores de CSS
         </li>
         <li>
         - [] Modelo de caja (box model): borde, margen, padding
