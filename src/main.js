@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /**
  * Detect elements from views DOM with ID
  */
-function detectElement(elementID) {
+/* function detectElement(elementID) {
   const element = document.getElementById(elementID);
   let detected = false;
   console.log("42");
@@ -45,7 +45,7 @@ function detectElement(elementID) {
     detected = true;
   }
   return detected;
-}
+} */
 
 /**
  * 
@@ -158,6 +158,7 @@ function showPassword() {
   return showPasswordCheckbox.checked;
 }
 
+
 /**
  * Change button attribute to disable
  * @param {*} idElement 
@@ -167,8 +168,9 @@ function enableButtons(idElement) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
+
   showPassword();
-  if (detectElement(idElement)) {
+  if (elementButton) {
     console.log("ID elemento 172: " + idElement);
 
     if (validateInput(emailInput) && validateInput(passwordInput)) {
