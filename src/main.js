@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
 function detectElement(elementID) {
   const element = document.getElementById(elementID);
   let detected = false;
+  console.log("42");
   if (element) {
+    console.log("elemento detectado 43");
     detected = true;
   }
   return detected;
@@ -167,7 +169,10 @@ function enableButtons(idElement) {
   const passwordInput = document.getElementById("password");
   showPassword();
   if (detectElement(idElement)) {
+    console.log("ID elemento 172: " + idElement);
+
     if (validateInput(emailInput) && validateInput(passwordInput)) {
+      console.log("datos validados 173");
       elementButton.disabled = false;
     }
   }
