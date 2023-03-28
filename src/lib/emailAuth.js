@@ -1,20 +1,4 @@
 import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
-import authApp from "./barrel.js";
-
-function showPassword() {
-  const showPasswordCheckbox = document.getElementById("showPassword");
-  const password = document.getElementById("password");
-
-  showPasswordCheckbox.addEventListener("change", () => {
-    if (showPasswordCheckbox.checked) {
-      password.type = "text";
-    } else {
-      password.type = "password";
-    }
-  });
-  // For tests
-  return showPasswordCheckbox.checked;
-}
 
 /**
  * Handles the sign in button press.
@@ -41,7 +25,7 @@ function toggleSignIn(authApp, email, password) {
   }
   document
     .getElementById("password-reset")
-    .addEventListener("click", sendPasswordReset, false);
+    .addEventListener("click", () => sendPasswordReset(authApp, email));
   return inputValidation;
 }
 
@@ -82,6 +66,11 @@ function sendVerification(user) {
   });
 }
 
+/**
+ * 
+ * @param {*} authApp 
+ * @param {*} email 
+ */
 function sendPasswordReset(authApp, email) {
   
   auth
@@ -104,12 +93,11 @@ function sendPasswordReset(authApp, email) {
 }
 
 /**
- * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+ * initApp handles:
  *  - onAuthStateChanged: This listener is called when the user is signed in or
  *    out, and that is where we update the UI.
  */
 function initApp() {
-  showPassword();
   // Listening for auth state changes.
   auth.onAuthStateChanged(authApp, function (user) {
     if (user) {
@@ -123,6 +111,6 @@ function initApp() {
       const providerData = user.providerData;
     }
   });
+}
 
-
-export { handleSignUp};
+export {toggleSignIn, handleSignUp };
