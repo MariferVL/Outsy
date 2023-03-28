@@ -42,7 +42,8 @@ function initializeRouter() {
   const signUpHandler = () => {
     Router.loadBody("signUp");
     document.getElementById("formSignUp").addEventListener("input",() => {
-    enableButtons("sign-up");
+    const userData = enableButtons("sign-up");
+    handleSignUp(authApp, userData[0],userData[1]);
   });
   };
 
@@ -59,7 +60,6 @@ function initializeRouter() {
 /**
  * Change button attribute to disable
  */
-
 function enableButtons(idElement,) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById("email");

@@ -65,10 +65,8 @@ function toggleSignIn() {
 /**
  * Handles the sign up button press.
  */
-function handleSignUp() {
+function handleSignUp(authApp, email, password) {
   let verification = false;
-
-
   // Create user with email and pass.
   auth
     .createUserWithEmailAndPassword(authApp, email, password)
@@ -145,4 +143,4 @@ function initApp() {
   });
 
 
-export { toggleSignIn, initApp };
+export { handleSignUp};
