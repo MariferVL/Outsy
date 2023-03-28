@@ -1,4 +1,4 @@
-import { toggleSignIn, handleSignUp } from "./emailAuth";
+import { toggleSignIn, handleSignUp } from "./emailAuth.js";
 
 // import { default as firestore } from "firebase/firestore";
 import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
