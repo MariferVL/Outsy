@@ -1,10 +1,10 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
-import { toggleSignIn, handleSignUp }  from "./lib/barrel.js";
+import { toggleSignIn, handleSignUp } from "./lib/barrel.js";
 import authApp from "./lib/barrel.js";
 
 /**
- * 
+ *
  */
 function scrollFunction() {
   const navbar = document.getElementById("navbar");
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 } */
 
 /**
- * 
+ *
  */
 function initializeRouter() {
   const Router = new ROUTER(paths);
@@ -60,7 +60,7 @@ function initializeRouter() {
   const signInHandler = () => {
     Router.loadBody("signIn");
     document.getElementById("formSignIn").addEventListener("input", () => {
-      userData =  enableButtons("sign-in");
+      userData = enableButtons("sign-in");
     });
     document.getElementById("sign-in").addEventListener("click", () => {
       const errorMsg = toggleSignIn(authApp, userData[0], userData[1]);
@@ -77,6 +77,11 @@ function initializeRouter() {
       userData = enableButtons("sign-up");
     });
     document.getElementById("sign-up").addEventListener("click", () => {
+      const emailIgm = document.createElement("img");
+      emailIgm.src = "src/images/emailVerification.png";
+      emailIgm.className = "emailImg";
+      const main = document.getElementById("feed");
+      main.replaceWith(emailIgm);
       if (handleSignUp(authApp, userData[0], userData[1])) {
         Router.loadBody("feed");
       }
@@ -92,7 +97,6 @@ function initializeRouter() {
   document.getElementById("signUp2").addEventListener("click", signUpHandler);
   document.getElementById("about").addEventListener("click", aboutHandler);
 }
-
 
 /**
  * Validate email input structure
@@ -116,9 +120,9 @@ function validatePassword(password) {
 }
 
 /**
- * 
- * @param {*} input 
- * @returns 
+ *
+ * @param {*} input
+ * @returns
  */
 function validateInput(input) {
   const value = input.value;
@@ -158,17 +162,16 @@ function showPassword() {
   return showPasswordCheckbox.checked;
 }
 
-
 /**
  * Change button attribute to disable
- * @param {*} idElement 
- * @returns 
+ * @param {*} idElement
+ * @returns
  */
 function enableButtons(idElement) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
-
+  console.log("antes del pass");
   showPassword();
   if (elementButton) {
     console.log("ID elemento 172: " + idElement);
