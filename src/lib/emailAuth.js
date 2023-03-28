@@ -63,6 +63,9 @@ function sendVerification(user) {
     // Email Verification sent!
     alert("Email Verification Sent!");
     return user.emailVerified;
+  })
+  .catch((error) => {
+    console.log("Error sending email verification:", error);
   });
 }
 
