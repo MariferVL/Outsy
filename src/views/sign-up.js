@@ -34,6 +34,15 @@ export const viewSignUp = `
               <label class="form-label" for="password">Contraseña</label> <br>
               <input type="checkbox" id="showPassword" name="showPassword">
               <label for="showPassword">Mostrar contraseña</label>
+              <ul>
+                  <li>Mínimo 8 caracteres</li>
+                  <li>Máximo 15</li>
+                  <li>Al menos una letra mayúscula</li>
+                  <li>Al menos una letra minúscula</li>
+                  <li>Al menos un dígito</li>
+                  <li>Sin espacios en blanco</li>
+                  <li>Al menos 1 caracter especial</li>
+              </ul>
             </div>
 
             <!-- Repeat password input -->
