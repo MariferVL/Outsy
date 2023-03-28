@@ -1,6 +1,7 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
-import { initApp, toggleSignIn } from "./lib/barrel.js";
+import { initApp, toggleSignIn, handleSignUp,  } from "./lib/barrel.js";
+
 
 function scrollFunction() {
   const navbar = document.getElementById("navbar");
@@ -29,22 +30,52 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+/**
+ * Detect elements from views DOM with ID
+ */
+function detectElement(elementID) {
+  const element = document.getElementById(elementID);
+  let detected = false;
+  if (element) {
+    detected = true;
+  }
+  return detected;
+}
+
+/**
+ * 
+ */
 function initializeRouter() {
   const Router = new ROUTER(paths);
   Router.load("home");
 
+  let userData;
+  const passwordInput = document.getElementById("password");
+
   const signInHandler = () => {
     Router.loadBody("signIn");
-    document.getElementById("formSignIn").addEventListener("input",() => {
-      enableButtons("sign-in");
+    document.getElementById("formSignIn").addEventListener("input", () => {
+      userData =  enableButtons("sign-in");
+    });
+    document.getElementById("sign-in").addEventListener("click", () => {
+      const errorMsg = toggleSignIn(authApp, userData[0], userData[1]);
+      if (errorMsg !== "") {
+        passwordInput.setCustomValidity(errorMsg);
+      } else {
+        Router.loadBody("feed");
+      }
     });
   };
   const signUpHandler = () => {
     Router.loadBody("signUp");
-    document.getElementById("formSignUp").addEventListener("input",() => {
-    const userData = enableButtons("sign-up");
-    handleSignUp(authApp, userData[0],userData[1]);
-  });
+    document.getElementById("formSignUp").addEventListener("input", () => {
+      userData = enableButtons("sign-up");
+    });
+    document.getElementById("sign-up").addEventListener("click", () => {
+      if (handleSignUp(authApp, userData[0], userData[1])) {
+        Router.loadBody("feed");
+      }
+    });
   };
 
   const aboutHandler = () => {
@@ -57,21 +88,33 @@ function initializeRouter() {
   document.getElementById("about").addEventListener("click", aboutHandler);
 }
 
+
 /**
- * Change button attribute to disable
+ * Validate email input structure
+ * @param {*} email
+ * @returns boolean
  */
-function enableButtons(idElement,) {
-  const elementButton = document.getElementById(idElement);
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  if (detectElement(idElement)) {
-    if (validateInput(emailInput) && validateInput(passwordInput)) {
-      elementButton.disabled = false;
-    }
-  }
-  return emailInput.value, passwordInput.value;
+function validateEmail(email) {
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regexEmail.test(email);
 }
 
+//TODO:Agregar requerimentos de contraseña a la vista
+/**
+ * Validate password input structure
+ * @param {*} password
+ * @returns boolean
+ */
+function validatePassword(password) {
+  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  return regexPassword.test(password);
+}
+
+/**
+ * 
+ * @param {*} input 
+ * @returns 
+ */
 function validateInput(input) {
   const value = input.value;
   let valid = true;
@@ -91,51 +134,21 @@ function validateInput(input) {
   return valid;
 }
 
-emailInput.setCustomValidity("Por favor, ingresa un correo electrónico.");
-
 /**
- * Detect elements from views DOM with ID
+ * Change button attribute to disable
+ * @param {*} idElement 
+ * @returns 
  */
-function detectElement(elementID) {
-  const element = document.getElementById(elementID);
-  let detected = false;
-  if (element) {
-    detected = true;
+function enableButtons(idElement) {
+  const elementButton = document.getElementById(idElement);
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  if (detectElement(idElement)) {
+    if (validateInput(emailInput) && validateInput(passwordInput)) {
+      elementButton.disabled = false;
+    }
   }
-  return detected;
-}
-
-// function detectButton(){
-//   const signIn = document.getElementById("sign-in");
-//   const signOut = document.getElementById("sign-up");
-
-//   if (signIn) {
-
-//     signIn.addEventListener("click", toggleSignIn, false);
-
-//   } else if (signOut) {
-//     signOut.addEventListener("click", handleSignUp, false);
-//   }
-// }
-
-/**
- * Validate email input structure
- * @param {*} email
- * @returns boolean
- */
-function validateEmail(email) {
-  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regexEmail.test(email);
-}
-//TODO:Agregar requerimentos de contraseña a la vista
-/**
- * Validate password input structure
- * @param {*} password
- * @returns boolean
- */
-function validatePassword(password) {
-  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-  return regexPassword.test(password);
+  return emailInput.value, passwordInput.value;
 }
 
 initializeRouter();
