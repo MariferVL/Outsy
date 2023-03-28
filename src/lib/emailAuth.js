@@ -5,7 +5,7 @@ import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.j
  */
 function toggleSignIn(authApp, email, password) {
   let inputValidation;
-  if (firebase.currentUser) {
+  if (auth.currentUser) {
     auth.signOut(authApp);
   } else {
     // Sign in with email and pass.
