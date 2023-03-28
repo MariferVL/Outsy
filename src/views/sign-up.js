@@ -21,7 +21,7 @@ export const viewSignUp = `
 
       <div class="card bg-glass">
         <div class="card-body px-4 py-5 px-md-5">
-          <form> 
+          <form id="formSignUp"> 
             <!-- Email input -->
             <div class="form-outline mb-4">
               <input type="email" id="email" class="form-control" />
