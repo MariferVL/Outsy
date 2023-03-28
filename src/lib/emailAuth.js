@@ -19,38 +19,22 @@ function showPassword() {
 /**
  * Handles the sign in button press.
  */
-function toggleSignIn() {
-  let inputValidation = false;
+function toggleSignIn(authApp, email, password) {
+  let inputValidation;
   if (firebase.currentUser) {
     auth.signOut(authApp);
   } else {
-    const signUpButton = document.getElementById("sign-up");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    if (email.length < 4) {
-      signUpButton.disabled = true;
-      inputValidation = true;
-      emailInput.setCustomValidity("Por favor, ingresa un correo electrónico.");
-      return;
-    }
-    if (password.length < 4) {
-      inputValidation = true;
-      passwordInput.setCustomValidity("Por favor, ingresa una contraseña.");
-      return;
-    }
     // Sign in with email and pass.
-    signInWithEmailAndPassword(authApp, email, password).catch(function (
+    auth.signInWithEmailAndPassword(authApp, email, password).catch(function (
       error
     ) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       if (errorCode === "auth/wrong-password") {
-        passwordInput.setCustomValidity("Contraseña Errónea.");
+        inputValidation ="Contraseña Errónea.";
       } else {
-        passwordInput.setCustomValidity(errorMessage);
+        inputValidation = errorMessage;
       }
       console.log(error);
     });
@@ -58,7 +42,6 @@ function toggleSignIn() {
   document
     .getElementById("password-reset")
     .addEventListener("click", sendPasswordReset, false);
-  //TODO: crear return
   return inputValidation;
 }
 
@@ -99,9 +82,8 @@ function sendVerification(user) {
   });
 }
 
-function sendPasswordReset() {
-  const emailInput = document.getElementById("email");
-  const email = emailInput.value;
+function sendPasswordReset(authApp, email) {
+  
   auth
     .sendPasswordResetEmail(authApp, email)
     .then(function () {
