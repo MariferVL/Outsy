@@ -1,4 +1,4 @@
-import { toggleSignIn, initApp } from "./emailAuth.js"
+import { toggleSignIn, handleSignUp } from "./emailAuth";
 
 // import { default as firestore } from "firebase/firestore";
 import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
@@ -23,9 +23,6 @@ const app = firebase.initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const authApp = getAuth(app);
 
-export { toggleSignIn, initApp }
+export { toggleSignIn, handleSignUp};
 
 export  default authApp;
-// export { default as firebase } from  './node_modules/firebase/app';
-// export { default as firestore } from "./node_modules/firebase/firestore";
-

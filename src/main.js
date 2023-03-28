@@ -1,8 +1,11 @@
 import { ROUTER } from "./router/router.js";
 import { paths } from "./router/routes.js";
-import { initApp, toggleSignIn, handleSignUp,  } from "./lib/barrel.js";
+import { toggleSignIn, handleSignUp }  from "./lib/barrel.js";
+import authApp from "./lib/barrel.js";
 
-
+/**
+ * 
+ */
 function scrollFunction() {
   const navbar = document.getElementById("navbar");
   const logo = document.getElementById("logo");
@@ -135,6 +138,25 @@ function validateInput(input) {
 }
 
 /**
+ * Allow user see their password
+ * @returns boolean
+ */
+function showPassword() {
+  const showPasswordCheckbox = document.getElementById("showPassword");
+  const password = document.getElementById("password");
+
+  showPasswordCheckbox.addEventListener("change", () => {
+    if (showPasswordCheckbox.checked) {
+      password.type = "text";
+    } else {
+      password.type = "password";
+    }
+  });
+  // For tests
+  return showPasswordCheckbox.checked;
+}
+
+/**
  * Change button attribute to disable
  * @param {*} idElement 
  * @returns 
@@ -143,6 +165,7 @@ function enableButtons(idElement) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
+  showPassword();
   if (detectElement(idElement)) {
     if (validateInput(emailInput) && validateInput(passwordInput)) {
       elementButton.disabled = false;
