@@ -132,25 +132,26 @@ function validatePassword(password) {
 function validateInput(input, type) {
   const Inputvalue = input.value;
   let valid = true;
-  if (type === "email") {
-    console.log("emailValue: " +Inputvalue);
-    if (validateEmail(Inputvalue)){
-      return;
-    } else {
-      input.setCustomValidity(
-        "Por favor, ingresa un correo electrónico válido"
-      );
-      valid = false;
-    }
-  } else if (type === "pass") {
-    console.log("PassValue: " + Inputvalue);
-    if (validatePassword(Inputvalue)){
-      return;
-    } else {
-      input.setCustomValidity("Por favor, ingresa una contraseña válida");
-      valid = false;
-    }
-  }
+  //FIXME:Descomentar
+  // if (type === "email") {
+  //   console.log("emailValue: " +Inputvalue);
+  //   if (validateEmail(Inputvalue)){
+  //     return;
+  //   } else {
+  //     input.setCustomValidity(
+  //       "Por favor, ingresa un correo electrónico válido"
+  //     );
+  //     valid = false;
+  //   }
+  // } else if (type === "pass") {
+  //   console.log("PassValue: " + Inputvalue);
+  //   if (validatePassword(Inputvalue)){
+  //     return;
+  //   } else {
+  //     input.setCustomValidity("Por favor, ingresa una contraseña válida");
+  //     valid = false;
+  //   }
+  // }
   return valid;
 }
 
