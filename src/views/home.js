@@ -13,9 +13,9 @@ export const viewHome = `
             <img src="images/2.png" width="75%">
             <div class="container">
               <div class="carousel-caption text-start">
-                <h1>Example headline.</h1>
-                <p>¡Lo nuevo, esperalo!</p>
-                <p><a class="btn btn-lg btn-primary" id="signUp2">Sign up today</a></p>
+                <h1>¡Esperalo!</h1>
+                <p>¡Lo nuevo!</p>
+                <p><a class="btn btn-lg btn-primary" id="signUp2">Pónte al día</a></p>
               </div>
             </div>
           </div>
@@ -26,9 +26,9 @@ export const viewHome = `
             </svg>
             <div class="container">
               <div class="carousel-caption">
-                <h1>Another example headline.</h1>
+                <h1>Busca tu Post.</h1>
                 <p>¡Los mejores post!.</p>
-                <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                <p><a class="btn btn-lg btn-primary" href="#">Entrar</a></p>
               </div>
             </div>
           </div>
@@ -39,9 +39,9 @@ export const viewHome = `
             </svg>
             <div class="container">
               <div class="carousel-caption text-end">
-                <h1>One more for good measure.</h1>
+                <h1>Tus amigos han publicado eventos.</h1>
                 <p>Eventos para compartir.</p>
-                <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                <p><a class="btn btn-lg btn-primary" href="#">Buscar</a></p>
               </div>
             </div>
           </div>
