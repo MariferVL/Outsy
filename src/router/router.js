@@ -1,4 +1,4 @@
-import { paths } from './routes.js';
+import paths from "./routes";
 
 class ROUTER {
   constructor() {

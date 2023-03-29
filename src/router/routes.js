@@ -58,4 +58,4 @@ const paths = {
   },
 };
 
-export { paths };
+export default paths;
