@@ -1,7 +1,6 @@
-import paths from "./routes.js";
 
-class ROUTER {
-  constructor() {
+export class ROUTER {
+  constructor(paths) {
     this.paths = paths;
     this.initRouter();
   }
@@ -18,7 +17,7 @@ class ROUTER {
     const { paths } = this;
     const { path, template } = paths[page] || paths.error;
     const $CONTAINER = document.getElementById('root');
-    $CONTAINER.innerHTML = template;
+    $CONTAINER.append(template(this));
     window.history.pushState({}, 'done', path);
   }
 
@@ -26,10 +25,9 @@ class ROUTER {
     const { paths } = this;
     const { path, template } = paths[page] || paths.error;
     const $CONTAINER = document.getElementById('base');
-    $CONTAINER.innerHTML = template;
+    $CONTAINER.append(template(this));
     window.history.pushState({}, 'done', path);
   }
 }
 
-export const Router = new ROUTER(paths);
 
