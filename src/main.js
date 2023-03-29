@@ -108,7 +108,6 @@ function validateEmail(email) {
   return regexEmail.test(email);
 }
 
-//TODO:Agregar requerimentos de contraseña a la vista
 /**
  * Validate password input structure
  * @param {*} password
@@ -128,14 +127,20 @@ function validateInput(input, type) {
   const Inputvalue = input.value;
   let valid = true;
   if (type === "email") {
-    if (!validateEmail(Inputvalue)) {
+    console.log("emailValue: " +Inputvalue);
+    if (validateEmail(Inputvalue)){
+      return;
+    } else {
       input.setCustomValidity(
         "Por favor, ingresa un correo electrónico válido"
       );
       valid = false;
     }
   } else if (type === "pass") {
-    if (!validatePassword(Inputvalue)) {
+    console.log("PassValue: " + Inputvalue);
+    if (validatePassword(Inputvalue)){
+      return;
+    } else {
       input.setCustomValidity("Por favor, ingresa una contraseña válida");
       valid = false;
     }
@@ -173,10 +178,9 @@ function enableButtons(idElement) {
   const passwordInput = document.getElementById("password");
   showPassword();
   if (elementButton) {
-    if (validateInput(emailInput, "email") && validateInput(passwordInput, "pass")) {
-      elementButton.disabled = false;
-    }
-  }
+    validateInput(emailInput, "email");
+    validateInput(passwordInput, "pass");
+  } 
   return emailInput.value, passwordInput.value;
 }
 
