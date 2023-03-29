@@ -1,5 +1,4 @@
-import { ROUTER } from "./router/router.js";
-import { paths } from "./router/routes.js";
+import { Router } from "./router/router.js";
 import { toggleSignIn, handleSignUp } from "./lib/barrel.js";
 import authApp from "./lib/barrel.js";
 
@@ -50,8 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /**
  *
  */
-function initializeRouter() {
-  const Router = new ROUTER(paths);
+function activateRouter() {
   Router.load("home");
 
   let userData;
@@ -191,4 +189,4 @@ function enableButtons(idElement) {
   return emailInput.value, passwordInput.value;
 }
 
-initializeRouter();
+activateRouter();
