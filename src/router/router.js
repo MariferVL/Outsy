@@ -31,4 +31,5 @@ class ROUTER {
   }
 }
 
-export { ROUTER };
+export const Router = new ROUTER(paths);
+
