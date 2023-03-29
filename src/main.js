@@ -125,17 +125,17 @@ function validatePassword(password) {
  * @returns
  */
 function validateInput(input, type) {
-  const value = input.value;
+  const Inputvalue = input.value;
   let valid = true;
   if (type === "email") {
-    if (!validateEmail(value)) {
+    if (!validateEmail(Inputvalue)) {
       input.setCustomValidity(
         "Por favor, ingresa un correo electrónico válido"
       );
       valid = false;
     }
   } else if (type === "pass") {
-    if (!validatePassword(value)) {
+    if (!validatePassword(Inputvalue)) {
       input.setCustomValidity("Por favor, ingresa una contraseña válida");
       valid = false;
     }
