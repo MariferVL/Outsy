@@ -115,7 +115,7 @@ function validateEmail(email) {
  * @returns boolean
  */
 function validatePassword(password) {
-  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
   return regexPassword.test(password);
 }
 
@@ -124,17 +124,17 @@ function validatePassword(password) {
  * @param {*} input
  * @returns
  */
-function validateInput(input) {
+function validateInput(input, type) {
   const value = input.value;
   let valid = true;
-  if (input == "email") {
+  if (type === "email") {
     if (!validateEmail(value)) {
       input.setCustomValidity(
         "Por favor, ingresa un correo electrónico válido"
       );
       valid = false;
     }
-  } else {
+  } else if (type === "pass") {
     if (!validatePassword(value)) {
       input.setCustomValidity("Por favor, ingresa una contraseña válida");
       valid = false;
@@ -171,13 +171,9 @@ function enableButtons(idElement) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
-  console.log("antes del pass");
   showPassword();
   if (elementButton) {
-    console.log("ID elemento 172: " + idElement);
-
-    if (validateInput(emailInput) && validateInput(passwordInput)) {
-      console.log("datos validados 173");
+    if (validateInput(emailInput, "email") && validateInput(passwordInput, "pass")) {
       elementButton.disabled = false;
     }
   }
