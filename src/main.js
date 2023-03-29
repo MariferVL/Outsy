@@ -76,12 +76,18 @@ function initializeRouter() {
     document.getElementById("formSignUp").addEventListener("input", () => {
       userData = enableButtons("sign-up");
     });
+    //FIXME:  Agregar fn async a todos lo q requieran
+     console.log("userdata: " + userdata);
     document.getElementById("sign-up").addEventListener("click", () => {
+      Router.loadBody("feed");
       const emailIgm = document.createElement("img");
-      emailIgm.src = "src/images/emailVerification.png";
+      emailIgm.src = "./images/emailVerification.png";
       emailIgm.className = "emailImg";
       const main = document.getElementById("feed");
       main.replaceWith(emailIgm);
+      console.log("email lista: " + userData[0]);
+      console.log("email lista: " + userData[1]);
+
       if (handleSignUp(authApp, userData[0], userData[1])) {
         Router.loadBody("feed");
       }
