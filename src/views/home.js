@@ -1,11 +1,7 @@
-import { handleSignUp } from "../lib/emailAuth";
-
 
 export const viewHome = (Router) => {
   const sectionHome = document.createElement("section");
-  sectionHome.classList.add("container-fluid");
-  sectionHome.classList.add("position-relative");
-  sectionHome.classList.add("p-0");
+  sectionHome.className ="container-fluid position-relative p-0";
   sectionHome.setAttribute("id", "main");
 
   sectionHome.innerHTML = `
@@ -351,7 +347,6 @@ export const viewHome = (Router) => {
       </article>
   `;
 
-  
 const signInHandler = () => {
   Router.loadBody("signIn");
   // const passwordInput = document.getElementById("password");
@@ -370,38 +365,16 @@ const signInHandler = () => {
 
 const signUpHandler =  ()  =>{
   Router.loadBody("signUp");
-
-  // const data = await new Promise((resolve, reject) => {
-  //   document.getElementById("formSignUp").addEventListener("input", () => {
-  //     const userData = enableButtons("sign-up");
-  //     resolve(userData);
-  //   }, { once: true });
-  // });
-
-  // Router.loadBody("feed");
-  // const emailIgm = document.createElement("img");
-  // emailIgm.src = "./images/emailVerification.png";
-  // emailIgm.className = "emailImg";
-  // const main = document.getElementById("feed");
-  // main.replaceWith(emailIgm);
-  //  data;
-
-  //  //Using array destructuring
-  // const [email, password] = data;
-  // console.log("email lista: " + email);
-  // console.log("contraseña lista: " + password);
-
-  // if (handleSignUp(authApp, email, password)) {
-  //   Router.loadBody("feed");
-  // }
 }  
+
 const aboutHandler = () => {
   Router.load("about");
 };
-  // sectionHome.querySelector("#signIn").addEventListener("click", signInHandler);
+
+  document.querySelector("#signIn").addEventListener("click", signInHandler);
   // sectionHome.querySelector("#signUp").addEventListener("click", signUpHandler);
   sectionHome.querySelector("#signUp2").addEventListener("click", signUpHandler);
-  // sectionHome.querySelector("#about").addEventListener("click", aboutHandler);
+  document.querySelector("#about").addEventListener("click", aboutHandler);
 
   return sectionHome;
 };

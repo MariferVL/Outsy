@@ -1,5 +1,10 @@
-export const viewSignIn = `
-<section id="signInView" class="background-radial-gradient overflow-hidden">
+
+export const viewSignIn = (Router) => {
+  const sectionSignIn = document.createElement("section");
+  sectionSignIn.className = "background-radial-gradient overflow-hidden";
+  sectionSignIn.setAttribute("id", "signInView");
+
+  sectionSignIn.innerHTML = `
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
       <div class="row gx-lg-5 align-items-center mb-5">
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
@@ -39,7 +44,7 @@ export const viewSignIn = `
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-center mb-4">
                   <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33">
+                  <label class="form-check-label" for="form2Example33"></label>
                     Recuerdame
                   </label>
                 </div>
@@ -81,4 +86,14 @@ export const viewSignIn = `
         </div>
       </div>
     </div>
-  </section>`
+  `;
+
+  const feedHandler = () => {
+    Router.loadBody("feed");
+  }
+
+  sectionSignIn.querySelector("#sign-in").addEventListener("click", feedHandler);
+
+  return sectionSignIn;
+
+};

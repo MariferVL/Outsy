@@ -1,5 +1,12 @@
-export const viewSignUp = `
-<section id="signUpView" class="background-radial-gradient overflow-hidden">
+import { handleSignUp } from "../lib/emailAuth";
+
+export const viewSignUp = (Router) => {
+const sectionSignUp = document.createElement("section");
+sectionSignUp.className ="container-fluid position-relative p-0";
+sectionSignUp.setAttribute("id", "main");
+
+sectionSignUp.innerHTML =
+`<section id="signUpView" class="background-radial-gradient overflow-hidden">
 <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
   <div class="row gx-lg-5 align-items-center mb-5">
     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
@@ -90,3 +97,29 @@ export const viewSignUp = `
   </div>
 </div>
 </section>`
+
+const data = new Promise((resolve, reject) => {
+    document.getElementById("formSignUp").addEventListener("input", () => {
+      const userData = enableButtons("sign-up");
+      resolve(userData);
+    }, { once: true });
+  });
+
+  Router.loadBody("feed");
+  const emailIgm = document.createElement("img");
+  emailIgm.src = "./images/emailVerification.png";
+  emailIgm.className = "emailImg";
+  const main = document.getElementById("feed");
+  main.replaceWith(emailIgm);
+
+   //Using array destructuring
+  const [email, password] = data;
+  console.log("email lista: " + email);
+  console.log("contraseña lista: " + password);
+
+  if (handleSignUp(authApp, email, password)) {
+    Router.loadBody("feed");
+  }
+
+  return sectionSignUp;
+}
