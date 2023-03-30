@@ -1,7 +1,5 @@
 import { ROUTER } from "./router/router.js";
 import paths from "./router/routes";
-import { toggleSignIn, handleSignUp } from "./lib/barrel.js";
-import authApp from "./lib/barrel.js";
 
 /**
  *
@@ -22,6 +20,7 @@ function scrollFunction() {
     }
   }
 }
+
 
 // Scroll just show with home and about view
 document.addEventListener("DOMContentLoaded", function () {
@@ -134,3 +133,4 @@ export const Router = new ROUTER(paths);
 
 activateRouter();
 
+export { enableButtons }
