@@ -1,4 +1,6 @@
 import { handleSignUp } from "../lib/emailAuth";
+import { enableButtons } from "../main";
+import authApp from "./lib/barrel.js";
 
 export const viewSignUp = (Router) => {
 const sectionSignUp = document.createElement("section");

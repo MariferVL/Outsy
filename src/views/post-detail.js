@@ -1,3 +1,5 @@
+import authApp from "./lib/barrel.js";
+
 export const viewPostDetail = `
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">

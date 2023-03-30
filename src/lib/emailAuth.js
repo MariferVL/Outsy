@@ -9,19 +9,19 @@ function toggleSignIn(authApp, email, password) {
     auth.signOut(authApp);
   } else {
     // Sign in with email and pass.
-    auth.signInWithEmailAndPassword(authApp, email, password).catch(function (
-      error
-    ) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      if (errorCode === "auth/wrong-password") {
-        inputValidation ="Contraseña Errónea.";
-      } else {
-        inputValidation = errorMessage;
-      }
-      console.log(error);
-    });
+    auth
+      .signInWithEmailAndPassword(authApp, email, password)
+      .catch(function (error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === "auth/wrong-password") {
+          inputValidation = "Contraseña Errónea.";
+        } else {
+          inputValidation = errorMessage;
+        }
+        console.log(error);
+      });
   }
   document
     .getElementById("password-reset")
@@ -59,23 +59,24 @@ function handleSignUp(authApp, email, password) {
  * Send an email verification to the user.
  */
 function sendVerification(user) {
-  auth.sendEmailVerification(user).then(function () {
-    // Email Verification sent!
-    alert("Email Verification Sent!");
-    return user.emailVerified;
-  })
-  .catch((error) => {
-    console.log("Error sending email verification:", error);
-  });
+  auth
+    .sendEmailVerification(user)
+    .then(function () {
+      // Email Verification sent!
+      alert("Email Verification Sent!");
+      return user.emailVerified;
+    })
+    .catch((error) => {
+      console.log("Error sending email verification:", error);
+    });
 }
 
 /**
- * 
- * @param {*} authApp 
- * @param {*} email 
+ *
+ * @param {*} authApp
+ * @param {*} email
  */
 function sendPasswordReset(authApp, email) {
-  
   auth
     .sendPasswordResetEmail(authApp, email)
     .then(function () {
@@ -116,4 +117,4 @@ function initApp() {
   });
 }
 
-export {toggleSignIn, handleSignUp };
+export { toggleSignIn, handleSignUp };

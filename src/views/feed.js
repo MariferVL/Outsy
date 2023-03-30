@@ -1,3 +1,5 @@
+import authApp from "./lib/barrel.js";
+
 export const viewFeed = `  
 <body class="bg-light">
     

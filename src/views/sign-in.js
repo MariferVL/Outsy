@@ -1,3 +1,6 @@
+import { enableButtons } from "../main.js";
+import authApp from "./lib/barrel.js";
+import { toggleSignIn } from "../lib/barrel.js";
 
 export const viewSignIn = (Router) => {
   const sectionSignIn = document.createElement("section");
@@ -88,11 +91,24 @@ export const viewSignIn = (Router) => {
     </div>
   `;
 
-  const feedHandler = () => {
+  const data = new Promise((resolve, reject) => {
+    document.getElementById("formSignIn").addEventListener("input", () => {
+      const userData = enableButtons("sign-in");
+      resolve(userData);
+    }, { once: true });
+  });
+
+
+  //Using array destructuring
+  const [email, password] = data;
+  console.log("email lista: " + email);
+  console.log("contraseña lista: " + password);
+
+  sectionSignIn.querySelector("#sign-in").addEventListener("click", toggleSignIn);
+
+  if (toggleSignIn(authApp, email, password)) {
     Router.loadBody("feed");
   }
-
-  sectionSignIn.querySelector("#sign-in").addEventListener("click", feedHandler);
 
   return sectionSignIn;
 
