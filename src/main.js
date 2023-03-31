@@ -1,5 +1,4 @@
-import { ROUTER } from "./router/router.js";
-import paths from "./router/routes";
+import router from "./router/router";
 
 /**
  *
@@ -37,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
  *
  */
 function activateRouter() {
-  Router.load("home");
+  router.load("homeView");
 
 }
 
@@ -129,8 +128,7 @@ function enableButtons(idElement) {
 }
 
 
-export const Router = new ROUTER(paths);
 
 activateRouter();
 
-export { enableButtons }
+export { enableButtons}

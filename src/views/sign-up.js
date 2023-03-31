@@ -1,8 +1,8 @@
-import { handleSignUp } from "../lib/emailAuth";
-import { enableButtons } from "../main";
-import authApp from "./lib/barrel.js";
+import authApp, {handleSignUp, enableButtons } from "../lib/barrel";
+import router from "../router/router";
 
-export const viewSignUp = (Router) => {
+
+export const signUp = () => {
 const sectionSignUp = document.createElement("section");
 sectionSignUp.className ="container-fluid position-relative p-0";
 sectionSignUp.setAttribute("id", "main");
@@ -107,7 +107,7 @@ const data = new Promise((resolve, reject) => {
     }, { once: true });
   });
 
-  Router.loadBody("feed");
+  router.loadBody("feedView");
   const emailIgm = document.createElement("img");
   emailIgm.src = "./images/emailVerification.png";
   emailIgm.className = "emailImg";
@@ -120,7 +120,7 @@ const data = new Promise((resolve, reject) => {
   console.log("contraseña lista: " + password);
 
   if (handleSignUp(authApp, email, password)) {
-    Router.loadBody("feed");
+    router.loadBody("feedView");
   }
 
   return sectionSignUp;

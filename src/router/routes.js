@@ -1,59 +1,59 @@
-import { viewHome } from '../views/home.js';
-import { viewAbout } from '../views/about.js';
-import { viewSignIn } from '../views/sign-in.js';
-import { viewSignUp } from '../views/sign-up.js';
-import { viewFeed } from '../views/feed.js';
-import { viewPost } from '../views/post-edit.js';
-import { viewPostDetail } from '../views/post-detail.js';
-import { viewProfile } from '../views/profile.js';
+import {home } from '../views/home.js';
+import {about } from '../views/about.js';
+import {signIn } from '../views/sign-in.js';
+import {signUp } from '../views/sign-up.js';
+import {feed } from '../views/feed.js';
+import {post } from '../views/post-edit.js';
+import {postDetail } from '../views/post-detail.js';
+import {profile } from '../views/profile.js';
 
 const paths = {
-  home: {
+  homeView: {
     path: '/',
-    template: viewHome,
+    template: home,
     title: 'Outsy - Home',
   },
-  about: {
+  aboutView: {
     path: '/about',
-    template: viewAbout,
+    template: about,
     title: 'Outsy - Conócenos',
 
   },
-  signIn: {
+  signInView: {
     path: '/sign-in',
-    template: viewSignIn,
+    template: signIn,
     title: 'Outsy - Ingresa',
 
   },
-  signUp: {
+  signUpView: {
     path: '/sign-up',
-    template: viewSignUp,
+    template: signUp,
     title: 'Outsy - Regístrate',
 
   },
-  feed: {
+  feedView: {
     path: '/feed',
-    template: viewFeed,
+    template: feed,
     title: 'Outsy - Muro',
   },
-  createPost: {
+  createPostView: {
     path: '/post/create',
-    template: viewPost,
+    template: post,
     title: 'Outsy - Crear Post',
   },
-  editPost: {
+  editPostView: {
     path: '/post/edit',
-    template: viewPost,
+    template: post,
     title: 'Outsy - Editar Post',
   },
-  postDetail: {
+  postDetailView: {
     path: '/post/detail',
-    template: viewPostDetail,
+    template: postDetail,
     title: 'Outsy - Post',
   },
-  profile: {
+  profileView: {
     path: '/profile',
-    template: viewProfile,
+    template: profile,
     title: 'Outsy - Perfil',
   },
 };

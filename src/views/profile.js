@@ -1,4 +1,7 @@
-export const viewProfile = `
+import router from "../router/router";
+import authApp from "../lib/barrel";
+
+export const profile = `
 <body class="bg-light">
     
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">

@@ -1,11 +1,12 @@
-import { toggleSignIn, handleSignUp } from "../lib/emailAuth.js";
-
 // import { default as firestore } from "firebase/firestore";
 import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
 // import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
 // Add Firebase products to use
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
 // import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js' 
+
+import { toggleSignIn, handleSignUp } from "../lib/emailAuth.js";
+import { enableButtons } from "../main";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMoIZnaqiWN7MrGggAkrPwJqTMUN-_xXE",
@@ -23,6 +24,6 @@ const app = firebase.initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const authApp = getAuth(app);
 
-export { toggleSignIn, handleSignUp};
-
+// const views = { home, about, signIn, signUp, feed, post, postDetail, profile}
+export { enableButtons, toggleSignIn, handleSignUp};
 export  default authApp;

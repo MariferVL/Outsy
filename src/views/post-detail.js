@@ -1,6 +1,8 @@
-import authApp from "./lib/barrel.js";
+import router from "../router/router";
+import authApp from "../lib/barrel";
 
-export const viewPostDetail = `
+
+export const postDetail = `
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px;">

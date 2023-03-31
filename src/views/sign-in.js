@@ -1,8 +1,8 @@
-import { enableButtons } from "../main.js";
-import authApp from "./lib/barrel.js";
-import { toggleSignIn } from "../lib/barrel.js";
+import authApp, { toggleSignIn, enableButtons } from "../lib/barrel.js";
 
-export const viewSignIn = (Router) => {
+import router from "../router/router.js";
+
+export const signIn = () => {
   const sectionSignIn = document.createElement("section");
   sectionSignIn.className = "background-radial-gradient overflow-hidden";
   sectionSignIn.setAttribute("id", "signInView");
@@ -107,7 +107,7 @@ export const viewSignIn = (Router) => {
   sectionSignIn.querySelector("#sign-in").addEventListener("click", toggleSignIn);
 
   if (toggleSignIn(authApp, email, password)) {
-    Router.loadBody("feed");
+    Router.loadBody("feedView");
   }
 
   return sectionSignIn;

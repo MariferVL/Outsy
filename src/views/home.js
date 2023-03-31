@@ -1,5 +1,8 @@
+import router from "../router/router";
+import authApp from "../lib/barrel";
 
-export const viewHome = (Router) => {
+
+export const home = () => {
   const sectionHome = document.createElement("section");
   sectionHome.className ="container-fluid position-relative p-0";
   sectionHome.setAttribute("id", "main");
@@ -348,7 +351,7 @@ export const viewHome = (Router) => {
   `;
 
 const signInHandler = () => {
-  Router.loadBody("signIn");
+  router.loadBody("signInView");
   // const passwordInput = document.getElementById("password");
   // document.getElementById("formSignIn").addEventListener("input", () => {
   //   userData = enableButtons("sign-in");
@@ -358,17 +361,17 @@ const signInHandler = () => {
   //   if (errorMsg !== "") {
   //     passwordInput.setCustomValidity(errorMsg);
   //   } else {
-  //     Router.loadBody("feed");
+  //     Router.loadBody("feedView");
   //   }
   // });
 };
 
 const signUpHandler =  ()  =>{
-  Router.loadBody("signUp");
+  router.loadBody("signUpView");
 }  
 
 const aboutHandler = () => {
-  Router.load("about");
+  router.load("aboutView");
 };
 
   document.querySelector("#signIn").addEventListener("click", signInHandler);

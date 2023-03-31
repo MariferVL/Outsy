@@ -1,6 +1,7 @@
-import authApp from "./lib/barrel.js";
+import router from "../router/router";
+import authApp from "../lib/barrel";
 
-export const viewFeed = `  
+export const feed = `  
 <body class="bg-light">
     
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
