@@ -60,7 +60,7 @@ export const signIn = () => {
                 <p>¿No estás registrado? <a href="#!">Registrate</a></p>
   
                 <!-- Submit button -->
-                <button id="sign-in" class="btn btn-primary btn-block mb-4" disabled>
+                <button id="sign-in" class="btn btn-primary btn-block mb-4">
                   Ingresar
                 </button>
   
