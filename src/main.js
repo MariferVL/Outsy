@@ -32,64 +32,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-/**
- * Detect elements from views DOM with ID
- */
-/* function detectElement(elementID) {
-  const element = document.getElementById(elementID);
-  let detected = false;
-  console.log("42");
-  if (element) {
-    console.log("elemento detectado 43");
-    detected = true;
-  }
-  return detected;
-} */
 
 /**
- *
+ * 
  */
 function activateRouter() {
   Router.load("home");
 
-  let userData;
-  const passwordInput = document.getElementById("password");
-
   const signInHandler = () => {
     Router.loadBody("signIn");
-    document.getElementById("formSignIn").addEventListener("input", () => {
-      userData = enableButtons("sign-in");
-    });
-    document.getElementById("sign-in").addEventListener("click", () => {
-      const errorMsg = toggleSignIn(authApp, userData[0], userData[1]);
-      if (errorMsg !== "") {
-        passwordInput.setCustomValidity(errorMsg);
-      } else {
-        Router.loadBody("feed");
-      }
-    });
+    const {formID, email, password} = listenForm("formSignIn", "sign-in");
+    toAuth(formID, email, password);
+
+
   };
   const signUpHandler = () => {
     Router.loadBody("signUp");
-    document.getElementById("formSignUp").addEventListener("input", () => {
-      userData = enableButtons("sign-up");
-    });
-    //FIXME:  Agregar fn async a todos lo q requieran
-     console.log("userdata: " + userdata);
-    document.getElementById("sign-up").addEventListener("click", () => {
-      Router.loadBody("feed");
-      const emailIgm = document.createElement("img");
-      emailIgm.src = "./images/emailVerification.png";
-      emailIgm.className = "emailImg";
-      const main = document.getElementById("feed");
-      main.replaceWith(emailIgm);
-      console.log("email lista: " + userData[0]);
-      console.log("email lista: " + userData[1]);
+    const {formID, email, password } = listenForm("formSignUp", "sign-up");
+    toAuth(formID, email, password);
 
-      if (handleSignUp(authApp, userData[0], userData[1])) {
-        Router.loadBody("feed");
-      }
-    });
+
   };
 
   const aboutHandler = () => {
@@ -130,26 +92,25 @@ function validatePassword(password) {
 function validateInput(input, type) {
   const Inputvalue = input.value;
   let valid = true;
-  //FIXME:Descomentar
-  // if (type === "email") {
-  //   console.log("emailValue: " +Inputvalue);
-  //   if (validateEmail(Inputvalue)){
-  //     return;
-  //   } else {
-  //     input.setCustomValidity(
-  //       "Por favor, ingresa un correo electrónico válido"
-  //     );
-  //     valid = false;
-  //   }
-  // } else if (type === "pass") {
-  //   console.log("PassValue: " + Inputvalue);
-  //   if (validatePassword(Inputvalue)){
-  //     return;
-  //   } else {
-  //     input.setCustomValidity("Por favor, ingresa una contraseña válida");
-  //     valid = false;
-  //   }
-  // }
+  /* if (type === "email") {
+    console.log("emailValue: " + Inputvalue);
+    if (validateEmail(Inputvalue)) {
+      return;
+    } else {
+      input.setCustomValidity(
+        "Por favor, ingresa un correo electrónico válido"
+      );
+      valid = false;
+    }
+  } else if (type === "pass") {
+    console.log("PassValue: " + Inputvalue);
+    if (validatePassword(Inputvalue)) {
+      return;
+    } else {
+      input.setCustomValidity("Por favor, ingresa una contraseña válida");
+      valid = false;
+    }
+  } */
   return valid;
 }
 
@@ -185,8 +146,50 @@ function enableButtons(idElement) {
   if (elementButton) {
     validateInput(emailInput, "email");
     validateInput(passwordInput, "pass");
-  } 
-  return emailInput.value, passwordInput.value;
+  }
+  console.log("Este debería ser email y p " + emailInput.value + passwordInput.value);
+  return [emailInput.value, passwordInput.value];
+}
+
+async function listenForm(formID, buttonID) {
+  const data = new Promise((resolve, reject) => {
+    document.getElementById(formID).addEventListener("submit", () => {
+      const userData = enableButtons(buttonID);
+      resolve(userData);
+      console.log("Esto es userdata " + userData);
+    }, { once: true });
+    
+  });
+ 
+  //Using array destructuring
+
+  data.then((d) => {
+    console.log("Esto es data " + d);
+    console.log("email lista: " + d[0] + d[1]);
+  })
+
+  return formID, email, password;
+  // FIXME: Checkpoint. Debería retornar a la view, pero hasta aquí retorna email y contraseña
+}
+
+function toAuth(formID, email, password) {
+
+  if (formID === "formSignUp") {
+      const emailIgm = document.createElement("img");
+      emailIgm.src = "./images/emailVerification.png";
+      emailIgm.className = "emailImg";
+      const main = document.getElementById("signUp");
+      main.replaceWith(emailIgm);
+
+      if (handleSignUp(authApp, email, password)) {
+        Router.loadBody("feedView");
+      }
+  } else if (formID === "formSignIn") {
+      if (toggleSignIn(authApp, email, password)) {
+        Router.loadBody("feedView");
+      }
+  }
+
 }
 
 activateRouter();
