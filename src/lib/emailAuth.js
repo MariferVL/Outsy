@@ -1,22 +1,25 @@
 import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
+
 /**
  * Handles the sign in button press.
  */
 function toggleSignIn(authApp, email, password) {
+  console.log("entro a toogle " + email + password);
   let inputValidation;
   if (auth.currentUser) {
     auth.signOut(authApp);
   } else {
+    
     // Sign in with email and pass.
-    auth.signInWithEmailAndPassword(authApp, email, password).catch(function (
+    return auth.signInWithEmailAndPassword(authApp, email, password).catch(function (
       error
     ) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       if (errorCode === "auth/wrong-password") {
-        inputValidation ="Contraseña Errónea.";
+        inputValidation = "Contraseña Errónea.";
       } else {
         inputValidation = errorMessage;
       }
@@ -26,13 +29,15 @@ function toggleSignIn(authApp, email, password) {
   document
     .getElementById("password-reset")
     .addEventListener("click", () => sendPasswordReset(authApp, email));
-  return inputValidation;
+  console.log("Esto es input validation " + inputValidation);
+
 }
 
 /**
  * Handles the sign up button press.
  */
 function handleSignUp(authApp, email, password) {
+  console.log("entro a handle " + email + password);
   let verification = false;
   // Create user with email and pass.
   auth
@@ -64,9 +69,9 @@ function sendVerification(user) {
     alert("Email Verification Sent!");
     return user.emailVerified;
   })
-  .catch((error) => {
-    console.log("Error sending email verification:", error);
-  });
+    .catch((error) => {
+      console.log("Error sending email verification:", error);
+    });
 }
 
 /**
@@ -75,7 +80,7 @@ function sendVerification(user) {
  * @param {*} email 
  */
 function sendPasswordReset(authApp, email) {
-  
+
   auth
     .sendPasswordResetEmail(authApp, email)
     .then(function () {
@@ -116,4 +121,4 @@ function initApp() {
   });
 }
 
-export {toggleSignIn, handleSignUp };
+export { toggleSignIn, handleSignUp };

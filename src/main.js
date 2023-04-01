@@ -41,15 +41,15 @@ function activateRouter() {
 
   const signInHandler = () => {
     Router.loadBody("signIn");
-    const {formID, email, password} = listenForm("formSignIn", "sign-in");
-    toAuth(formID, email, password);
+    listenForm("formSignIn", "sign-in");
+
 
 
   };
   const signUpHandler = () => {
     Router.loadBody("signUp");
-    const {formID, email, password } = listenForm("formSignUp", "sign-up");
-    toAuth(formID, email, password);
+    listenForm("formSignUp", "sign-up");
+
 
 
   };
@@ -158,12 +158,13 @@ async function listenForm(formID, buttonID) {
       resolve(userData);
       console.log("Esto es userdata " + userData);
     }, { once: true });
-    
+
   });
- 
+
   //Using array destructuring
 
   data.then((d) => {
+    toAuth(formID, d[0], d[1])
     console.log("Esto es data " + d);
     console.log("email lista: " + d[0] + d[1]);
   })
@@ -173,23 +174,28 @@ async function listenForm(formID, buttonID) {
 }
 
 function toAuth(formID, email, password) {
-
+  console.log("Entro a toAuth " + formID + email + password);
   if (formID === "formSignUp") {
-      const emailIgm = document.createElement("img");
-      emailIgm.src = "./images/emailVerification.png";
-      emailIgm.className = "emailImg";
-      const main = document.getElementById("signUp");
-      main.replaceWith(emailIgm);
-
-      if (handleSignUp(authApp, email, password)) {
-        Router.loadBody("feedView");
-      }
-  } else if (formID === "formSignIn") {
-      if (toggleSignIn(authApp, email, password)) {
-        Router.loadBody("feedView");
-      }
+    const emailIgm = document.createElement("img");
+    emailIgm.src = "./images/emailVerification.png";
+    emailIgm.className = "emailImg";
+    const main = document.getElementById("signUpView");
+    main.replaceWith(emailIgm);
+    console.log("Entro al if de handle");
+    handleSignUp(authApp, email, password)
   }
+  else if (formID === "formSignIn") {
+    console.log("Entro al if de handle");
+    toggleSignIn(authApp, email, password)
+      .then(
+        (useCredential) => {
+          Router.loadBody("feed");
+        },
+        (error) => {
+          openModal(error.message);
+        })
 
+  }
 }
 
 activateRouter();
