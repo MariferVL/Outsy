@@ -33,10 +33,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /**
- *
+ * 
  */
 function activateRouter() {
-  router.load("homeView");
+  Router.load("home");
+
+  const signInHandler = () => {
+    Router.loadBody("signIn");
+    listenForm("formSignIn", "sign-in");
+
+
+
+  };
+  const signUpHandler = () => {
+    Router.loadBody("signUp");
+    listenForm("formSignUp", "sign-up");
+
+
+
+  };
+
+  const aboutHandler = () => {
+    Router.load("about");
+  };
 
 }
 
@@ -123,12 +142,58 @@ function enableButtons(idElement) {
   if (elementButton) {
     validateInput(emailInput, "email");
     validateInput(passwordInput, "pass");
-  } 
-  return emailInput.value, passwordInput.value;
+  }
+  console.log("Este debería ser email y p " + emailInput.value + passwordInput.value);
+  return [emailInput.value, passwordInput.value];
+}
+
+async function listenForm(formID, buttonID) {
+  const data = new Promise((resolve, reject) => {
+    document.getElementById(formID).addEventListener("submit", () => {
+      const userData = enableButtons(buttonID);
+      resolve(userData);
+      console.log("Esto es userdata " + userData);
+    }, { once: true });
+
+  });
+
+  //Using array destructuring
+
+  data.then((d) => {
+    toAuth(formID, d[0], d[1])
+    console.log("Esto es data " + d);
+    console.log("email lista: " + d[0] + d[1]);
+  })
+
+  return formID, email, password;
+  // FIXME: Checkpoint. Debería retornar a la view, pero hasta aquí retorna email y contraseña
+}
+
+function toAuth(formID, email, password) {
+  console.log("Entro a toAuth " + formID + email + password);
+  if (formID === "formSignUp") {
+    const emailIgm = document.createElement("img");
+    emailIgm.src = "./images/emailVerification.png";
+    emailIgm.className = "emailImg";
+    const main = document.getElementById("signUpView");
+    main.replaceWith(emailIgm);
+    console.log("Entro al if de handle");
+    handleSignUp(authApp, email, password)
+  }
+  else if (formID === "formSignIn") {
+    console.log("Entro al if de handle");
+    toggleSignIn(authApp, email, password)
+      .then(
+        (useCredential) => {
+          Router.loadBody("feed");
+        },
+        (error) => {
+          openModal(error.message);
+        })
+
+  }
 }
 
 
 
 activateRouter();
-
-export { enableButtons}
