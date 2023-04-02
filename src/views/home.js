@@ -1,13 +1,6 @@
-import router from "../router/router";
-import authApp from "../lib/barrel";
+export const home = `
 
-
-export const home = () => {
-  const sectionHome = document.createElement("section");
-  sectionHome.className ="container-fluid position-relative p-0";
-  sectionHome.setAttribute("id", "main");
-
-  sectionHome.innerHTML = `
+    <section id="main" class="container-fluid position-relative p-0">
       <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
@@ -348,36 +341,5 @@ export const home = () => {
         </div>
         <!-- Carousel wrapper -->
       </article>
-  `;
-
-const signInHandler = () => {
-  router.loadBody("signInView");
-  // const passwordInput = document.getElementById("password");
-  // document.getElementById("formSignIn").addEventListener("input", () => {
-  //   userData = enableButtons("sign-in");
-  // });
-  // document.getElementById("sign-in").addEventListener("click", () => {
-  //   const errorMsg = toggleSignIn(authApp, userData[0], userData[1]);
-  //   if (errorMsg !== "") {
-  //     passwordInput.setCustomValidity(errorMsg);
-  //   } else {
-  //     Router.loadBody("feedView");
-  //   }
-  // });
-};
-
-const signUpHandler =  ()  =>{
-  router.loadBody("signUpView");
-}  
-
-const aboutHandler = () => {
-  router.load("aboutView");
-};
-
-  document.querySelector("#signIn").addEventListener("click", signInHandler);
-  // sectionHome.querySelector("#signUp").addEventListener("click", signUpHandler);
-  sectionHome.querySelector("#signUp2").addEventListener("click", signUpHandler);
-  document.querySelector("#about").addEventListener("click", aboutHandler);
-
-  return sectionHome;
-};
+    </section>
+  `

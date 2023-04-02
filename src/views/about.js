@@ -1,6 +1,3 @@
-import router from "../router/router";
-
-
 export const about = `
       <div id="about" class="row">
         <div class="col-lg-4">

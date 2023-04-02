@@ -5,8 +5,7 @@ import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-ap
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
 // import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js' 
 
-import { toggleSignIn, handleSignUp } from "../lib/emailAuth.js";
-import { enableButtons } from "../main";
+import { toggleSignIn, handleSignUp, signInWithGoogle } from "../lib/emailAuth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMoIZnaqiWN7MrGggAkrPwJqTMUN-_xXE",
@@ -25,5 +24,5 @@ const app = firebase.initializeApp(firebaseConfig);
 const authApp = getAuth(app);
 
 // const views = { home, about, signIn, signUp, feed, post, postDetail, profile}
-export { enableButtons, toggleSignIn, handleSignUp};
+export { toggleSignIn, handleSignUp, signInWithGoogle};
 export  default authApp;

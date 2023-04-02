@@ -31,6 +31,4 @@ class ROUTER {
   }
 }
 
-const router = new ROUTER(paths);
-
-export default router;
+export const Router = new ROUTER(paths);

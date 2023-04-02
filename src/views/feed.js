@@ -1,6 +1,3 @@
-import router from "../router/router";
-import authApp from "../lib/barrel";
-
 export const feed = `  
 <body class="bg-light">
     
