@@ -1,4 +1,5 @@
-import router from "./router/router";
+import  { Router }  from "./router/router.js";
+import authApp, { toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/barrel.js";
 
 /**
  *
@@ -19,7 +20,6 @@ function scrollFunction() {
     }
   }
 }
-
 
 // Scroll just show with home and about view
 document.addEventListener("DOMContentLoaded", function () {
@@ -57,8 +57,11 @@ function activateRouter() {
     Router.load("about");
   };
 
+  document.getElementById("signIn").addEventListener("click", signInHandler);
+  document.getElementById("signUp").addEventListener("click", signUpHandler);
+  document.getElementById("signUp2").addEventListener("click", signUpHandler);
+  document.getElementById("about").addEventListener("click", aboutHandler);
 }
-
 
 /**
  * Validate email input structure
@@ -88,9 +91,9 @@ function validatePassword(password) {
 function validateInput(input, type) {
   const Inputvalue = input.value;
   let valid = true;
-  if (type === "email") {
-    console.log("emailValue: " +Inputvalue);
-    if (validateEmail(Inputvalue)){
+  /* if (type === "email") {
+    console.log("emailValue: " + Inputvalue);
+    if (validateEmail(Inputvalue)) {
       return;
     } else {
       input.setCustomValidity(
@@ -100,13 +103,13 @@ function validateInput(input, type) {
     }
   } else if (type === "pass") {
     console.log("PassValue: " + Inputvalue);
-    if (validatePassword(Inputvalue)){
+    if (validatePassword(Inputvalue)) {
       return;
     } else {
       input.setCustomValidity("Por favor, ingresa una contraseña válida");
       valid = false;
     }
-  }
+  } */
   return valid;
 }
 
@@ -154,10 +157,25 @@ async function listenForm(formID, buttonID) {
       resolve(userData);
       console.log("Esto es userdata " + userData);
     }, { once: true });
-
   });
 
-  //Using array destructuring
+  //FIXME: Revisar que funcione la autenticación de google
+if (formID === "formSignIn") {
+  document.getElementById("googleAuth").addEventListener("click", (e) => {
+    e.preventDefault();
+    signInWithGoogle(authApp)
+      .then(
+        (useCredential) => {
+          Router.loadBody("feed");
+          
+        },
+        (error) => {
+          // FIXME: Revisar el open modal
+          openModal(error.message);
+        });
+  });
+  
+}
 
   data.then((d) => {
     toAuth(formID, d[0], d[1])
@@ -166,7 +184,6 @@ async function listenForm(formID, buttonID) {
   })
 
   return formID, email, password;
-  // FIXME: Checkpoint. Debería retornar a la view, pero hasta aquí retorna email y contraseña
 }
 
 function toAuth(formID, email, password) {
@@ -194,6 +211,9 @@ function toAuth(formID, email, password) {
   }
 }
 
-
-
 activateRouter();
+
+
+/* Post Section */
+
+

@@ -1,13 +1,5 @@
-import authApp, { toggleSignIn, enableButtons } from "../lib/barrel.js";
-
-import router from "../router/router.js";
-
-export const signIn = () => {
-  const sectionSignIn = document.createElement("section");
-  sectionSignIn.className = "background-radial-gradient overflow-hidden";
-  sectionSignIn.setAttribute("id", "signInView");
-
-  sectionSignIn.innerHTML = `
+export const signIn = `
+<section id="signInView" class="background-radial-gradient overflow-hidden">
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
       <div class="row gx-lg-5 align-items-center mb-5">
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
@@ -47,7 +39,7 @@ export const signIn = () => {
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-center mb-4">
                   <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33"></label>
+                  <label class="form-check-label" for="form2Example33">
                     Recuerdame
                   </label>
                 </div>
@@ -71,7 +63,7 @@ export const signIn = () => {
                     <i class="fab fa-facebook-f"></i>
                   </button>
   
-                  <button type="button" class="btn btn-link btn-floating mx-1">
+                  <button id="googleAuth" type="button" class="btn btn-link btn-floating mx-1">
                     <i class="fab fa-google"></i>
                   </button>
   
@@ -89,27 +81,4 @@ export const signIn = () => {
         </div>
       </div>
     </div>
-  `;
-
-  const data = new Promise((resolve, reject) => {
-    document.getElementById("formSignIn").addEventListener("input", () => {
-      const userData = enableButtons("sign-in");
-      resolve(userData);
-    }, { once: true });
-  });
-
-
-  //Using array destructuring
-  const [email, password] = data;
-  console.log("email lista: " + email);
-  console.log("contraseña lista: " + password);
-
-  sectionSignIn.querySelector("#sign-in").addEventListener("click", toggleSignIn);
-
-  if (toggleSignIn(authApp, email, password)) {
-    Router.loadBody("feedView");
-  }
-
-  return sectionSignIn;
-
-};
+  </section>`

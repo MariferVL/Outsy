@@ -1,3 +1,4 @@
+//   Firebase CDN import
 import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
 
@@ -100,6 +101,33 @@ function sendPasswordReset(authApp, email) {
     });
 }
 
+function signInWithGoogle(authApp) {
+  const provider = new auth.GoogleAuthProvider();
+  return auth.signInWithPopup(authApp, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential =auth.GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential =auth.GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+
+  // auth.signInWithPopup(authApp);
+  // const provider = new GoogleAuthProvider();
+  // return signInWithPopup(authApp, provider);
+}
+
 /**
  * initApp handles:
  *  - onAuthStateChanged: This listener is called when the user is signed in or
@@ -121,4 +149,4 @@ function initApp() {
   });
 }
 
-export { toggleSignIn, handleSignUp };
+export { toggleSignIn, handleSignUp, signInWithGoogle };
