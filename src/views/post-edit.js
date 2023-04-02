@@ -1,10 +1,3 @@
-import router from "../router/router";
-import authApp from "../lib/barrel";
-
-
-const Router = cxn.router;
-
-
 export const post = ` 
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
   <div class="container py-5">
@@ -20,7 +13,7 @@ export const post = `
         <button type="submit" class="save btn btn-secondary">Guardar</button>
       </form>
     </div>
-    <!-- New Post-it  Start -->
+    <!-- New Post-it  End -->
   </div>
 </div>
 `

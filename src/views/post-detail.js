@@ -1,7 +1,3 @@
-import router from "../router/router";
-import authApp from "../lib/barrel";
-
-
 export const postDetail = `
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
