@@ -1,9 +1,9 @@
+//GabrielaPatriciaTeama
 
-//GPT
 export const post =
 ` <section id="addPostForm">
 <h2>Create a post</h2>
-<form method="post" id="createPostForm">
+<form method="POST" id="createPostForm" enctype="multipart/form-data">
 <label for="postTitle">Titulo</label>
 <input type="text" id="postTitle" name="postTitle">
   <label for="postText">Text</label>
