@@ -3,14 +3,9 @@
 import * as auth from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import * as database from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"
 import * as storage from "https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"
+import authApp from "./barrel";
 
-/**
- *  Firebase initialization and configuration
- */
-    const firebaseConfig = {
-      // Add your Firebase configuration here
-    };
-    firebase.initializeApp(firebaseConfig);
+
 
     /**
      * Function to get the current user's display name
@@ -50,39 +45,41 @@ import * as storage from "https://www.gstatic.com/firebasejs/9.6.1/firebase-stor
     function createPostElement(postId, post) {
       const postList = document.getElementById('postList');
 
-      // Create a div for the post
-      const div = document.createElement('div');
-      div.setAttribute('id', `post${postId}`);
+      // Create an article for the post
+      const article = document.createElement('article');
+      article.setAttribute('id', `post${postId}`);
 
       // Create a header for the post
       const header = document.createElement('h2');
       header.innerText = post.title;
-      div.appendChild(header);
+      article.appendChild(header);
 
       // Create a paragraph for the post content
       const content = document.createElement('p');
       content.innerText = post.content;
-      div.appendChild(content);
+      article.appendChild(content);
 
+      const picture = document.createElement(picture);
+      article.appendChild(picture)
       // Create an image for the post
       if (post.imageUrl) {
         const image = document.createElement('img');
         image.setAttribute('src', post.imageUrl);
-        div.appendChild(image);
+        picture.appendChild(image);
       }
 
       // Create a footer for the post
-      const footer = document.createElement('div');
+      const footer = document.createElement('footer');
 
       // Create a button to delete the post
       const deleteButton = document.createElement('button');
-      deleteButton.innerText = 'Delete';
+      deleteButton.innerText = 'Eliminar';
       deleteButton.addEventListener('click', () => deletePost(postId));
       footer.appendChild(deleteButton);
 
       // Create a button to edit the post
       const editButton = document.createElement('button');
-      editButton.innerText = 'Edit';
+      editButton.innerText = 'Editar';
       editButton.addEventListener('click', () =>
       editPost(postId, post.title, post.content, post.privacy, post.imageUrl));
       footer.appendChild(editButton);
@@ -97,10 +94,10 @@ import * as storage from "https://www.gstatic.com/firebasejs/9.6.1/firebase-stor
       // Create option elements for privacy settings
       const publicOption = document.createElement('option');
       publicOption.setAttribute('value', 'public');
-      publicOption.innerText = 'Public';
+      publicOption.innerText = 'Publico';
       const privateOption = document.createElement('option');
       privateOption.setAttribute('value', 'private');
-      privateOption.innerText = 'Private';
+      privateOption.innerText = 'Privado';
     
       // Set the selected option based on the post's privacy setting
       if (post.privacy === 'public') {
@@ -122,19 +119,21 @@ import * as storage from "https://www.gstatic.com/firebasejs/9.6.1/firebase-stor
     
       // Create a button to like the post
       const likeButton = document.createElement('button');
-      likeButton.innerText = 'Like';
+      likeButton.innerHTML = '<i class="fas fa-grin-stars"></i>';
+      //<i class="fa-thin fa-face-grin-stars"></i>
       likeButton.addEventListener('click', () => likePost(postId));
       footer.appendChild(likeButton);
     
-      div.appendChild(footer);
+      article.appendChild(footer);
     
       // Add the post to the post list
-      postList.appendChild(div);
+      postList.appendChild(article);
     }
     
     // Function to render all posts
     function renderPosts() {
       const postList = document.getElementById('postList');
+      //FIXME: Checar lo que hace
       postList.innerHTML = '';
     
       database.ref('posts').once('value')
@@ -163,6 +162,7 @@ import * as storage from "https://www.gstatic.com/firebasejs/9.6.1/firebase-stor
         userProfileImage,
         timestamp: Date.now(),
         likes: []
+        
       })
         .then(() => {
           document.getElementById('formPost').reset();
