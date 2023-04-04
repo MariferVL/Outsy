@@ -1,6 +1,7 @@
 import  { Router }  from "./router/router.js";
 import authApp, { toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/barrel.js";
 
+
 /**
  *
  */
@@ -91,7 +92,7 @@ function validatePassword(password) {
 function validateInput(input, type) {
   const Inputvalue = input.value;
   let valid = true;
-  /* if (type === "email") {
+   if (type === "email") {
     console.log("emailValue: " + Inputvalue);
     if (validateEmail(Inputvalue)) {
       return;
@@ -109,7 +110,7 @@ function validateInput(input, type) {
       input.setCustomValidity("Por favor, ingresa una contraseña válida");
       valid = false;
     }
-  } */
+  } 
   return valid;
 }
 
@@ -149,7 +150,17 @@ function enableButtons(idElement) {
   console.log("Este debería ser email y p " + emailInput.value + passwordInput.value);
   return [emailInput.value, passwordInput.value];
 }
+const postHandler = () => {
+  Router.loadBody("createPost")
+  addPost};
+const listenPost = () => document.getElementById("post").addEventListener("click", postHandler)
 
+/**
+ * listen when user submit info clicking button 
+ * @param {*} formID 
+ * @param {*} buttonID 
+ * @returns 
+ */
 async function listenForm(formID, buttonID) {
   const data = new Promise((resolve, reject) => {
     document.getElementById(formID).addEventListener("submit", () => {
@@ -167,6 +178,7 @@ if (formID === "formSignIn") {
       .then(
         (useCredential) => {
           Router.loadBody("feed");
+          listenPost();
           
         },
         (error) => {
@@ -203,6 +215,7 @@ function toAuth(formID, email, password) {
       .then(
         (useCredential) => {
           Router.loadBody("feed");
+          listenPost();
         },
         (error) => {
           openModal(error.message);

@@ -26,7 +26,7 @@ export const feed = `
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
           <ul class="dropdown-menu">
             <li><a id="signOut" class="dropdown-item" href="#">Cerrar Sesión</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a id= "post" class="dropdown-item" href="#">Crear invitación</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
