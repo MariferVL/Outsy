@@ -3,7 +3,7 @@ import { about } from '../views/about.js';
 import { signIn } from '../views/sign-in.js';
 import { signUp } from '../views/sign-up.js';
 import { feed } from '../views/feed.js';
-import { post } from '../views/post-edit.js';
+import { post } from '../views/posts.js';
 import { postDetail } from '../views/post-detail.js';
 import { profile } from '../views/profile.js';
 
@@ -20,13 +20,13 @@ const paths = {
 
   },
   signIn: {
-    path: '/sign-in',
+    path: '/signin',
     template: signIn,
     title: 'Outsy - Ingresa',
 
   },
   signUp: {
-    path: '/sign-up',
+    path: '/signup',
     template: signUp,
     title: 'Outsy - Regístrate',
 
