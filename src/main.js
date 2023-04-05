@@ -1,5 +1,5 @@
 import  { Router }  from "./router/router.js";
-import authApp, { db, toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/barrel.js";
+import authApp, {toggleSignIn, handleSignUp, signInWithGoogle, db } from "./lib/barrel.js";
 import { getPosts } from "./lib/postAuth.js";
 import { listenPostForm } from "./js/postDOM.js";
 

@@ -1,8 +1,8 @@
 //   Firebase CDN imports
-import * as auth from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-import * as storage from "https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js";
+import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+import * as storage from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
 
-import * as firestore from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import * as firestore from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 
 /**
  * Function to get the current user's display name
@@ -36,7 +36,7 @@ async function getCurrentUserProfileImage() {
 
 // Add a new post to Firestore
 function addPost(title, content, privacy, imageFile, db) {
-  const postsRef = firestore.collection(db, "users");
+    const postsRef = firestore.collection(db).doc("users");
 
   const userId = getCurrentUserId();
   const userName = getCurrentUserName();
@@ -85,7 +85,7 @@ function addPost(title, content, privacy, imageFile, db) {
 
 // Get all posts from Firestore and display them on the page
 function getPosts(db) {
-  const postsRef = firestore.collection(db, "users");
+    const postsRef = firestore.collection(db).doc("users");
 
   // Clear any existing posts from the page
   const postContainer = document.getElementById("postContainer");
