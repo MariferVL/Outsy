@@ -21,7 +21,7 @@ export const post =
 </section>
 <section id="posts">
 <h2>Recent posts</h2>
-<div id="postList"></div>
+<div id="postContainer"></div>
 </section>`
 
 //Post-it
