@@ -1,9 +1,9 @@
 // import { default as firestore } from "firebase/firestore";
-import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-// import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
+import * as firebase from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+// import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js'
 // Add Firebase products to use
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
-// import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js' 
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js'
+// import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js' 
 
 import { toggleSignIn, handleSignUp, signInWithGoogle } from "../lib/emailAuth.js";
 
