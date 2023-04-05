@@ -1,6 +1,6 @@
 import  { Router }  from "./router/router.js";
 import authApp, {toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/barrel.js";
-import { getPosts } from "./lib/postAuth.js";
+// import { getPosts } from "./lib/postAuth.js";
 import { listenPostForm } from "./js/postDOM.js";
 
 /**
@@ -157,7 +157,7 @@ const postHandler = () => {
   listenPostForm();
 
   };
-const listenPost = () => document.getElementById("post").addEventListener("click", postHandler)
+const listenPost = () => document.getElementById("post").addEventListener("click", postHandler);
 
 /**
  * listen when user submit info clicking button 
@@ -183,7 +183,7 @@ if (formID === "formSignIn") {
       .then(
         (useCredential) => {
           Router.loadBody("feed");
-          getPosts(db);
+          // getPosts();
           listenPost();
           
         },
