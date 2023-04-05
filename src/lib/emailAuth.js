@@ -1,5 +1,5 @@
 //   Firebase CDN import
-import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+import * as auth from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 
 
 /**

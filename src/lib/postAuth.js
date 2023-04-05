@@ -1,8 +1,8 @@
 //   Firebase CDN imports
-import * as auth from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
-import * as storage from "https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js";
+import * as auth from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+import * as storage from "https://www.gstatic.com/firebasejs/9.18.0/firebase-storage.js";
 
-import * as firestore from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+import * as firestore from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
 /**
  * Function to get the current user's display name
