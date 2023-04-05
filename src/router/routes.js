@@ -7,7 +7,7 @@ import { post } from '../views/posts.js';
 import { postDetail } from '../views/post-detail.js';
 import { profile } from '../views/profile.js';
 
-const paths = {
+const routes = {
   home: {
     path: '/',
     template: home,
@@ -58,4 +58,4 @@ const paths = {
   },
 };
 
-export default paths;
+export default routes;

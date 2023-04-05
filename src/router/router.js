@@ -1,4 +1,4 @@
-import paths from "./routes.js";
+import routes from "./routes.js";
 
 class ROUTER {
   constructor() {
@@ -31,4 +31,4 @@ class ROUTER {
   }
 }
 
-export const Router = new ROUTER(paths);
+export const Router = new ROUTER(routes);
