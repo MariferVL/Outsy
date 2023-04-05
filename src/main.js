@@ -1,6 +1,7 @@
 import  { Router }  from "./router/router.js";
-import authApp, { toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/barrel.js";
-
+import authApp, { db, toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/barrel.js";
+import { getPosts } from "./lib/postAuth.js";
+import { listenPostForm } from "./js/postDOM.js";
 
 /**
  *
@@ -21,6 +22,8 @@ function scrollFunction() {
     }
   }
 }
+
+
 
 // Scroll just show with home and about view
 document.addEventListener("DOMContentLoaded", function () {
@@ -142,7 +145,6 @@ function enableButtons(idElement) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
-  showPassword();
   if (elementButton) {
     validateInput(emailInput, "email");
     validateInput(passwordInput, "pass");
@@ -151,8 +153,10 @@ function enableButtons(idElement) {
   return [emailInput.value, passwordInput.value];
 }
 const postHandler = () => {
-  Router.loadBody("createPost")
-  addPost};
+  Router.loadBody("createPost");
+  listenPostForm(db);
+
+  };
 const listenPost = () => document.getElementById("post").addEventListener("click", postHandler)
 
 /**
@@ -162,6 +166,7 @@ const listenPost = () => document.getElementById("post").addEventListener("click
  * @returns 
  */
 async function listenForm(formID, buttonID) {
+  showPassword();
   const data = new Promise((resolve, reject) => {
     document.getElementById(formID).addEventListener("submit", () => {
       const userData = enableButtons(buttonID);
@@ -178,6 +183,7 @@ if (formID === "formSignIn") {
       .then(
         (useCredential) => {
           Router.loadBody("feed");
+          getPosts(db);
           listenPost();
           
         },
@@ -215,6 +221,7 @@ function toAuth(formID, email, password) {
       .then(
         (useCredential) => {
           Router.loadBody("feed");
+          // getPosts(db);
           listenPost();
         },
         (error) => {
