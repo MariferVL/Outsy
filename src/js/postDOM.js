@@ -1,6 +1,6 @@
 import { addPost } from "../lib/postAuth";
 
-export function listenPostForm(db) {
+export function listenPostForm() {
     // Add event listener for the submit button on the add post form
     document.getElementById("addPostButton").addEventListener("click", (event) => {
         event.preventDefault();
@@ -8,7 +8,7 @@ export function listenPostForm(db) {
         const content = document.getElementById("postContent").value;
         const privacy = document.getElementById("postPrivacy").value;
         const imageFile = document.getElementById("postImage").files[0];
-        addPost(title, content, privacy, imageFile,db);
+        addPost(title, content, privacy, imageFile);
 
         // Reset the form
         document.getElementById("addPostForm").reset();

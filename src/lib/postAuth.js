@@ -35,8 +35,8 @@ async function getCurrentUserProfileImage() {
 
 
 // Add a new post to Firestore
-function addPost(title, content, privacy, imageFile, db) {
-    const postsRef = firestore.collection(db).doc("users");
+function addPost(title, content, privacy, imageFile) {
+    const postsRef = firestore.collection().doc("users");
 
   const userId = getCurrentUserId();
   const userName = getCurrentUserName();
@@ -84,8 +84,8 @@ function addPost(title, content, privacy, imageFile, db) {
 
 
 // Get all posts from Firestore and display them on the page
-function getPosts(db) {
-    const postsRef = firestore.collection(db).doc("users");
+function getPosts() {
+    const postsRef = firestore.collection().doc("users");
 
   // Clear any existing posts from the page
   const postContainer = document.getElementById("postContainer");
