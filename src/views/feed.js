@@ -57,6 +57,10 @@ export const feed = `
 </div>
 
 <main id="feed" class="container">
+<section id="post">
+<h2>Recientes</h2>
+<div id="postContainer"></div>
+</section>
   <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
     <img class="me-3" src="../assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
     <div class="lh-1">
