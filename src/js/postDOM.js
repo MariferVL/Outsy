@@ -14,7 +14,18 @@ export function listenPostForm() {
         document.getElementById("addPostForm").reset();
     });
 
+
 }
+
+
+
+
+
+
+
+
+
+
 
 // // Add event listener for the edit button on a post
 // function addEditPostEventListeners(postId) {
