@@ -3,7 +3,7 @@ import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-ap
 // import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
 // Add Firebase products to use
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js' 
+// import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js' 
 
 import { toggleSignIn, handleSignUp, signInWithGoogle } from "../lib/emailAuth.js";
 
@@ -24,8 +24,8 @@ const app = firebase.initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const authApp = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+//const db = getFirestore(app);
 
 // const views = { home, about, signIn, signUp, feed, post, postDetail, profile}
-export { toggleSignIn, handleSignUp, signInWithGoogle, db };
+export { toggleSignIn, handleSignUp, signInWithGoogle };
 export  default authApp;
