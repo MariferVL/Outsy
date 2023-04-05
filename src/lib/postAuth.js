@@ -4,6 +4,8 @@ import * as storage from "https://www.gstatic.com/firebasejs/9.18.0/firebase-sto
 
 import * as firestore from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
+import {showPost} from "showPost";
+
 /**
  * Function to get the current user's display name
  * @returns
@@ -33,8 +35,13 @@ async function getCurrentUserProfileImage() {
 //Get a reference to the posts collection in Firestore
 
 
-
-// Add a new post to Firestore
+/**
+ * Add a new post to Firestore
+ * @param {*} title 
+ * @param {*} content 
+ * @param {*} privacy 
+ * @param {*} imageFile 
+ */
 function addPost(title, content, privacy, imageFile) {
     const postsRef = firestore.collection().doc("users");
 
@@ -77,19 +84,10 @@ function addPost(title, content, privacy, imageFile) {
 }
 
 /**
- * Function to create a new post element
- * @param {*} postId
- * @param {*} post
+ * Get all posts from Firestore and display them on the page
  */
-
-
-// Get all posts from Firestore and display them on the page
 function getPosts() {
     const postsRef = firestore.collection().doc("users");
-
-  // Clear any existing posts from the page
-  const postContainer = document.getElementById("postContainer");
-  postContainer.innerHTML = "";
 
   // Get all posts from Firestore and add them to the page
   postsRef
@@ -99,90 +97,45 @@ function getPosts() {
       querySnapshot.forEach((doc) => {
         const post = doc.data();
         const postId = doc.id;
-
-        // Create HTML elements
-        
-        const postArticle = document.createElement("article");
-        postArticle.classList.add("post");
-        const postTitle = document.createElement("h2");
-        postTitle.textContent = post.title;
-        const postContent = document.createElement("p");
-        postContent.textContent = post.content;
-        const postAuthor = document.createElement("p");
-        postAuthor.textContent = `Written by: ${post.author}`;
-        const postDate = document.createElement("p");
-        const date = new Date(post.timestamp.toDate());
-        postDate.textContent = `Posted on: ${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
-        const postPrivacy = document.createElement("p");
-        postPrivacy.textContent = `Privacy: ${post.privacy}`;
-        const postImage = document.createElement("img");
-        postImage.src = post.imageURL;
-        const postLikes = document.createElement("p");
-        postLikes.textContent = `Likes: ${post.likes}`;
-
-        // Create edit button
-        const editButton = document.createElement("button");
-        editButton.textContent = "Edit";
-        editButton.addEventListener("click", () => {
-          editPost(postId, post);
-        });
-
-        // Create delete button
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
-        deleteButton.addEventListener("click", () => {
-          deletePost(postId);
-        });
-
-        // Create like button
-        const likeButton = document.createElement("button");
-        likeButton.textContent = "Like";
-        likeButton.addEventListener("click", () => {
-          likePost(postId, post.likes);
-        });
-
-
-        // Create a span element to display the number of likes
-        const likeCount = document.createElement("span");
-        likeCount.setAttribute("id", `likeCount${postId}`);
-        likeCount.innerText = post.likes ? post.likes.length : 0;
-        footer.appendChild(likeCount);
-
-        // Create comment section
-        const commentSection = document.createElement("div");
-        commentSection.classList.add("comment-section");
-        const commentInput = document.createElement("input");
-        commentInput.type = "text";
-        commentInput.placeholder = "Add a comment...";
-        const commentButton = document.createElement("button");
-        commentButton.textContent = "Comment";
-        commentButton.addEventListener("click", () => {
-          addComment(postId, commentInput.value);
-          commentInput.value = "";
-        });
-        const commentsList = document.createElement("ul");
-
-        // Add HTML elements to post container
-        postArticle.appendChild(postTitle);
-        postArticle.appendChild(postContent);
-        postArticle.appendChild(postAuthor);
-        postArticle.appendChild(postDate);
-        postArticle.appendChild(postPrivacy);
-        postArticle.appendChild(postImage);
-        postArticle.appendChild(postLikes);
-        postArticle.appendChild(editButton);
-        postArticle.appendChild(deleteButton);
-        postArticle.appendChild(likeButton);
-        commentSection.appendChild(commentInput);
-        commentSection.appendChild(commentButton);
-        commentSection.appendChild(commentsList);
-        postArticle.appendChild(commentSection);
-        postContainer.appendChild(postArticle);
-
+        showPost()
         // Get comments for this post and add them to the page
-        //getComments(postId, commentsList);
+        getComments(postId, commentsList);
       });
     });
 }
 
-export{ addPost, getPosts }
+/**
+ * Function to delete a post from Firestore
+ * @param {*} postId 
+ */
+function deletePost(postId) {
+  firestore.collection("posts")
+    .doc(postId)
+    .delete()
+    .then(() => {
+      console.log("Post successfully deleted!");
+      // Reload the page to update the posts list
+      location.reload();
+    })
+    .catch((error) => {
+      console.error("Error removing post: ", error);
+    });
+}
+
+/**
+ * Function to update a post in Firestore.
+ * @param {*} postId 
+ * @param {*} updatedData 
+ */
+async function editPost(postId, updatedData) {
+  try {
+    const postRef = firestore.collection("posts").doc(postId);
+    await postRef.update(updatedData);
+    console.log("Publicación actualizada exitosamente");
+  } catch (error) {
+    console.error("Error actualizandopublicación: ", error);
+  }
+}
+
+
+export{ addPost, getPosts, deletePost, editPost}
