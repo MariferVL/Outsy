@@ -1,4 +1,4 @@
-export const viewAbout = `
+export const about = `
       <div id="about" class="row">
         <div class="col-lg-4">
           <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"

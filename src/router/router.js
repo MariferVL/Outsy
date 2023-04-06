@@ -32,4 +32,3 @@ class ROUTER {
 }
 
 export const Router = new ROUTER(paths);
-

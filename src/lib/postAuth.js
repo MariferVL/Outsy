@@ -4,7 +4,9 @@ import * as storage from "https://www.gstatic.com/firebasejs/9.18.0/firebase-sto
 
 import * as firestore from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
+
 import {showPost} from "../js/showPost";
+
 
 /**
  * Function to get the current user's display name

@@ -1,61 +1,61 @@
-import { viewHome } from '../views/home.js';
-import { viewAbout } from '../views/about.js';
-import { viewSignIn } from '../views/sign-in.js';
-import { viewSignUp } from '../views/sign-up.js';
-import { viewFeed } from '../views/feed.js';
-import { viewPost } from '../views/post-edit.js';
-import { viewPostDetail } from '../views/post-detail.js';
-import { viewProfile } from '../views/profile.js';
+import { home } from '../views/home.js';
+import { about } from '../views/about.js';
+import { signIn } from '../views/sign-in.js';
+import { signUp } from '../views/sign-up.js';
+import { feed } from '../views/feed.js';
+import { post } from '../views/posts.js';
+import { postDetail } from '../views/post-detail.js';
+import { profile } from '../views/profile.js';
 
-const paths = {
+const routes = {
   home: {
     path: '/',
-    template: viewHome,
+    template: home,
     title: 'Outsy - Home',
   },
   about: {
     path: '/about',
-    template: viewAbout,
+    template: about,
     title: 'Outsy - Conócenos',
 
   },
   signIn: {
-    path: '/sign-in',
-    template: viewSignIn,
+    path: '/signin',
+    template: signIn,
     title: 'Outsy - Ingresa',
 
   },
   signUp: {
-    path: '/sign-up',
-    template: viewSignUp,
+    path: '/signup',
+    template: signUp,
     title: 'Outsy - Regístrate',
 
   },
   feed: {
     path: '/feed',
-    template: viewFeed,
+    template: feed,
     title: 'Outsy - Muro',
   },
   createPost: {
     path: '/post/create',
-    template: viewPost,
+    template: post,
     title: 'Outsy - Crear Post',
   },
   editPost: {
     path: '/post/edit',
-    template: viewPost,
+    template: post,
     title: 'Outsy - Editar Post',
   },
   postDetail: {
     path: '/post/detail',
-    template: viewPostDetail,
+    template: postDetail,
     title: 'Outsy - Post',
   },
   profile: {
     path: '/profile',
-    template: viewProfile,
+    template: profile,
     title: 'Outsy - Perfil',
   },
 };
 
-export default paths;
+export default routes;

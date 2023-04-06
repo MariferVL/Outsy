@@ -1,6 +1,7 @@
-import { Router } from "./router/router.js";
-import { toggleSignIn, handleSignUp } from "./lib/barrel.js";
-import authApp from "./lib/barrel.js";
+import  { Router }  from "./router/router.js";
+import authApp, {toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/barrel.js";
+// import { getPosts } from "./lib/postAuth.js";
+import { listenPostForm } from "./js/postDOM.js";
 
 /**
  *
@@ -21,6 +22,8 @@ function scrollFunction() {
     }
   }
 }
+
+
 
 // Scroll just show with home and about view
 document.addEventListener("DOMContentLoaded", function () {
@@ -92,7 +95,7 @@ function validatePassword(password) {
 function validateInput(input, type) {
   const Inputvalue = input.value;
   let valid = true;
-  /* if (type === "email") {
+   if (type === "email") {
     console.log("emailValue: " + Inputvalue);
     if (validateEmail(Inputvalue)) {
       return;
@@ -110,7 +113,7 @@ function validateInput(input, type) {
       input.setCustomValidity("Por favor, ingresa una contraseña válida");
       valid = false;
     }
-  } */
+  } 
   return valid;
 }
 
@@ -142,7 +145,6 @@ function enableButtons(idElement) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
-  showPassword();
   if (elementButton) {
     validateInput(emailInput, "email");
     validateInput(passwordInput, "pass");
@@ -150,18 +152,48 @@ function enableButtons(idElement) {
   console.log("Este debería ser email y p " + emailInput.value + passwordInput.value);
   return [emailInput.value, passwordInput.value];
 }
+const postHandler = () => {
+  Router.loadBody("createPost");
+  listenPostForm();
 
+  };
+const listenPost = () => document.getElementById("post").addEventListener("click", postHandler);
+
+/**
+ * listen when user submit info clicking button 
+ * @param {*} formID 
+ * @param {*} buttonID 
+ * @returns 
+ */
 async function listenForm(formID, buttonID) {
+  showPassword();
   const data = new Promise((resolve, reject) => {
     document.getElementById(formID).addEventListener("submit", () => {
       const userData = enableButtons(buttonID);
       resolve(userData);
       console.log("Esto es userdata " + userData);
     }, { once: true });
-
   });
 
-  //Using array destructuring
+  //FIXME: Revisar que funcione la autenticación de google
+if (formID === "formSignIn") {
+  document.getElementById("googleAuth").addEventListener("click", (e) => {
+    e.preventDefault();
+    signInWithGoogle(authApp)
+      .then(
+        (useCredential) => {
+          Router.loadBody("feed");
+          // getPosts();
+          listenPost();
+          
+        },
+        (error) => {
+          // FIXME: Revisar el open modal
+          openModal(error.message);
+        });
+  });
+  
+}
 
   data.then((d) => {
     toAuth(formID, d[0], d[1])
@@ -170,7 +202,6 @@ async function listenForm(formID, buttonID) {
   })
 
   return formID, email, password;
-  // FIXME: Checkpoint. Debería retornar a la view, pero hasta aquí retorna email y contraseña
 }
 
 function toAuth(formID, email, password) {
@@ -190,6 +221,8 @@ function toAuth(formID, email, password) {
       .then(
         (useCredential) => {
           Router.loadBody("feed");
+          // getPosts(db);
+          listenPost();
         },
         (error) => {
           openModal(error.message);
@@ -199,3 +232,8 @@ function toAuth(formID, email, password) {
 }
 
 activateRouter();
+
+
+/* Post Section */
+
+

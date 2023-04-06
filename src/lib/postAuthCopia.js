@@ -1,5 +1,4 @@
 
-
 /**
  * Function to get the current user's display name
  * @returns

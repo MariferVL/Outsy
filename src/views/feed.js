@@ -1,4 +1,4 @@
-export const viewFeed = `  
+export const feed = `  
 <body class="bg-light">
     
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
@@ -26,7 +26,7 @@ export const viewFeed = `
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
           <ul class="dropdown-menu">
             <li><a id="signOut" class="dropdown-item" href="#">Cerrar Sesión</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a id= "post" class="dropdown-item" href="#">Crear invitación</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
@@ -57,6 +57,10 @@ export const viewFeed = `
 </div>
 
 <main id="feed" class="container">
+<section id="post">
+<h2>Recientes</h2>
+<div id="postContainer"></div>
+</section>
   <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
     <img class="me-3" src="../assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
     <div class="lh-1">

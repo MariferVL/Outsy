@@ -1,4 +1,4 @@
-export const viewSignIn = `
+export const signIn = `
 <section id="signInView" class="background-radial-gradient overflow-hidden">
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
       <div class="row gx-lg-5 align-items-center mb-5">
@@ -38,8 +38,8 @@ export const viewSignIn = `
   
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="showPassword" checked />
+                  <label class="form-check-label" for="showPassword">
                     Recuerdame
                   </label>
                 </div>
@@ -63,7 +63,7 @@ export const viewSignIn = `
                     <i class="fab fa-facebook-f"></i>
                   </button>
   
-                  <button type="button" class="btn btn-link btn-floating mx-1">
+                  <button id="googleAuth" type="button" class="btn btn-link btn-floating mx-1">
                     <i class="fab fa-google"></i>
                   </button>
   

@@ -1,11 +1,12 @@
-import { toggleSignIn, handleSignUp } from "../lib/emailAuth.js";
-
 // import { default as firestore } from "firebase/firestore";
-import * as firebase from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-// import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js'
+import * as firebase from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+// import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js'
 // Add Firebase products to use
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js'
-// import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js' 
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js'
+// import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js' 
+
+import { toggleSignIn, handleSignUp, signInWithGoogle } from "../lib/emailAuth.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAMoIZnaqiWN7MrGggAkrPwJqTMUN-_xXE",
@@ -22,7 +23,9 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const authApp = getAuth(app);
+// Initialize Cloud Firestore and get a reference to the service
+//const db = getFirestore(app);
 
-export { toggleSignIn, handleSignUp};
-
+// const views = { home, about, signIn, signUp, feed, post, postDetail, profile}
+export { toggleSignIn, handleSignUp, signInWithGoogle };
 export  default authApp;

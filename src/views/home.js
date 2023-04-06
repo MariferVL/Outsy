@@ -1,4 +1,4 @@
-export const viewHome = `
+export const home = `
 
     <section id="main" class="container-fluid position-relative p-0">
       <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
