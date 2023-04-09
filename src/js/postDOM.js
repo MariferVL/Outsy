@@ -1,6 +1,7 @@
 import { addPost } from "../lib/postAuth";
 
 export function listenPostForm() {
+    console.log("entró a listenPostForm");
     // Add event listener for the submit button on the add post form
     document.getElementById("addPostButton").addEventListener("click", (event) => {
         event.preventDefault();

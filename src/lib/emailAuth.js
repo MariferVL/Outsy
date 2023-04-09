@@ -1,43 +1,49 @@
 //   Firebase CDN import
-import * as auth from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+import * as auth from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+import app from "./firebase";
+
+const authApp = auth.getAuth(app);
 
 
 /**
  * Handles the sign in button press.
  */
-function toggleSignIn(authApp, email, password) {
+function toggleSignIn(email, password) {
   console.log("entro a toogle " + email + password);
-  let inputValidation;
+
   if (auth.currentUser) {
     auth.signOut(authApp);
   } else {
-    
+    console.log("entro a else toogle " + email + password);
     // Sign in with email and pass.
-    return auth.signInWithEmailAndPassword(authApp, email, password).catch(function (
-      error
-    ) {
+    auth.signInWithEmailAndPassword(authApp, email, password).then(function (userCredential) {
+      console.log("User info: " + userCredential.user );
+      // Return user info
+      return userCredential.user;
+    }).catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode === "auth/wrong-password") {
-        inputValidation = "Contraseña Errónea.";
+      if (errorCode === 'auth/wrong-password') {
+        alert('Contraseña Errónea.');
       } else {
-        inputValidation = errorMessage;
+        alert(errorMessage);
       }
       console.log(error);
     });
   }
+
   document
     .getElementById("password-reset")
     .addEventListener("click", () => sendPasswordReset(authApp, email));
-  console.log("Esto es input validation " + inputValidation);
 
 }
+
 
 /**
  * Handles the sign up button press.
  */
-function handleSignUp(authApp, email, password) {
+function handleSignUp(email, password) {
   console.log("entro a handle " + email + password);
   let verification = false;
   // Create user with email and pass.
@@ -80,7 +86,7 @@ function sendVerification(user) {
  * @param {*} authApp
  * @param {*} email
  */
-function sendPasswordReset(authApp, email) {
+function sendPasswordReset(email) {
 
   auth
     .sendPasswordResetEmail(authApp, email)
@@ -101,27 +107,27 @@ function sendPasswordReset(authApp, email) {
     });
 }
 
-function signInWithGoogle(authApp) {
+function signInWithGoogle() {
   const provider = new auth.GoogleAuthProvider();
   return auth.signInWithPopup(authApp, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential =auth.GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential =auth.GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = auth.GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = auth.GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
 
   // auth.signInWithPopup(authApp);
   // const provider = new GoogleAuthProvider();

@@ -1,7 +1,8 @@
-import  { Router }  from "./router/router.js";
-import authApp, {toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/barrel.js";
-// import { getPosts } from "./lib/postAuth.js";
 import { listenPostForm } from "./js/postDOM.js";
+import router from "./router/router.js";
+import { toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/emailAuth.js";
+
+router.start();
 
 /**
  *
@@ -40,17 +41,17 @@ document.addEventListener("DOMContentLoaded", function () {
  * 
  */
 function activateRouter() {
-  Router.load("home");
+  router.navigateTo("/home");
 
   const signInHandler = () => {
-    Router.loadBody("signIn");
+    router.navigateTo("/signin");
     listenForm("formSignIn", "sign-in");
 
 
 
   };
   const signUpHandler = () => {
-    Router.loadBody("signUp");
+    router.navigateTo("/signup");
     listenForm("formSignUp", "sign-up");
 
 
@@ -58,12 +59,12 @@ function activateRouter() {
   };
 
   const aboutHandler = () => {
-    Router.load("about");
+    router.navigateTo("/about");
   };
 
   document.getElementById("signIn").addEventListener("click", signInHandler);
   document.getElementById("signUp").addEventListener("click", signUpHandler);
-  document.getElementById("signUp2").addEventListener("click", signUpHandler);
+  // document.getElementById("signUp2").addEventListener("click", signUpHandler);
   document.getElementById("about").addEventListener("click", aboutHandler);
 }
 
@@ -95,7 +96,7 @@ function validatePassword(password) {
 function validateInput(input, type) {
   const Inputvalue = input.value;
   let valid = true;
-   if (type === "email") {
+  if (type === "email") {
     console.log("emailValue: " + Inputvalue);
     if (validateEmail(Inputvalue)) {
       return;
@@ -113,7 +114,7 @@ function validateInput(input, type) {
       input.setCustomValidity("Por favor, ingresa una contraseña válida");
       valid = false;
     }
-  } 
+  }
   return valid;
 }
 
@@ -153,10 +154,11 @@ function enableButtons(idElement) {
   return [emailInput.value, passwordInput.value];
 }
 const postHandler = () => {
-  Router.loadBody("createPost");
+  router.navigateTo("/post/create");
+  console.log("creó vista Post");
   listenPostForm();
 
-  };
+};
 const listenPost = () => document.getElementById("post").addEventListener("click", postHandler);
 
 /**
@@ -176,24 +178,24 @@ async function listenForm(formID, buttonID) {
   });
 
   //FIXME: Revisar que funcione la autenticación de google
-if (formID === "formSignIn") {
-  document.getElementById("googleAuth").addEventListener("click", (e) => {
-    e.preventDefault();
-    signInWithGoogle(authApp)
-      .then(
-        (useCredential) => {
-          Router.loadBody("feed");
-          // getPosts();
-          listenPost();
-          
-        },
-        (error) => {
-          // FIXME: Revisar el open modal
-          openModal(error.message);
-        });
-  });
-  
-}
+  if (formID === "formSignIn") {
+    document.getElementById("googleAuth").addEventListener("click", (e) => {
+      e.preventDefault();
+      signInWithGoogle()
+        .then(
+          (useCredential) => {
+            router.navigateTo("/feed");
+            // getPosts();
+            listenPost();
+
+          },
+          (error) => {
+            // FIXME: Revisar el open modal
+            openModal(error.message);
+          });
+    });
+
+  }
 
   data.then((d) => {
     toAuth(formID, d[0], d[1])
@@ -213,20 +215,14 @@ function toAuth(formID, email, password) {
     const main = document.getElementById("signUpView");
     main.replaceWith(emailIgm);
     console.log("Entro al if de handle");
-    handleSignUp(authApp, email, password)
+    handleSignUp(email, password)
   }
   else if (formID === "formSignIn") {
     console.log("Entro al if de handle");
-    toggleSignIn(authApp, email, password)
-      .then(
-        (useCredential) => {
-          Router.loadBody("feed");
-          // getPosts(db);
-          listenPost();
-        },
-        (error) => {
-          openModal(error.message);
-        })
+    toggleSignIn(email, password)
+    router.navigateTo("/feed");
+    // getPosts(db);
+    listenPost();
 
   }
 }

@@ -1,11 +1,13 @@
 //   Firebase CDN imports
-import * as auth from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
-import * as storage from "https://www.gstatic.com/firebasejs/9.18.0/firebase-storage.js";
+import * as auth from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+import * as storage from "https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js";
+import * as firestore from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
-import * as firestore from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
-
-
+import app from "./firebase";
 import {showPost} from "../js/showPost";
+
+const db = firestore.getFirestore(app);
+
 
 
 /**
