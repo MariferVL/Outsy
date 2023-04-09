@@ -1,34 +1,31 @@
-import paths from "./routes.js";
+import routes from './routes.js';
 
-class ROUTER {
+class Router {
   constructor() {
-    this.paths = paths;
-    this.initRouter();
+    this.routes = routes;
+    this.currentRoute = null;
+    this.container = document.getElementById('root');
+    window.addEventListener('popstate', this.handlePopState.bind(this));
   }
 
-  initRouter() {
-    const {
-      location: { pathname = '/' },
-    } = window;
-    const URL = pathname === '/' ? 'home' : pathname.replace('/', '');
-    this.load(URL);
+  navigateTo(path) {
+    const route = Object.values(this.routes).find(route => route.path === path);
+    if (route) {
+      this.currentRoute = route;
+      this.container.innerHTML = route.template;
+      document.title = route.title;
+      window.history.pushState({ path }, '', path);
+    }
   }
 
-  load(page = 'home') {
-    const { paths } = this;
-    const { path, template } = paths[page] || paths.error;
-    const $CONTAINER = document.getElementById('root');
-    $CONTAINER.innerHTML = template;
-    window.history.pushState({}, 'done', path);
+  handlePopState(event) {
+    const { path } = event.state || {};
+    this.navigateTo(path || '/');
   }
 
-  loadBody(page = 'home') {
-    const { paths } = this;
-    const { path, template } = paths[page] || paths.error;
-    const $CONTAINER = document.getElementById('base');
-    $CONTAINER.innerHTML = template;
-    window.history.pushState({}, 'done', path);
+  start() {
+    this.navigateTo(window.location.pathname);
   }
 }
 
-export const Router = new ROUTER(paths);
+export default new Router();
