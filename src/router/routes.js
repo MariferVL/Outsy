@@ -3,7 +3,7 @@ import { about } from '../views/about.js';
 import { signIn } from '../views/sign-in.js';
 import { signUp } from '../views/sign-up.js';
 import { feed } from '../views/feed.js';
-import { post } from '../views/posts.js';
+import { post } from '../views/post.js';
 import { postDetail } from '../views/post-detail.js';
 import { profile } from '../views/profile.js';
 
