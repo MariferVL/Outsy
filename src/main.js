@@ -152,6 +152,7 @@ function enableButtons(idElement) {
 
 
 const listenPost = () => document.getElementById("post").addEventListener("click", () => {
+  router.navigateTo('/post/create');
   console.log("creó vista Post");
   // listenPostForm();
 
