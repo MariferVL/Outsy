@@ -1,11 +1,11 @@
-import { deletePost, editPost } from "../lib/postAuth";
+// import { deletePost, editPost } from "../lib/postAuth";
 
 
 
 /**
  * Function to show post in container
  */
-export const showPost = () => {
+const showPost = () => {
 
 
   // Clear any existing posts from the page
