@@ -44,7 +44,7 @@ function getCurrentUserId() {
 async function createPost(title, content, image, privacy) {
   const userId =  getCurrentUserId();
   const userName = getCurrentUserName();
-  const postRef = await db.collection('posts').add({
+  const postRef = await addDoc(collection(db, 'posts'),{
     userId,
     userName,
     title,
