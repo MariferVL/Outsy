@@ -1,0 +1,19 @@
+- users (collection)
+  - {userId} (document)
+    - name
+    - email
+    - password
+- posts (collection)
+  - {postId} (document)
+    - userId
+    - content
+    - image
+    - privacy
+    - likes (collection)
+      - {userId} (document)
+        - createdAt
+    - comments (collection)
+      - {commentId} (document)
+        - userId
+        - content
+        - createdAt
