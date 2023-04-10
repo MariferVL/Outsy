@@ -52,7 +52,6 @@ async function createPost(title, content, image, privacy) {
     // userName,
     title,
     content,
-    image,
     privacy,
     likes: [],
     comments: []
