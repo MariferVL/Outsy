@@ -1,6 +1,6 @@
 import router from "./router/router.js";
 import { toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/emailAuth.js";
-
+import { listenPostForm } from "./js/postDOM.js";
 router.start();
 
 /**
