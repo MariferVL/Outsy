@@ -1,4 +1,4 @@
-import { addPost } from "../lib/postAuth";
+import { createPost } from "../lib/postAuth";
 
 export function listenPostForm() {
     console.log("entró a listenPostForm");
@@ -8,8 +8,9 @@ export function listenPostForm() {
         const title = document.getElementById("postTitle").value;
         const content = document.getElementById("postContent").value;
         const privacy = document.getElementById("postPrivacy").value;
-        const imageFile = document.getElementById("postImage").files[0];
-        addPost(title, content, privacy, imageFile);
+        const image = document.getElementById("postImage").files[0];
+        const postId = createPost(title, content, image, privacy);
+        console.log('Created post:', postId);
 
         // Reset the form
         document.getElementById("addPostForm").reset();
