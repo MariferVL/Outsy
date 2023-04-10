@@ -157,7 +157,8 @@ async function addImageToPost(postId, image) {
 
 
 
-
+//https://firebase.google.com/docs/firestore/security/rules-query?hl=es-419
+// o
 // /**
 //  * Create a new collection if it does not exist
 //  * @param {*} collectionName 
