@@ -3,7 +3,7 @@ export const feed = `
     
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Offcanvas navbar</a>
+    <a class="navbar-brand">Offcanvas navbar</a>
     <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,23 +11,23 @@ export const feed = `
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+          <a class="nav-link active" aria-current="page">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Notifications</a>
+          <a class="nav-link">Notifications</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
+          <a class="nav-link">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Switch account</a>
+          <a class="nav-link">Switch account</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
           <ul class="dropdown-menu">
-            <li><a id="signOut" class="dropdown-item" href="#">Cerrar Sesión</a></li>
-            <li><a id= "post" class="dropdown-item" href="#">Crear invitación</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a id="signOut" class="dropdown-item">Cerrar Sesión</a></li>
+            <li><a id= "post" class="dropdown-item" >Crear invitación</a></li>
+            <li><a class="dropdown-item">Something else here</a></li>
           </ul>
         </li>
       </ul>
@@ -41,18 +41,18 @@ export const feed = `
 
 <div class="nav-scroller bg-body shadow-sm">
   <nav class="nav" aria-label="Secondary navigation">
-    <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-    <a class="nav-link" href="#">
+    <a class="nav-link active" aria-current="page">Dashboard</a>
+    <a class="nav-link">
       Friends
       <span class="badge text-bg-light rounded-pill align-text-bottom">27</span>
     </a>
-    <a class="nav-link" href="#">Explore</a>
-    <a class="nav-link" href="#">Suggestions</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link">Explore</a>
+    <a class="nav-link">Suggestions</a>
+    <a class="nav-link">Link</a>
+    <a class="nav-link">Link</a>
+    <a class="nav-link">Link</a>
+    <a class="nav-link">Link</a>
+    <a class="nav-link">Link</a>
   </nav>
 </div>
 
@@ -77,7 +77,7 @@ export const feed = `
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
           <strong class="text-gray-dark">Full Name</strong>
-          <a href="#">Follow</a>
+          <a>Follow</a>
         </div>
         <span class="d-block">@username</span>
       </div>
@@ -87,7 +87,7 @@ export const feed = `
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
           <strong class="text-gray-dark">Full Name</strong>
-          <a href="#">Follow</a>
+          <a>Follow</a>
         </div>
         <span class="d-block">@username</span>
       </div>
@@ -97,13 +97,13 @@ export const feed = `
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
           <strong class="text-gray-dark">Full Name</strong>
-          <a href="#">Follow</a>
+          <a>Follow</a>
         </div>
         <span class="d-block">@username</span>
       </div>
     </div>
     <small class="d-block text-end mt-3">
-      <a href="#">All suggestions</a>
+      <a>All suggestions</a>
     </small>
   </div>
 </main>
