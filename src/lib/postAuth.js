@@ -5,13 +5,15 @@ import * as firestore from "https://www.gstatic.com/firebasejs/9.19.1/firebase-f
 import app from "./firebase";
 
 const db = firestore.getFirestore(app);
+const authApp = auth.getAuth(app);
 
 /**
  * Function to get the current user's display name
  * @returns
  */
 function getCurrentUserName() {
-  return auth.currentUser.displayName;
+  console.log(authApp.currentUser.displayName)
+  return authApp.currentUser.displayName;
 }
 
 /**
@@ -19,7 +21,8 @@ function getCurrentUserName() {
  * @returns
  */
 function getCurrentUserId() {
-  return auth.currentUser.uid;
+  console.log(authApp.currentUser.uid)
+  return authApp.currentUser.uid;
 }
 
 /**
@@ -44,9 +47,9 @@ function getCurrentUserId() {
 async function createPost(title, content, image, privacy) {
   const userId =  getCurrentUserId();
   const userName = getCurrentUserName();
-  const postRef = await addDoc(collection(db, 'posts'),{
-    userId,
-    userName,
+  const postRef = await firestore.addDoc(firestore.collection(db, 'posts'),{
+    // userId,
+    // userName,
     title,
     content,
     image,
@@ -66,7 +69,7 @@ async function createPost(title, content, image, privacy) {
  * @param {*} privacy 
  */
 async function editPost(postId, content, image, privacy) {
-  await db.collection('posts').doc(postId).update({
+  await firestore.collection('posts').doc(postId).update({
     content,
     image,
     privacy
@@ -78,7 +81,7 @@ async function editPost(postId, content, image, privacy) {
  * @param {*} postId 
  */
 async function deletePost(postId) {
-  await db.collection('posts').doc(postId).delete();
+  await firestore.collection('posts').doc(postId).delete();
 }
 
 
@@ -91,7 +94,7 @@ async function deletePost(postId) {
  */
 async function addComment(postId, content) {
   const userId =  getCurrentUserId();
-  const commentRef = await db.collection('posts').doc(postId).collection('comments').add({
+  const commentRef = await firestore.collection('posts').doc(postId).collection('comments').add({
     userId,
     content,
     createdAt: new Date()
@@ -106,7 +109,7 @@ async function addComment(postId, content) {
  * @param {*} userId 
  */
 async function likePost(postId) {
-  await db.collection('posts').doc(postId).collection('likes').doc(userId).set({
+  await firestore.collection('posts').doc(postId).collection('likes').doc(userId).set({
     createdAt: new Date()
   });
 }
@@ -117,7 +120,7 @@ async function likePost(postId) {
  * @param {*} userId 
  */
 async function unlikePost(postId, userId) {
-  await db.collection('posts').doc(postId).collection('likes').doc(userId).delete();
+  await firestore.collection('posts').doc(postId).collection('likes').doc(userId).delete();
 }
 
  
@@ -127,7 +130,7 @@ async function unlikePost(postId, userId) {
  * @returns 
  */
 async function getLikeCount(postId) {
-  const likesRef = await db.collection('posts').doc(postId).collection('likes').get();
+  const likesRef = await firestore.collection('posts').doc(postId).collection('likes').get();
   return likesRef.size;
 }
 
@@ -138,7 +141,7 @@ async function getLikeCount(postId) {
  * @param {*} privacy 
  */
 async function adjustPrivacy(postId, privacy) {
-  await db.collection('posts').doc(postId).update({
+  await firestore.collection('posts').doc(postId).update({
     privacy
   });
 }
@@ -150,7 +153,7 @@ async function adjustPrivacy(postId, privacy) {
  * @param {*} image 
  */
 async function addImageToPost(postId, image) {
-  await db.collection('posts').doc(postId).update({
+  await firestore.collection('posts').doc(postId).update({
     image
   });
 }
@@ -164,10 +167,10 @@ async function addImageToPost(postId, image) {
 //  * @param {*} collectionName 
 //  */
 // async function createCollectionIfNotExist(collectionName) {
-//   const collections = await db.listCollections();
+//   const collections = await firestore.listCollections();
 //   const collectionExists = collections.some((col) => col.id === collectionName);
 //   if (!collectionExists) {
-//     await db.collection(collectionName).doc().set({}); 
+//     await firestore.collection(collectionName).doc().set({}); 
 //     console.log(`Colección de '${collectionName}' creada exitosamente.`);
 //   } else {
 //     console.log(`Colección de '${collectionName}' ya existe. `);
