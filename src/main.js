@@ -1,11 +1,10 @@
-import { listenPostForm } from "./js/postDOM.js";
 import router from "./router/router.js";
 import { toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/emailAuth.js";
 
 router.start();
 
 /**
- *
+ * Move navbar as the web page is scrolled
  */
 function scrollFunction() {
   const navbar = document.getElementById("navbar");
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /**
- * 
+ * Display the first view of the website
  */
 function activateRouter() {
   router.navigateTo("/home");
@@ -47,14 +46,10 @@ function activateRouter() {
     router.navigateTo("/signin");
     listenForm("formSignIn", "sign-in");
 
-
-
   };
   const signUpHandler = () => {
     router.navigateTo("/signup");
     listenForm("formSignUp", "sign-up");
-
-
 
   };
 
@@ -89,7 +84,7 @@ function validatePassword(password) {
 }
 
 /**
- *
+ * Validate sign in and sign out inputs
  * @param {*} input
  * @returns
  */
@@ -153,16 +148,17 @@ function enableButtons(idElement) {
   console.log("Este debería ser email y p " + emailInput.value + passwordInput.value);
   return [emailInput.value, passwordInput.value];
 }
-const postHandler = () => {
-  router.navigateTo("/post/create");
-  console.log("creó vista Post");
-  listenPostForm();
 
-};
-const listenPost = () => document.getElementById("post").addEventListener("click", postHandler);
+
+
+const listenPost = () => document.getElementById("post").addEventListener("click", () => {
+  console.log("creó vista Post");
+  // listenPostForm();
+
+});
 
 /**
- * listen when user submit info clicking button 
+ * Listen when user submit info clicking button 
  * @param {*} formID 
  * @param {*} buttonID 
  * @returns 
@@ -187,7 +183,6 @@ async function listenForm(formID, buttonID) {
             router.navigateTo("/feed");
             // getPosts();
             listenPost();
-
           },
           (error) => {
             // FIXME: Revisar el open modal
@@ -221,7 +216,6 @@ function toAuth(formID, email, password) {
     console.log("Entro al if de handle");
     toggleSignIn(email, password)
     router.navigateTo("/feed");
-    // getPosts(db);
     listenPost();
 
   }
@@ -230,6 +224,5 @@ function toAuth(formID, email, password) {
 activateRouter();
 
 
-/* Post Section */
 
 
