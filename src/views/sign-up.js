@@ -1,7 +1,7 @@
 export const signUp = `
 <section id="signUpView" class="background-radial-gradient overflow-hidden">
 <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-  <div class="row gx-lg-5 align-items-center mb-5">
+  <div class="row gx-lg-5 align-items-center mb-5 form-content">
     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
       <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
         La mejor App <br />
@@ -21,11 +21,14 @@ export const signUp = `
 
       <div class="card bg-glass">
         <div class="card-body px-4 py-5 px-md-5">
-          <form id="formSignUp"> 
+          <form id="formSignUp" class: "requires-validation" novalidate> 
+
             <!-- Email input -->
             <div class="form-outline mb-4">
               <input type="email" id="email" class="form-control" required/>
               <label class="form-label" for="email">Correo Electrónico</label>
+              <div class="valid-feedback">El email es correcto</div>
+              <div class="invalid-feedback">El email no es válido</div>
             </div>
 
             <!-- Password input -->
@@ -34,6 +37,8 @@ export const signUp = `
               <label class="form-label" for="password">Contraseña</label> <br>
               <input type="checkbox" id="showPassword" name="showPassword">
               <label for="showPassword">Mostrar contraseña</label>
+              <div class="valid-feedback">La contraseña es correcta</div>
+              <div class="invalid-feedback">La contraseña no es válida/div>
               <ul>
                   <li>Mínimo 8 caracteres</li>
                   <li>Máximo 15</li>
@@ -49,6 +54,8 @@ export const signUp = `
             <div class="form-outline mb-4">
               <input type="password" id="repeatPassword" class="form-control" required/>
               <label class="form-label" for="repeatPassword">Repetir Contraseña</label>
+              <div class="valid-feedback">La contraseña es correcta</div>
+              <div class="invalid-feedback">La contraseña no es válida/div>
             </div>
 
             <!-- Checkbox -->
@@ -57,6 +64,7 @@ export const signUp = `
               <label class="form-check-label text-black" for="appTerms">
                       Acepto los <a href="#!" class="text-blue"><u>Términos y Condiciones</u></a>
                     </label>
+                    <div class="invalid-feedback">Por favor, confirma que aceptas los términos y condiciones</div>
             </div>
 
             <!-- Submit button -->
