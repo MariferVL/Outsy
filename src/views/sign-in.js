@@ -24,13 +24,13 @@ export const signIn = `
               <form id="formSignIn"> 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="email" class="form-control" />
+                  <input type="email" id="email" class="form-control" required/>
                   <label class="form-label" for="email">Correo Electrónico</label>
                 </div>
   
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" id="password" class="form-control" />
+                  <input type="password" id="password" class="form-control" required/>
                   <label class="form-label" for="password">Contraseña</label> <br>
                   <input type="checkbox" id="showPassword" name="showPassword">
                   <label for="showPassword">Mostrar contraseña</label>
@@ -38,7 +38,7 @@ export const signIn = `
   
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="showPassword" checked />
+                  <input class="form-check-input me-2" type="checkbox" value="" id="showPassword"/>
                   <label class="form-check-label" for="showPassword">
                     Recuerdame
                   </label>
