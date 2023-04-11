@@ -24,13 +24,13 @@ export const signUp = `
           <form id="formSignUp"> 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="email" class="form-control" />
+              <input type="email" id="email" class="form-control" required/>
               <label class="form-label" for="email">Correo Electrónico</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="password" class="form-control" />
+              <input type="password" id="password" class="form-control" required/>
               <label class="form-label" for="password">Contraseña</label> <br>
               <input type="checkbox" id="showPassword" name="showPassword">
               <label for="showPassword">Mostrar contraseña</label>
@@ -47,14 +47,14 @@ export const signUp = `
 
             <!-- Repeat password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="repeatPassword" class="form-control" />
+              <input type="password" id="repeatPassword" class="form-control" required/>
               <label class="form-label" for="repeatPassword">Repetir Contraseña</label>
             </div>
 
             <!-- Checkbox -->
             <div class="form-check d-flex justify-content-center mb-4">
-              <input class="form-check-input me-2" type="checkbox" value="" id="showPassword" checked />
-              <label class="form-check-label text-black" for="showPassword">
+              <input class="form-check-input me-2" type="checkbox" value="" id="appTerms" required/>
+              <label class="form-check-label text-black" for="appTerms">
                       Acepto los <a href="#!" class="text-blue"><u>Términos y Condiciones</u></a>
                     </label>
             </div>
