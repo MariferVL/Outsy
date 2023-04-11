@@ -70,6 +70,7 @@ function activateRouter() {
  */
 function validateEmail(email) {
   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  console.log("valdateEmail: " + regexEmail.test(email));
   return regexEmail.test(email);
 }
 
@@ -80,38 +81,42 @@ function validateEmail(email) {
  */
 function validatePassword(password) {
   const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
+  console.log("validatePassword: " + regexPassword.test(password));
+
   return regexPassword.test(password);
 }
 
-/**
- * Validate sign in and sign out inputs
- * @param {*} input
- * @returns
- */
-function validateInput(input, type) {
-  const Inputvalue = input.value;
-  let valid = true;
-  if (type === "email") {
-    console.log("emailValue: " + Inputvalue);
-    if (validateEmail(Inputvalue)) {
-      return;
-    } else {
-      input.setCustomValidity(
-        "Por favor, ingresa un correo electrónico válido"
-      );
-      valid = false;
-    }
-  } else if (type === "pass") {
-    console.log("PassValue: " + Inputvalue);
-    if (validatePassword(Inputvalue)) {
-      return;
-    } else {
-      input.setCustomValidity("Por favor, ingresa una contraseña válida");
-      valid = false;
-    }
-  }
-  return valid;
-}
+//FIXME: Tomar los customvalidity
+// /**
+//  * Validate sign in and sign out inputs
+//  * @param {*} input
+//  * @returns
+//  */
+// function validateInput(input, type) {
+//   const Inputvalue = input.value;
+//   let valid = true;
+//   if (type === "email") {
+//     console.log("emailValue: " + Inputvalue);
+//     if (validateEmail(Inputvalue)) {
+//       return;
+//     } else {
+//       input.setCustomValidity(
+//         "Por favor, ingresa un correo electrónico válido"
+
+//       );
+//       valid = false;
+//     }
+//   } else if (type === "pass") {
+//     console.log("PassValue: " + Inputvalue);
+//     if (validatePassword(Inputvalue)) {
+//       return;
+//     } else {
+//       input.setCustomValidity("Por favor, ingresa una contraseña válida");
+//       valid = false;
+//     }
+//   }
+//   return valid;
+// }
 
 /**
  * Allow user see their password
@@ -132,19 +137,41 @@ function showPassword() {
   return showPasswordCheckbox.checked;
 }
 
+
 /**
  * Change button attribute to disable
  * @param {*} idElement
  * @returns
  */
-function enableButtons(idElement) {
+function enableButtons(formID, idElement) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
+  const form = document.getElementById(formID);
+  console.log("button y id: " + elementButton + " " + idElement);
+  console.log("email: " + emailInput);
+  console.log("pass: " + passwordInput);
+
+  elementButton.disabled = true;
+
   if (elementButton) {
-    validateInput(emailInput, "email");
-    validateInput(passwordInput, "pass");
+    emailInput.addEventListener('input', () => {
+      if (validateEmail(emailInput.value) && validatePassword(passwordInput.value)) {
+        elementButton.disabled = false;
+      } else {
+        elementButton.disabled = true;
+      }
+    });
+
+    passwordInput.addEventListener('input', () => {
+      if (validateEmail(emailInput.value) && validatePassword(passwordInput.value)) {
+        elementButton.disabled = false
+      } else {
+        elementButton.disabled = true;
+      }
+    });
   }
+
   console.log("Este debería ser email y p " + emailInput.value + passwordInput.value);
   return [emailInput.value, passwordInput.value];
 }
@@ -154,7 +181,7 @@ function enableButtons(idElement) {
 const listenPost = () => document.getElementById("post").addEventListener("click", () => {
   router.navigateTo('/post/create');
   console.log("creó vista Post");
- listenPostForm();
+  listenPostForm();
 
 });
 
@@ -164,17 +191,11 @@ const listenPost = () => document.getElementById("post").addEventListener("click
  * @param {*} buttonID 
  * @returns 
  */
-async function listenForm(formID, buttonID) {
-  showPassword();
-  const data = new Promise((resolve, reject) => {
-    document.getElementById(formID).addEventListener("submit", () => {
-      const userData = enableButtons(buttonID);
-      resolve(userData);
-      console.log("Esto es userdata " + userData);
-    }, { once: true });
-  });
-
-  //FIXME: Revisar que funcione la autenticación de google
+function listenForm(formID, buttonID) {
+  // showPassword();
+  console.log("form id :" + formID);
+  const userData = enableButtons(formID, buttonID);
+  console.log("Esto es userdata " + userData);
   if (formID === "formSignIn") {
     document.getElementById("googleAuth").addEventListener("click", (e) => {
       e.preventDefault();
@@ -190,35 +211,41 @@ async function listenForm(formID, buttonID) {
             openModal(error.message);
           });
     });
-
   }
-
-  data.then((d) => {
-    toAuth(formID, d[0], d[1])
-    console.log("Esto es data " + d);
-    console.log("email lista: " + d[0] + d[1]);
-  })
+  toAuth(formID, userData[0], userData[1])
+  console.log("Esto es data " + userData);
+  console.log("email lista: " + userData[0] + userData[1])
 
   return formID, email, password;
 }
 
+
+/**
+ * 
+ * @param {*} formID 
+ * @param {*} email 
+ * @param {*} password 
+ */
 function toAuth(formID, email, password) {
   console.log("Entro a toAuth " + formID + email + password);
   if (formID === "formSignUp") {
-    const emailIgm = document.createElement("img");
-    emailIgm.src = "./images/emailVerification.png";
-    emailIgm.className = "emailImg";
-    const main = document.getElementById("signUpView");
-    main.replaceWith(emailIgm);
-    console.log("Entro al if de handle");
-    handleSignUp(email, password)
+    document.getElementById("sign-up").addEventListener("click", () => {
+      const emailIgm = document.createElement("img");
+      emailIgm.src = "./images/emailVerification.png";
+      emailIgm.className = "emailImg";
+      const main = document.getElementById("signUpView");
+      main.replaceWith(emailIgm);
+      console.log("Entro al if de handle");
+      handleSignUp(email, password);
+    });
   }
   else if (formID === "formSignIn") {
-    console.log("Entro al if de handle");
-    toggleSignIn(email, password)
-    router.navigateTo("/feed");
-    listenPost();
-
+    document.getElementById("sign-in").addEventListener("click", () => {
+      console.log("Entro al if de handle");
+      toggleSignIn(email, password)
+      router.navigateTo("/feed");
+      listenPost();
+    });
   }
 }
 
