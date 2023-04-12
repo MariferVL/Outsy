@@ -61,36 +61,8 @@ function validatePassword(password) {
 }
 
 
-/**
-* Validate sign in and sign out inputs
-* @param {*} input
-* @returns
-*/
-function validateInput(input, type) {
-    const Inputvalue = input.value;
-    let valid = true;
-    if (type === "email") {
-        console.log("emailValue: " + Inputvalue);
-        if (validateEmail(Inputvalue)) {
-            return;
-        } else {
-            input.setCustomValidity(
-                "Por favor, ingresa un correo electrónico válido"
 
-            );
-            valid = false;
-        }
-    } else if (type === "pass") {
-        console.log("PassValue: " + Inputvalue);
-        if (validatePassword(Inputvalue)) {
-            return;
-        } else {
-            input.setCustomValidity("Por favor, ingresa una contraseña válida");
-            valid = false;
-        }
-    }
-    return valid;
-}
+
 
 
 /**
@@ -99,7 +71,7 @@ function validateInput(input, type) {
  * @param {*} buttonID 
  * @returns 
  */
-function listenForm(formID,userData) {
+function listenForm(formID, userData) {
     if (formID === "formSignIn") {
         document.getElementById("googleAuth").addEventListener("click", (e) => {
             e.preventDefault();
@@ -136,6 +108,7 @@ function listenForm(formID,userData) {
 function sendValidatedData(formID, email, password) {
     console.log("Entro a sendValidatedData " + formID + email + password);
     if (formID === "formSignUp") {
+        console.log("entró a imagen");
         document.getElementById("sign-up").addEventListener("click", () => {
             const emailIgm = document.createElement("img");
             emailIgm.src = "./images/emailVerification.png";
@@ -144,12 +117,13 @@ function sendValidatedData(formID, email, password) {
             main.replaceWith(emailIgm);
             console.log("Entro al if de handle");
             handleSignUp(email, password);
+
         });
     }
     else if (formID === "formSignIn") {
         document.getElementById("sign-in").addEventListener("click", () => {
             console.log("Entro al if de handle");
-            toggleSignIn(email, password)
+            toggleSignIn(email, password);
             router.navigateTo("/feed");
             listenPost();
         });
@@ -157,76 +131,76 @@ function sendValidatedData(formID, email, password) {
 }
 
 
-/**
- * Validate sign in and sign out form
- */
-function validateForm() {
-    'use strict'
-    const forms = document.querySelectorAll('.requires-validation');
-    if (forms) {
-        Array.from(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity() & !validateInput() & !validateInput()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    } else {
-                        const emailInput = form.querySelector('input[name="email"]');
-                        const passwordInput = form.querySelector('input[name="password"]');
-                        const email = emailInput.value;
-                        const password = passwordInput.value;
-                        //FIXME: agregar condicional password si resulta anterior
-                        const repeatPasswordInput = form.querySelector('input[name="repeat-password"]');
-                        const repeatPassword = repeatPasswordInput.value;
-                        
+async function validateForm() {
 
-                        console.log(`Email: ${email}, Password: ${password}, Repeat Password: ${repeatPassword}`);
-                        return email, password;
-                    }
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
 
-                    form.classList.add('was-validated')
-                }, false)
-            })
+    // Email validation
+    if (!email.value) {
+        email.setCustomValidity('Please enter an email address.');
+        return;
     }
+
+    if (!validateEmail(email.value)) {
+        email.setCustomValidity('Please enter a valid email address.');
+        return;
+    }
+
+    // Password validation
+    if (!password.value) {
+        password.setCustomValidity('Please enter a password.');
+        return;
+    }
+
+    if (!validatePassword(password.value)) {
+        password.setCustomValidity('Password must be at least 8 characters long.');
+        return;
+    }
+    console.log("llegóa final validación");
+    // Inputs are valid
+    return {
+        email: email.value,
+        password: password.value,
+    };
 }
 
 
 
+/**
+ * Display the website views
+ * IIFE 
+ */
+(function () {
+    router.navigateTo("/home");
 
-
-
-
-
-
-    /**
-     * Display the website views
-     * IIFE 
-     */
-    (function () {
-        router.navigateTo("/home");
-
-        const signInHandler = () => {
-            router.navigateTo("/signin");
-            const userData = validateForm();
+    const signInHandler = async () => {
+        router.navigateTo("/signin");
+        const userData = await validateForm();
+        if (userData) {
             listenForm("formSignIn", userData);
+        }
+    };
+    
+    const signUpHandler = async () => {
+        router.navigateTo("/signup");
+        const userData = await validateForm();
+        if (userData) {
+            sendValidatedData("formSignUp", userData.email, userData.password);
+        }
+    };
+    
 
-        };
-        const signUpHandler = () => {
-            router.navigateTo("/signup");
-            const userData = validateForm();
+    const aboutHandler = () => {
+        router.navigateTo("/about");
+    };
 
-        };
+    document.getElementById("signIn").addEventListener("click", signInHandler);
+    document.getElementById("signUp").addEventListener("click", signUpHandler);
+    // document.getElementById("signUp2").addEventListener("click", signUpHandler);
+    document.getElementById("about").addEventListener("click", aboutHandler);
 
-        const aboutHandler = () => {
-            router.navigateTo("/about");
-        };
-
-        document.getElementById("signIn").addEventListener("click", signInHandler);
-        document.getElementById("signUp").addEventListener("click", signUpHandler);
-        document.getElementById("signUp2").addEventListener("click", signUpHandler);
-        document.getElementById("about").addEventListener("click", aboutHandler);
-
-    })()
+})()
 
 
 
