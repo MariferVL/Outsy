@@ -3,7 +3,7 @@ export const feed = `
     
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
   <div class="container-fluid">
-    <a class="navbar-brand">Offcanvas navbar</a>
+    <a class="navbar-brand">Outsy</a>
     <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,20 +14,21 @@ export const feed = `
           <a class="nav-link active" aria-current="page">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Notifications</a>
+          <a class="nav-link">Notificaciones</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Profile</a>
+          <a class="nav-link">Perfil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Switch account</a>
+          <a class="nav-link">Cambia de cuenta</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Menú</a>
           <ul class="dropdown-menu">
-            <li><a id="signOut" class="dropdown-item">Cerrar Sesión</a></li>
             <li><a id= "post" class="dropdown-item" >Crear invitación</a></li>
-            <li><a class="dropdown-item">Something else here</a></li>
+            <li><a class="dropdown-item">Ajustes</a></li>
+            <li><a id="signOut" class="dropdown-item">Cerrar Sesión</a></li>
+
           </ul>
         </li>
       </ul>
@@ -57,10 +58,10 @@ export const feed = `
 </div>
 
 <main id="feed" class="container">
-<!-- <section id="posts">
+<section id="posts">
 <h2>Invitaciones Recientes</h2>
 <div id="postContainer"></div>
-</section> -->
+</section>
   <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
     <img class="me-3" src="" alt="" width="48" height="38">
     <div class="lh-1">

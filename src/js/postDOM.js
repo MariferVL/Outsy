@@ -1,4 +1,7 @@
-import { createPost } from "../lib/postAuth";
+import { createPost, getPosts  } from "../lib/postAuth";
+import Router from "../router/router";
+
+const router = new Router();
 
 export function listenPostForm() {
     console.log("entró a listenPostForm");
@@ -11,9 +14,8 @@ export function listenPostForm() {
         const image = document.getElementById("postImage").files[0];
         const postId = createPost(title, content, image, privacy);
         console.log('Created post:', postId);
-
-        // Reset the form
-        document.getElementById("addPostForm").reset();
+        router.navigateTo("/feed");
+        getPosts();
     });
 
 
