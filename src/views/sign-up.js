@@ -1,7 +1,7 @@
 export const signUp = `
 <section id="signUpView" class="background-radial-gradient overflow-hidden">
 <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-  <div class="row gx-lg-5 align-items-center mb-5 form-content">
+  <div class="row gx-lg-5 align-items-center mb-5">
     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
       <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
         La mejor App <br />
@@ -14,31 +14,23 @@ export const signUp = `
         ab ipsum nisi dolorem modi. Quos?
       </p>
     </div>
-
     <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
       <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
       <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
-
       <div class="card bg-glass">
         <div class="card-body px-4 py-5 px-md-5">
-          <form id="formSignUp" class: "requires-validation" novalidate> 
-
+          <form id="formSignUp"> 
             <!-- Email input -->
             <div class="form-outline mb-4">
               <input type="email" id="email" class="form-control" required/>
               <label class="form-label" for="email">Correo Electrónico</label>
-              <div class="valid-feedback">El email es correcto</div>
-              <div class="invalid-feedback">El email no es válido</div>
             </div>
-
             <!-- Password input -->
             <div class="form-outline mb-4">
               <input type="password" id="password" class="form-control" required/>
               <label class="form-label" for="password">Contraseña</label> <br>
               <input type="checkbox" id="showPassword" name="showPassword">
               <label for="showPassword">Mostrar contraseña</label>
-              <div class="valid-feedback">La contraseña es correcta</div>
-              <div class="invalid-feedback">La contraseña no es válida/div>
               <ul>
                   <li>Mínimo 8 caracteres</li>
                   <li>Máximo 15</li>
@@ -49,29 +41,22 @@ export const signUp = `
                   <li>Al menos 1 caracter especial</li>
               </ul>
             </div>
-
             <!-- Repeat password input -->
             <div class="form-outline mb-4">
               <input type="password" id="repeatPassword" class="form-control" required/>
               <label class="form-label" for="repeatPassword">Repetir Contraseña</label>
-              <div class="valid-feedback">La contraseña es correcta</div>
-              <div class="invalid-feedback">La contraseña no es válida/div>
             </div>
-
             <!-- Checkbox -->
             <div class="form-check d-flex justify-content-center mb-4">
               <input class="form-check-input me-2" type="checkbox" value="" id="appTerms" required/>
               <label class="form-check-label text-black" for="appTerms">
                       Acepto los <a href="#!" class="text-blue"><u>Términos y Condiciones</u></a>
                     </label>
-                    <div class="invalid-feedback">Por favor, confirma que aceptas los términos y condiciones</div>
             </div>
-
             <!-- Submit button -->
             <button id="sign-up" class="btn btn-primary btn-block mb-4">
               Registrarme
             </button>
-
           </form>
         </div>
       </div>
