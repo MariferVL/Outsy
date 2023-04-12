@@ -1,40 +1,74 @@
-import Router from "./router/router.js";
 import { toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/emailAuth.js";
 import { listenPostForm } from "./js/postDOM.js";
+import Router from "./router/router.js"; 
+
 
 
 const router = new Router();
 router.start();
 
+
+
 /**
  * Move navbar as the web page is scrolled
  */
 function scrollFunction() {
-    const navbar = document.getElementById("navbar");
-    const logo = document.getElementById("logo");
-    if (navbar && logo) {
-        if (
-            document.body.scrollTop > 80 ||
-            document.documentElement.scrollTop > 80
-        ) {
-            navbar.style.padding = "30px 10px";
-            logo.style.fontSize = "25px";
-        } else {
-            navbar.style.padding = "80px 10px";
-            logo.style.fontSize = "35px";
-        }
+  const navbar = document.getElementById("navbar");
+  const logo = document.getElementById("logo");
+  if (navbar && logo) {
+    if (
+      document.body.scrollTop > 80 ||
+      document.documentElement.scrollTop > 80
+    ) {
+      navbar.style.padding = "30px 10px";
+      logo.style.fontSize = "25px";
+    } else {
+      navbar.style.padding = "80px 10px";
+      logo.style.fontSize = "35px";
     }
+  }
 }
+
 
 // Scroll just show with home and about view
 document.addEventListener("DOMContentLoaded", function () {
-    const homeView = document.getElementById("main");
-    const aboutView = document.getElementById("about");
+  const homeView = document.getElementById("main");
+  const aboutView = document.getElementById("about");
 
-    if (homeView || aboutView) {
-        scrollFunction();
-    }
+  if (homeView || aboutView) {
+    scrollFunction();
+  }
 });
+
+
+/**
+ * Display the first view of the website
+ * IIFE
+ */
+(function() {
+  
+  router.navigateTo("/home");
+
+  const signInHandler = () => {
+    router.navigateTo("/signin");
+    listenForm("formSignIn", "sign-in");
+
+  };
+  const signUpHandler = () => {
+    router.navigateTo("/signup");
+    listenForm("formSignUp", "sign-up");
+
+  };
+
+  const aboutHandler = () => {
+    router.navigateTo("/about");
+  };
+
+  document.getElementById("signIn").addEventListener("click", signInHandler);
+  document.getElementById("signUp").addEventListener("click", signUpHandler);
+  // document.getElementById("signUp2").addEventListener("click", signUpHandler);
+  document.getElementById("about").addEventListener("click", aboutHandler);
+})()
 
 
 /**
@@ -43,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
  * @returns boolean
  */
 function validateEmail(email) {
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    console.log("valdateEmail: " + regexEmail.test(email));
-    return regexEmail.test(email);
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regexEmail.test(email);
 }
+
 
 /**
  * Validate password input structure
@@ -54,15 +88,86 @@ function validateEmail(email) {
  * @returns boolean
  */
 function validatePassword(password) {
-    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
-    console.log("validatePassword: " + regexPassword.test(password));
-
-    return regexPassword.test(password);
+  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
+  return regexPassword.test(password);
 }
 
 
+/**
+ * Validate sign in and sign out inputs
+ * @param {*} input
+ * @returns
+ */
+function validateInput(input, type) {
+  const Inputvalue = input.value;
+  let valid = true;
+  if (type === "email") {
+    console.log("emailValue: " + Inputvalue);
+    if (validateEmail(Inputvalue)) {
+      return;
+    } else {
+      input.setCustomValidity(
+        "Por favor, ingresa un correo electrónico válido"
+      );
+      valid = false;
+    }
+  } else if (type === "pass") {
+    console.log("PassValue: " + Inputvalue);
+    if (validatePassword(Inputvalue)) {
+      return;
+    } else {
+      input.setCustomValidity("Por favor, ingresa una contraseña válida");
+      valid = false;
+    }
+  }
+  return valid;
+}
 
 
+/**
+ * Allow user see their password
+ * @returns boolean
+ */
+function showPassword() {
+  const showPasswordCheckbox = document.getElementById("showPassword");
+  const password = document.getElementById("password");
+
+  showPasswordCheckbox.addEventListener("change", () => {
+    if (showPasswordCheckbox.checked) {
+      password.type = "text";
+    } else {
+      password.type = "password";
+    }
+  });
+  // For tests
+  return showPasswordCheckbox.checked;
+}
+
+
+/**
+ * Change button attribute to disable
+ * @param {*} idElement
+ * @returns
+ */
+function enableButtons(idElement) {
+  const elementButton = document.getElementById(idElement);
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  if (elementButton) {
+    validateInput(emailInput, "email");
+    validateInput(passwordInput, "pass");
+  }
+  console.log("Este debería ser email y p " + emailInput.value + passwordInput.value);
+  return [emailInput.value, passwordInput.value];
+}
+
+
+const listenPost = () => document.getElementById("post").addEventListener("click", () => {
+  router.navigateTo('/post/create');
+  console.log("creó vista Post");
+ listenPostForm();
+
+});
 
 
 /**
@@ -71,32 +176,43 @@ function validatePassword(password) {
  * @param {*} buttonID 
  * @returns 
  */
-function listenForm(formID, userData) {
-    if (formID === "formSignIn") {
-        document.getElementById("googleAuth").addEventListener("click", (e) => {
-            e.preventDefault();
-            signInWithGoogle()
-                .then(
-                    (useCredential) => {
-                        router.navigateTo("/feed");
-                        // getPosts();
-                        listenPost();
-                    },
-                    (error) => {
-                        // FIXME: Revisar el open modal
-                        openModal(error.message);
-                    });
-        });
-    }
-    console.log();
-    sendValidatedData(formID, userData[0], userData[1])
-    console.log("Esto es data " + userData);
-    console.log("email lista: " + userData[0] + userData[1])
+async function listenForm(formID, buttonID) {
+  showPassword();
+  const data = new Promise((resolve, reject) => {
+    document.getElementById(formID).addEventListener("submit", () => {
+      const userData = enableButtons(buttonID);
+      resolve(userData);
+      console.log("Esto es userdata " + userData);
+    }, { once: true });
+  });
 
-    //Test
-    return email;
+  //FIXME: Revisar que funcione la autenticación de google
+  if (formID === "formSignIn") {
+    document.getElementById("googleAuth").addEventListener("click", (e) => {
+      e.preventDefault();
+      signInWithGoogle()
+        .then(
+          (useCredential) => {
+            router.navigateTo("/feed");
+            // getPosts();
+            listenPost();
+          },
+          (error) => {
+            // FIXME: Revisar el open modal
+            openModal(error.message);
+          });
+    });
+
+  }
+
+  data.then((d) => {
+    sendValidData(formID, d[0], d[1])
+    console.log("Esto es data " + d);
+    console.log("email lista: " + d[0] + d[1]);
+  })
+
+  return formID, email, password;
 }
-
 
 
 /**
@@ -105,103 +221,23 @@ function listenForm(formID, userData) {
  * @param {*} email 
  * @param {*} password 
  */
-function sendValidatedData(formID, email, password) {
-    console.log("Entro a sendValidatedData " + formID + email + password);
-    if (formID === "formSignUp") {
-        console.log("entró a imagen");
-        document.getElementById("sign-up").addEventListener("click", () => {
-            const emailIgm = document.createElement("img");
-            emailIgm.src = "./images/emailVerification.png";
-            emailIgm.className = "emailImg";
-            const main = document.getElementById("signUpView");
-            main.replaceWith(emailIgm);
-            console.log("Entro al if de handle");
-            handleSignUp(email, password);
+function sendValidData(formID, email, password) {
+  console.log("Entro a sendValidData " + formID + email + password);
+  if (formID === "formSignUp") {
+    const emailIgm = document.createElement("img");
+    emailIgm.src = "./images/emailVerification.png";
+    emailIgm.className = "emailImg";
+    const main = document.getElementById("signUpView");
+    main.replaceWith(emailIgm);
+    console.log("Entro al if de handle");
+    handleSignUp(email, password)
+  }
+  else if (formID === "formSignIn") {
+    console.log("Entro al if de handle");
+    toggleSignIn(email, password)
+    router.navigateTo("/feed");
+    listenPost();
 
-        });
-    }
-    else if (formID === "formSignIn") {
-        document.getElementById("sign-in").addEventListener("click", () => {
-            console.log("Entro al if de handle");
-            toggleSignIn(email, password);
-            router.navigateTo("/feed");
-            listenPost();
-        });
-    }
+  }
 }
-
-
-async function validateForm() {
-
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-
-    // Email validation
-    if (!email.value) {
-        email.setCustomValidity('Please enter an email address.');
-        return;
-    }
-
-    if (!validateEmail(email.value)) {
-        email.setCustomValidity('Please enter a valid email address.');
-        return;
-    }
-
-    // Password validation
-    if (!password.value) {
-        password.setCustomValidity('Please enter a password.');
-        return;
-    }
-
-    if (!validatePassword(password.value)) {
-        password.setCustomValidity('Password must be at least 8 characters long.');
-        return;
-    }
-    console.log("llegóa final validación");
-    // Inputs are valid
-    return {
-        email: email.value,
-        password: password.value,
-    };
-}
-
-
-
-/**
- * Display the website views
- * IIFE 
- */
-(function () {
-    router.navigateTo("/home");
-
-    const signInHandler = async () => {
-        router.navigateTo("/signin");
-        const userData = await validateForm();
-        if (userData) {
-            listenForm("formSignIn", userData);
-        }
-    };
-    
-    const signUpHandler = async () => {
-        router.navigateTo("/signup");
-        const userData = await validateForm();
-        if (userData) {
-            sendValidatedData("formSignUp", userData.email, userData.password);
-        }
-    };
-    
-
-    const aboutHandler = () => {
-        router.navigateTo("/about");
-    };
-
-    document.getElementById("signIn").addEventListener("click", signInHandler);
-    document.getElementById("signUp").addEventListener("click", signUpHandler);
-    // document.getElementById("signUp2").addEventListener("click", signUpHandler);
-    document.getElementById("about").addEventListener("click", aboutHandler);
-
-})()
-
-
-
 
