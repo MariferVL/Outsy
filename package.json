@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",
+    "eslint": "^8.38.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^25.3.0",
     "htmlhint": "^1.0.0",
@@ -39,5 +40,8 @@
     "createdAt": "2023-02-02T20:38:10.344Z",
     "version": "5.5.0",
     "commit": "36bf90dc273bab8ffe9546b09eece6a132f8a669"
+  },
+  "dependencies": {
+    "eslint-config-airbnb-base": "^15.0.0"
   }
 }

@@ -1,6 +1,8 @@
 //   Firebase CDN import
-import * as auth from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
-import app from "./firebase";
+import * as auth from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js';
+import app from './firebase';
+
+
 
 const authApp = auth.getAuth(app);
 
@@ -9,33 +11,31 @@ const authApp = auth.getAuth(app);
  * Handles the sign in button press.
  */
 function toggleSignIn(email, password) {
-  console.log("entro a toogle " + email + password);
 
   if (auth.currentUser) {
     auth.signOut(authApp);
   } else {
-    console.log("entro a else toogle " + email + password);
     // Sign in with email and pass.
     auth.signInWithEmailAndPassword(authApp, email, password).then(function (userCredential) {
-      console.log("User info: " + userCredential.user );
       // Return user info
       return userCredential.user;
     }).catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
-      const errorMessage = error.message;
+      //FIXME: comentado por test
+      // const errorMessage = error.message;
       if (errorCode === 'auth/wrong-password') {
-        alert('Contraseña Errónea.');
+        //FIXME: cambiar por modal
+        // alert('Contraseña Errónea.');
       } else {
-        alert(errorMessage);
+        // alert(errorMessage);
       }
-      console.log(error);
     });
   }
 
   document
-    .getElementById("password-reset")
-    .addEventListener("click", () => sendPasswordReset(authApp, email));
+    .getElementById('password-reset')
+    .addEventListener('click', () => sendPasswordReset(authApp, email));
 
 }
 
@@ -44,25 +44,25 @@ function toggleSignIn(email, password) {
  * Handles the sign up button press.
  */
 function handleSignUp(email, password) {
-  console.log("entro a handle " + email + password);
   let verification = false;
   // Create user with email and pass.
   auth
     .createUserWithEmailAndPassword(authApp, email, password)
     .then((cred) => {
-      console.log("Usuario registrado con éxito", cred.user);
       verification = sendVerification(cred.user);
     })
     .catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
-      const errorMessage = error.message;
-      if (errorCode == "auth/weak-password") {
-        alert("Esta contraseña es muy insegura");
+      //FIXME: comentado por test
+      // const errorMessage = error.message;
+      if (errorCode == 'auth/weak-password') {
+                //FIXME: cambiar por modal
+        // alert('Esta contraseña es muy insegura');
       } else {
-        alert(errorMessage);
+         //FIXME: cambiar por modal
+        // alert(errorMessage);
       }
-      console.log(error);
     });
   return verification;
 }
@@ -73,11 +73,11 @@ function handleSignUp(email, password) {
 function sendVerification(user) {
   auth.sendEmailVerification(user).then(function () {
     // Email Verification sent!
-    alert("Email Verification Sent!");
+    // alert('Email Verification Sent!');
     return user.emailVerified;
   })
     .catch((error) => {
-      console.log("Error sending email verification:", error);
+      //FIXME: agregar modal
     });
 }
 
@@ -91,19 +91,22 @@ function sendPasswordReset(email) {
   auth
     .sendPasswordResetEmail(authApp, email)
     .then(function () {
+      //FIXME: cambiar por modal
       // Password Reset Email Sent!
-      alert("Password Reset Email Sent!");
+      // alert('Password Reset Email Sent!');
     })
     .catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      if (errorCode == "auth/invalid-email") {
-        alert(errorMessage);
-      } else if (errorCode == "auth/user-not-found") {
-        alert(errorMessage);
+      if (errorCode == 'auth/invalid-email') {
+        //FIXME: cambiar por modal
+        // alert(errorMessage);
+      } else if (errorCode == 'auth/user-not-found') {
+        //FIXME: cambiar por modal
+        // alert(errorMessage);
       }
-      console.log(error);
+      // console.log(error);
     });
 }
 
@@ -121,7 +124,8 @@ function signInWithGoogle() {
     }).catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
-      const errorMessage = error.message;
+      //FIXME: comentado por test
+      // const errorMessage = error.message;
       // The email of the user's account used.
       const email = error.customData.email;
       // The AuthCredential type that was used.

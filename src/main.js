@@ -1,6 +1,6 @@
-import { toggleSignIn, handleSignUp, signInWithGoogle } from "./lib/emailAuth.js";
-import { listenPostForm } from "./js/postDOM.js";
-import Router from "./router/router.js"; 
+import { handleSignUp, toggleSignIn, signInWithGoogle } from './lib/emailAuth.js';
+import { listenPostForm } from './js/postDOM.js';
+import Router from './router/router.js';
 
 
 
@@ -13,27 +13,28 @@ router.start();
  * Move navbar as the web page is scrolled
  */
 function scrollFunction() {
-  const navbar = document.getElementById("navbar");
-  const logo = document.getElementById("logo");
+  const navbar = document.getElementById('navbar');
+  const logo = document.getElementById('logo');
   if (navbar && logo) {
     if (
       document.body.scrollTop > 80 ||
       document.documentElement.scrollTop > 80
     ) {
-      navbar.style.padding = "30px 10px";
-      logo.style.fontSize = "25px";
+      navbar.style.padding = '30px 10px';
+      logo.style.fontSize = '25px';
     } else {
-      navbar.style.padding = "80px 10px";
-      logo.style.fontSize = "35px";
+      navbar.style.padding = '80px 10px';
+      logo.style.fontSize = '35px';
     }
   }
+  return;
 }
 
 
 // Scroll just show with home and about view
-document.addEventListener("DOMContentLoaded", function () {
-  const homeView = document.getElementById("main");
-  const aboutView = document.getElementById("about");
+document.addEventListener('DOMContentLoaded', function () {
+  const homeView = document.getElementById('main');
+  const aboutView = document.getElementById('about');
 
   if (homeView || aboutView) {
     scrollFunction();
@@ -47,27 +48,27 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 (function() {
   
-  router.navigateTo("/home");
+  router.navigateTo('/home');
 
   const signInHandler = () => {
-    router.navigateTo("/signin");
-    listenForm("formSignIn", "sign-in");
+    router.navigateTo('/signin');
+    listenForm('formSignIn', 'sign-in');
 
   };
   const signUpHandler = () => {
-    router.navigateTo("/signup");
-    listenForm("formSignUp", "sign-up");
+    router.navigateTo('/signup');
+    listenForm('formSignUp', 'sign-up');
 
   };
 
   const aboutHandler = () => {
-    router.navigateTo("/about");
+    router.navigateTo('/about');
   };
 
-  document.getElementById("signIn").addEventListener("click", signInHandler);
-  document.getElementById("signUp").addEventListener("click", signUpHandler);
-  // document.getElementById("signUp2").addEventListener("click", signUpHandler);
-  document.getElementById("about").addEventListener("click", aboutHandler);
+  document.getElementById('signIn').addEventListener('click', signInHandler);
+  document.getElementById('signUp').addEventListener('click', signUpHandler);
+  // document.getElementById('signUp2').addEventListener('click', signUpHandler);
+  document.getElementById('about').addEventListener('click', aboutHandler);
 })()
 
 
@@ -101,22 +102,20 @@ function validatePassword(password) {
 function validateInput(input, type) {
   const Inputvalue = input.value;
   let valid = true;
-  if (type === "email") {
-    console.log("emailValue: " + Inputvalue);
+  if (type === 'email') {
     if (validateEmail(Inputvalue)) {
       return;
     } else {
       input.setCustomValidity(
-        "Por favor, ingresa un correo electrónico válido"
+        'Por favor, ingresa un correo electrónico válido'
       );
       valid = false;
     }
-  } else if (type === "pass") {
-    console.log("PassValue: " + Inputvalue);
+  } else if (type === 'pass') {
     if (validatePassword(Inputvalue)) {
       return;
     } else {
-      input.setCustomValidity("Por favor, ingresa una contraseña válida");
+      input.setCustomValidity('Por favor, ingresa una contraseña válida');
       valid = false;
     }
   }
@@ -129,14 +128,14 @@ function validateInput(input, type) {
  * @returns boolean
  */
 function showPassword() {
-  const showPasswordCheckbox = document.getElementById("showPassword");
-  const password = document.getElementById("password");
+  const showPasswordCheckbox = document.getElementById('showPassword');
+  const password = document.getElementById('password');
 
-  showPasswordCheckbox.addEventListener("change", () => {
+  showPasswordCheckbox.addEventListener('change', () => {
     if (showPasswordCheckbox.checked) {
-      password.type = "text";
+      password.type = 'text';
     } else {
-      password.type = "password";
+      password.type = 'password';
     }
   });
   // For tests
@@ -151,20 +150,18 @@ function showPassword() {
  */
 function enableButtons(idElement) {
   const elementButton = document.getElementById(idElement);
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
   if (elementButton) {
-    validateInput(emailInput, "email");
-    validateInput(passwordInput, "pass");
+    validateInput(emailInput, 'email');
+    validateInput(passwordInput, 'pass');
   }
-  console.log("Este debería ser email y p " + emailInput.value + passwordInput.value);
   return [emailInput.value, passwordInput.value];
 }
 
 
-const listenPost = () => document.getElementById("post").addEventListener("click", () => {
+const listenPost = () => document.getElementById('post').addEventListener('click', () => {
   router.navigateTo('/post/create');
-  console.log("creó vista Post");
  listenPostForm();
 
 });
@@ -179,21 +176,20 @@ const listenPost = () => document.getElementById("post").addEventListener("click
 async function listenForm(formID, buttonID) {
   showPassword();
   const data = new Promise((resolve, reject) => {
-    document.getElementById(formID).addEventListener("submit", () => {
+    document.getElementById(formID).addEventListener('submit', () => {
       const userData = enableButtons(buttonID);
       resolve(userData);
-      console.log("Esto es userdata " + userData);
     }, { once: true });
   });
 
   //FIXME: Revisar que funcione la autenticación de google
-  if (formID === "formSignIn") {
-    document.getElementById("googleAuth").addEventListener("click", (e) => {
+  if (formID === 'formSignIn') {
+    document.getElementById('googleAuth').addEventListener('click', (e) => {
       e.preventDefault();
       signInWithGoogle()
         .then(
           (useCredential) => {
-            router.navigateTo("/feed");
+            router.navigateTo('/feed');
             // getPosts();
             listenPost();
           },
@@ -207,8 +203,6 @@ async function listenForm(formID, buttonID) {
 
   data.then((d) => {
     sendValidData(formID, d[0], d[1])
-    console.log("Esto es data " + d);
-    console.log("email lista: " + d[0] + d[1]);
   })
 
   return formID, email, password;
@@ -222,22 +216,21 @@ async function listenForm(formID, buttonID) {
  * @param {*} password 
  */
 function sendValidData(formID, email, password) {
-  console.log("Entro a sendValidData " + formID + email + password);
-  if (formID === "formSignUp") {
-    const emailIgm = document.createElement("img");
-    emailIgm.src = "./images/emailVerification.png";
-    emailIgm.className = "emailImg";
-    const main = document.getElementById("signUpView");
+  if (formID === 'formSignUp') {
+    const emailIgm = document.createElement('img');
+    emailIgm.src = './images/emailVerification.png';
+    emailIgm.className = 'emailImg';
+    const main = document.getElementById('signUpView');
     main.replaceWith(emailIgm);
-    console.log("Entro al if de handle");
     handleSignUp(email, password)
   }
-  else if (formID === "formSignIn") {
-    console.log("Entro al if de handle");
+  else if (formID === 'formSignIn') {
     toggleSignIn(email, password)
-    router.navigateTo("/feed");
+    router.navigateTo('/feed');
     listenPost();
 
   }
 }
 
+
+export{scrollFunction}

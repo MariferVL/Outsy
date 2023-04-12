@@ -1,21 +1,20 @@
-import { createPost, getPosts  } from "../lib/postAuth";
-import Router from "../router/router";
+import { createPost, getPosts  } from '../lib/postAuth';
+import Router from '../router/router';
 
 const router = new Router();
 
 export function listenPostForm() {
-    console.log("entró a listenPostForm");
     // Add event listener for the submit button on the add post form
-    document.getElementById("addPostButton").addEventListener("click", (event) => {
+    document.getElementById('addPostButton').addEventListener('click', (event) => {
         event.preventDefault();
-        const title = document.getElementById("postTitle").value;
-        const content = document.getElementById("postContent").value;
-        const privacy = document.getElementById("postPrivacy").value;
-        const image = document.getElementById("postImage").files[0];
+        const title = document.getElementById('postTitle').value;
+        const content = document.getElementById('postContent').value;
+        const privacy = document.getElementById('postPrivacy').value;
+        const image = document.getElementById('postImage').files[0];
         const postId = createPost(title, content, image, privacy);
-        console.log('Created post:', postId);
-        router.navigateTo("/feed");
-        getPosts();
+        router.navigateTo('/feed');
+        //FIXME: postId
+        getPosts(postId);
     });
 
 
@@ -34,7 +33,7 @@ export function listenPostForm() {
 // // Add event listener for the edit button on a post
 // function addEditPostEventListeners(postId) {
 //     const editButton = document.getElementById(`editButton${postId}`);
-//     editButton.addEventListener("click", () => {
+//     editButton.addEventListener('click', () => {
 //         const title = document.getElementById(`postTitle${postId}`);
 //         const content = document.getElementById(`postContent${postId}`);
 //         const privacy = document.getElementById(`postPrivacy${postId}`);
@@ -42,16 +41,16 @@ export function listenPostForm() {
 //         const cancelButton = document.getElementById(`cancelButton${postId}`);
 
 //         // Hide the post content and show the edit form
-//         title.style.display = "none";
-//         content.style.display = "none";
-//         privacy.style.display = "none";
-//         editForm.style.display = "block";
-//         cancelButton.style.display = "inline-block";
+//         title.style.display = 'none';
+//         content.style.display = 'none';
+//         privacy.style.display = 'none';
+//         editForm.style.display = 'block';
+//         cancelButton.style.display = 'inline-block';
 //     });
 
 //     // Add event listener for the cancel button on the edit form
 //     const cancelButton = document.getElementById(`cancelButton${postId}`);
-//     cancelButton.addEventListener("click", () => {
+//     cancelButton.addEventListener('click', () => {
 //         const title = document.getElementById(`postTitle${postId}`);
 //         const content = document.getElementById(`postContent${postId}`);
 //         const privacy = document.getElementById(`postPrivacy${postId}`);
@@ -59,16 +58,16 @@ export function listenPostForm() {
 //         const cancelButton = document.getElementById(`cancelButton${postId}`);
 
 //         // Hide the edit form and show the post content
-//         title.style.display = "block";
-//         content.style.display = "block";
-//         privacy.style.display = "block";
-//         editForm.style.display = "none";
-//         cancelButton.style.display = "none";
+//         title.style.display = 'block';
+//         content.style.display = 'block';
+//         privacy.style.display = 'block';
+//         editForm.style.display = 'none';
+//         cancelButton.style.display = 'none';
 //     });
 
 //     // Add event listener for the submit button on the edit form
 //     const submitButton = document.getElementById(`editPostButton${postId}`);
-//     submitButton.addEventListener("click", (event) => {
+//     submitButton.addEventListener('click', (event) => {
 //         event.preventDefault();
 //         const title = document.getElementById(`postTitle${postId}`).value;
 //         const content = document.getElementById(`postContent${postId}`).value;
@@ -83,14 +82,14 @@ export function listenPostForm() {
 //         const editForm = document.getElementById(`editForm${postId}`);
 //         const cancelButton = document.getElementById(`cancelButton${postId}`);
 
-//         postTitle.style.display = "block";
+//         postTitle.style.display = 'block';
 //         postTitle.innerText = title;
-//         postContent.style.display = "block";
+//         postContent.style.display = 'block';
 //         postContent.innerText = content;
-//         postPrivacy.style.display = "block";
+//         postPrivacy.style.display = 'block';
 //         postPrivacy.innerText = `Privacy: ${privacy}`;
-//         editForm.style.display = "none";
-//         cancelButton.style.display = "none";
+//         editForm.style.display = 'none';
+//         cancelButton.style.display = 'none';
 //     });
 // }
 
@@ -98,7 +97,7 @@ export function listenPostForm() {
 // // Add event listener for the like button on a post
 // function addLikeEventListeners(postId) {
 //     const likeButton = document.getElementById(`likeButton${postId}`);
-//     likeButton.addEventListener("click", () => {
+//     likeButton.addEventListener('click', () => {
 //         const likeCount = document.getElementById(`likeCount${postId}`);
 //         const currentLikes = parseInt(likeCount.innerText);
 //         const newLikes = currentLikes + 1;
