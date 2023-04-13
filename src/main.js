@@ -233,4 +233,4 @@ function sendValidData(formID, email, password) {
 }
 
 
-export{scrollFunction, listenForm }
+export{Router, scrollFunction, listenForm, validateEmail, validatePassword, validateInput, showPassword }
