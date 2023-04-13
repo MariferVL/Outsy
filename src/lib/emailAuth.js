@@ -46,10 +46,12 @@ function toggleSignIn(email, password) {
 function handleSignUp(email, password) {
   let verification = false;
   // Create user with email and pass.
+  return new Promise ( (resolve, reject) => {
   auth
     .createUserWithEmailAndPassword(authApp, email, password)
     .then((cred) => {
       verification = sendVerification(cred.user);
+      resolve (verification)
     })
     .catch(function (error) {
       // Handle Errors here.
@@ -63,8 +65,9 @@ function handleSignUp(email, password) {
          //FIXME: cambiar por modal
         // alert(errorMessage);
       }
+      reject (error);
     });
-  return verification;
+  });
 }
 
 /**
