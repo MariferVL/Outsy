@@ -1,6 +1,6 @@
 //   Firebase CDN imports
 import * as auth from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js';
-import { collection, query, where, addDoc, getDocs, getFirestore } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js';
+import { updateDoc, collection, query, where, addDoc, getDocs, getFirestore, serverTimestamp, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js';
 
 import app from './firebase';
 
@@ -42,7 +42,7 @@ function getCurrentUserId() {
  * @param {*} privacy 
  * @returns post id
  */
-async function createPost(title, content, image, privacy) {
+async function createPost(title, content, privacy) {
   const userId = getCurrentUserId();
   const userName = getCurrentUserName();
   const postRef = await addDoc(collection(db, 'posts'), {
@@ -65,11 +65,12 @@ async function createPost(title, content, image, privacy) {
  * @param {*} image 
  * @param {*} privacy 
  */
-async function editPost(postId, content, image, privacy) {
-  await collection('posts').doc(postId).update({
+async function editPost(postId, post) {
+  //FIXME: 
+  await collection('posts').doc(postId).updateDoc({
+    title,
     content,
-    image,
-    privacy
+    privacy,
   });
 }
 
@@ -78,26 +79,40 @@ async function editPost(postId, content, image, privacy) {
  * @param {*} postId 
  */
 async function deletePost(postId) {
-  await collection('posts').doc(postId).delete();
+  await collection('posts').doc(postId).deleteDoc();
 }
 
 
 /**
- * Comment on a post
+ * Add Comment on a post
  * @param {*} postId 
  * @param {*} userId 
  * @param {*} content 
  * @returns 
  */
-async function addComment(postId, content) {
+async function addComment(postId, commentText) {
   const userId = getCurrentUserId();
-  const commentRef = await collection('posts').doc(postId).collection('comments').add({
-    userId,
-    content,
-    createdAt: new Date()
+  //FIXME: add collection 
+  const commentsRef = collection(db, 'posts', postId, 'comments');
+  const newCommentRef = await addDoc(commentsRef, {
+    text: commentText,
+    //FIXME: obtener usuarios.
+    // userId: getCurrentUserId(),
+    // userName: getCurrentUserName(),
+    createdAt: serverTimestamp(),
   });
-  return commentRef.id;
+  const commentId = newCommentRef.id;
+
+  // Update the "comments" field of the post document
+  const postRef = doc(db, 'posts', postId);
+  await updateDoc(postRef, {
+    comments: arrayUnion(commentId),
+  });
+
+
+  return commentId;
 }
+
 
 
 /**
@@ -106,8 +121,25 @@ async function addComment(postId, content) {
  * @param {*} userId 
  */
 async function likePost(postId) {
-  await collection('posts').doc(postId).collection('likes').doc(userId).set({
+  //FIXME: update  ??? spread operator??
+  await collection('posts').doc(postId).collection('likes').setDoc({
+
+  });
+
+  const likesRef = collection(db, 'posts', postId, 'likes');
+  const newlikeRef = await addDoc(likesRef, {
+    text: likeText,
+    //FIXME: obtener usuarios.
+    // userId: getCurrentUserId(),
+    //userName: getCurrentUserName(),
     createdAt: new Date()
+  });
+  const likeId = newlikeRef.id;
+
+  // Update the "likes" field of the post document
+  const postRef = doc(db, 'posts', postId);
+  await updateDoc(postRef, {
+    likes: arrayUnion(likeId),
   });
 }
 
@@ -117,7 +149,8 @@ async function likePost(postId) {
  * @param {*} userId 
  */
 async function unlikePost(postId, userId) {
-  await collection('posts').doc(postId).collection('likes').doc(userId).delete();
+  //FIXME: como recorrer array likes????   
+  await collection('posts').doc(postId).collection('likes').doc(userId).deleteDoc();
 }
 
 
@@ -127,54 +160,30 @@ async function unlikePost(postId, userId) {
  * @returns 
  */
 async function getLikeCount(postId) {
-  const likesRef = await collection('posts').doc(postId).collection('likes').get();
+  //FIXME: size o length
+  const likesRef = await collection('posts').doc(postId).collection('likes').getDocs();
   return likesRef.size;
 }
 
 
-/**
- * Adjust privacy of a post
- * @param {*} postId 
- * @param {*} privacy 
- */
-async function adjustPrivacy(postId, privacy) {
-  await collection('posts').doc(postId).update({
-    privacy
-  });
-}
-
-
-/**
- * Add an image to a post
- * @param {*} postId 
- * @param {*} image 
- */
-async function addImageToPost(postId, image) {
-  await collection('posts').doc(postId).update({
-    image
-  });
-}
-
 
 
 async function getPosts() {
-
-
-
-
   const q = query(collection(db, 'posts'), where('privacy', '==', 'public'));
   const querySnapshot = await getDocs(q);
+  postContainer.innerHTML = '';
 
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     const post = doc.data();
+    console.log('post: ' , post);
+    console.log('comments:' , post.comment);
     const postId = doc.id;
 
     // Clear any existing posts from the page
     const postContainer = document.getElementById('postContainer');
-    postContainer.innerHTML = '';
 
-    // Create HTML elements
+    // Create post elements
     const postArticle = document.createElement('article');
     postArticle.classList.add('post');
     const postTitle = document.createElement('h2');
@@ -183,19 +192,21 @@ async function getPosts() {
     postContent.textContent = post.content;
     const postAuthor = document.createElement('p');
     postAuthor.textContent = `Propuesto por: ${post.author}`;
-    // const postDate = document.createElement('p');
-    // const date = new Date(post.timestamp.toDate());
-    // postDate.textContent = `Publicado el: ${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
+    const postDate = document.createElement('time');
+    const date = new Date();
+    postDate.textContent = `Publicado el: ${date.toLocaleDateString()} a las ${date.toLocaleTimeString()}`;
     const postPrivacy = document.createElement('p');
     postPrivacy.textContent = `Privacidad: ${post.privacy}`;
     const postImage = document.createElement('img');
     postImage.src = post.imageURL;
     const postLikes = document.createElement('p');
-    postLikes.textContent = `Interesad@s: ${post.likes}`;
+    postLikes.textContent = `Interesad@s: ${post.likes.length ? post.likes.length : 0}`;
+    postContainer.appendChild(postArticle);
 
     // Create edit button
     const editButton = document.createElement('button');
     editButton.textContent = 'Editar';
+    editButton.setAttribute("id", "editPost");
     editButton.addEventListener('click', () => {
       editPost(postId, post);
     });
@@ -211,18 +222,21 @@ async function getPosts() {
     const likeButton = document.createElement('button');
     likeButton.textContent = 'Interesante';
     likeButton.addEventListener('click', () => {
-      likePost(postId, post.likes);
+      console.log('likes: ' + post.likes.length);
+      likePost(postId);
     });
 
-    // Create a span element to display the number of likes
-    const likeCount = document.createElement('span');
-    likeCount.setAttribute('id', `likeCount${postId}`);
-    likeCount.innerText = post.likes ? post.likes.length : 0;
-    const footer = document.createElement('footer');
-    footer.appendChild(likeCount);
+    // // Create a span element to display the number of likes
+    // const likeCount = document.createElement('span');
+    // likeCount.setAttribute('id', `likeCount${postId}`);
+    // likeCount.innerText = post.likes ? post.likes.length : 0;
+
+    //Create a article element to display comments.
+    const commentContainer = document.createElement('article');
+    commentContainer.setAttribute('id', 'commentContainer');
 
     // Create comment section
-    const commentSection = document.createElement('article');
+    const commentSection = document.createElement('form');
     commentSection.classList.add('comment-section');
     const commentInput = document.createElement('input');
     commentInput.type = 'text';
@@ -234,12 +248,14 @@ async function getPosts() {
       commentInput.value = '';
     });
     const commentsList = document.createElement('ul');
+    const footer = document.createElement('footer');
+    footer.appendChild(commentSection);
 
     // Add HTML elements to post container
     postArticle.appendChild(postTitle);
     postArticle.appendChild(postContent);
     postArticle.appendChild(postAuthor);
-    // postArticle.appendChild(postDate);
+    postArticle.appendChild(postDate);
     postArticle.appendChild(postPrivacy);
     postArticle.appendChild(postImage);
     postArticle.appendChild(postLikes);
@@ -252,10 +268,48 @@ async function getPosts() {
     postArticle.appendChild(commentSection);
     postArticle.appendChild(footer);
     postContainer.appendChild(postArticle);
-
+    getComments(postId);
   });
 }
 
+
+/**
+ * Get the post comments
+ * @param {*} postId 
+ */
+async function getComments(postId) {
+
+  // Get the post document
+  const postRef = collection('posts').doc(postId);
+
+  // Get the comments subcollection of the post
+  const commentsRef = postRef.collection('comments');
+
+  // Listen for changes in the comments collection
+  commentsRef.onSnapshot((querySnapshot) => {
+    // Clear the existing comments from the DOM
+    const commentsContainer = document.getElementById('commentContainer');
+    commentsContainer.innerHTML = '';
+
+    // Iterate through the comments and display them in the DOM
+    querySnapshot.forEach((doc) => {
+      const comment = doc.data();
+      // Create commet elements
+      const commentArticle = document.createElement('article');
+      commentArticle.classList.add('post');
+      const commentContent = document.createElement('p');
+      commentContent.textContent = comment.content;
+      const commentAuthor = document.createElement('p');
+      commentAuthor.textContent = `Propuesto por: ${comment.author}`;
+      const commentDate = document.createElement('time');
+      const dateComment = new Date();
+      commentDate.textContent = `Publicado el: ${dateComment.toLocaleDateString()} a las ${dateComment.toLocaleTimeString()}`;
+      commentsContainer.appendChild(commentElement);
+    });
+  });
+
+
+}
 
 
 
@@ -291,4 +345,4 @@ createCollectionIfNotExist('likes'); */
 
 
 
-export { createPost, getPosts, editPost, deletePost, addComment, likePost, unlikePost, getLikeCount, adjustPrivacy, addImageToPost }
+export { createPost, getPosts, editPost, deletePost, addComment, likePost, unlikePost, getLikeCount }

@@ -1,4 +1,4 @@
-import { createPost, getPosts  } from '../lib/postAuth';
+import { createPost, getPosts} from '../lib/postAuth';
 import Router from '../router/router';
 
 const router = new Router();
@@ -11,13 +11,19 @@ export function listenPostForm() {
         const content = document.getElementById('postContent').value;
         const privacy = document.getElementById('postPrivacy').value;
         const image = document.getElementById('postImage').files[0];
-        const postId = createPost(title, content, image, privacy);
+        //FIXME: Declarar como argumento para fn en listener.
+        const postId = createPost(title, content, privacy);
         router.navigateTo('/feed');
         //FIXME: postId
-        getPosts(postId);
+        getPosts();
+
+
     });
-
-
+    
+    // document.getElementById("editPost").addEventListener("click", (event) => {
+     //       router.navigateTo('/post');
+    //     editPost(postID, post);
+    // })
 }
 
 
