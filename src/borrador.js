@@ -8,40 +8,6 @@ const router = new Router();
 router.start();
 
 
-
-/**
- * Move navbar as the web page is scrolled
- */
-function scrollFunction() {
-  const navbar = document.getElementById('navbar');
-  const logo = document.getElementById('logo');
-  if (navbar && logo) {
-    if (
-      document.body.scrollTop > 80 ||
-      document.documentElement.scrollTop > 80
-    ) {
-      navbar.style.padding = '30px 10px';
-      logo.style.fontSize = '25px';
-    } else {
-      navbar.style.padding = '80px 10px';
-      logo.style.fontSize = '35px';
-    }
-  }
-  
-}
-
-
-// Scroll just show with home and about view
-document.addEventListener('DOMContentLoaded', function () {
-  const homeView = document.getElementById('main');
-  const aboutView = document.getElementById('about');
-
-  if (homeView || aboutView) {
-    scrollFunction();
-  }
-});
-
-
 /**
  * Display the first view of the website
  * IIFE
@@ -182,7 +148,6 @@ async function listenForm(formID, buttonID) {
     }, { once: true });
   });
 
-  //FIXME: Revisar que funcione la autenticación de google
   if (formID === 'formSignIn') {
     document.getElementById('googleAuth').addEventListener('click', (e) => {
       e.preventDefault();
@@ -194,7 +159,6 @@ async function listenForm(formID, buttonID) {
             listenPost();
           },
           (error) => {
-            // FIXME: Revisar el open modal
             openModal(error.message);
           });
     });
@@ -231,6 +195,3 @@ function sendValidData(formID, email, password) {
 
   }
 }
-
-
-export{scrollFunction, listenForm }

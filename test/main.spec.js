@@ -1,55 +1,72 @@
-import Router from '../src/router/router';
-import { toggleSignIn, handleSignUp, signInWithGoogle } from '../src/lib/emailAuth';
-
-// const authApp = auth.getAuth(app);
-const router = new Router();
+import { scrollFunction } from "../src/main.js";
 
 
-/* describe('Login Tests', () => {
+jest.mock('../src/main.js', () => ({
+  scrollFunction: jest.fn()
+}));
+
+
+describe('scrollFunction', () => {
+  let navbar, logo;
 
   beforeEach(() => {
-    toggleSignIn = jest.fn();
-    auth.signInWithPassword = jest.fn();
-    router.navigateTo = jest.fn(() => console.log('mock de navigateTo usado'));
-  });  
+    // Create a mock navbar and logo element
+    navbar = document.createElement('div');
+    navbar.id = 'navbar';
+    logo = document.createElement('div');
+    logo.id = 'logo';
 
-  it('Authentication with correct email and password, should redirect to /feed', () => {
-    auth.signInWithPassword.mockResolvedValueOnce({ user: { email: 'lunajara_lennon@hotmail.com' } });
+    // Add the elements to the DOM
+    document.body.appendChild(navbar);
+    document.body.appendChild(logo);
 
-    router.navigateTo('/signin');
-    
-    document.querySelector('#formSignUp').dispatchEvent(new Event('submit'));
+    // Set initial styles
+    navbar.style.padding = '80px 10px';
+    logo.style.fontSize = '35px';
 
-    document.querySelector('#email').value = 'lunajara_lennon@hotmail.com';
-    document.querySelector('#password').value = 'Outsy@2023';  
-    
-    loginDiv.querySelector('#loginForm').dispatchEvent(new Event('submit'));
-
-    return Promise.resolve().then(() => expect(router.navigateTo).toHaveBeenCalledWith('/feed'));
+    // Reset the scroll position
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   });
-}); */
 
+  afterEach(() => {
+    // Remove the elements from the DOM
+    document.body.removeChild(navbar);
+    document.body.removeChild(logo);
+  });
 
-describe('Login Tests', () => {
+  it('should update navbar styles when scrolled down', () => {
+    // Scroll the page down
+    document.body.scrollDown = 20;
+    document.documentElement.scrollDown = 20;
 
-  beforeEach(() => {
-    toggleSignIn = jest.fn();
-    auth.signInWithPassword = jest.fn();
-    router.navigateTo = jest.fn(() => console.log('mock de navigateTo usado'));
-  });  
+    // Call the scrollFunction
+    scrollFunction();
 
-  it('Authentication with correct email and password, should redirect to /feed', async () => {
-    auth.signInWithPassword.mockResolvedValueOnce({ user: { email: 'lunajara_lennon@hotmail.com' } });
+    // Check the updated styles
+    expect(navbar.style.padding).toBe('80px 10px');
+    expect(logo.style.fontSize).toBe('35px');
+  });
 
-    router.navigateTo('/signin');
-    
-    document.querySelector('#formSignUp').dispatchEvent(new Event('submit'));
+  it('should update navbar styles when scrolled up', () => {
+    // Scroll the page down first
+    document.body.scrollTop = 100;
+    document.documentElement.scrollTop = 100;
+    scrollFunction();
 
-    document.querySelector('#email').value = 'lunajara_lennon@hotmail.com';
-    document.querySelector('#password').value = 'Outsy@2023';  
-    
-    loginDiv.querySelector('#loginForm').dispatchEvent(new Event('submit'));
+    // Scroll the page up
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
-    return Promise.resolve().then(() => expect(router.navigateTo).toHaveBeenCalledWith('/feed'));
+    // Call the scrollFunction again
+    scrollFunction();
+
+    // Check the updated styles
+    expect(navbar.style.padding).toBe('80px 10px');
+    expect(logo.style.fontSize).toBe('35px');
   });
 });
+
+
+
+

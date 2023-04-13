@@ -1,6 +1,6 @@
 //   Firebase CDN imports
-import * as auth from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js';
-import { updateDoc, collection, query, where, addDoc, getDocs, getFirestore, serverTimestamp, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js';
+import * as auth from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js';
+import { updateDoc, collection, query, where, addDoc, getDocs, getFirestore, serverTimestamp, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js';
 
 import app from './firebase';
 
