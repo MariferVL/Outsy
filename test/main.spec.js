@@ -3,24 +3,25 @@ import { scrollFunction, validateEmail, validatePassword, validateInput, showPas
 import Router from '../src/router/router.js';
 
 const router = new Router();
+router.start();
+
 
 jest.mock('../src/main.js', () => ({
   scrollFunction: jest.fn(),
-  // validateEmail: jest.fn(),
-  // validatePassword: jest.fn(),
-  // validateInput: jest.fn(),
+  // validateEmail:jest.fn(), 
+  // validatePassword:jest.fn(),
   showPassword: jest.fn()
 }));
 
-// jest.mock('../src/lib/emailAuth.js', () => ({
-//   handleSignUp: jest.fn(),
-//   toggleSignIn: jest.fn(),
-//   signInWithGoogle: jest.fn(),
-// }));
-
-// jest.mock('../src/js/postDOM.js', () => ({
-//   listenPostForm: jest.fn(),
-// }));
+// Mock Router class
+jest.mock('../src/router/router.js', () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      navigateTo: jest.fn(),
+      start: jest.fn(),
+    };
+  });
+});
 
 describe('scrollFunction', () => {
   let navbar, logo;
@@ -123,3 +124,22 @@ describe('showPassword', () => {
 });
 
 
+// describe('validateEmail', () => {
+//   test('returns true when email is valid', () => {
+//     expect(validateEmail('example@example.com')).toBe(true);
+//   });
+
+//   test('returns false when email is invalid', () => {
+//     expect(validateEmail('example@.com')).toBe(false);
+//   });
+// });
+
+// describe('validatePassword', () => {
+//   test('returns true when password is valid', () => {
+//     expect(validatePassword('Abc123$%')).toBe(true);
+//   });
+
+//   test('returns false when password is invalid', () => {
+//     expect(validatePassword('abcd1234')).toBe(false);
+//   });
+// });
