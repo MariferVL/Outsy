@@ -1,9 +1,10 @@
 //   Firebase CDN import
 import app from './firebase';
-import {getAuth, currentUser, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, onAuthStateChanged  } from 'firebase/auth';
+// import {getAuth, currentUser, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, onAuthStateChanged  } from 'firebase/auth';
+import * as auth  from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js'
 
 
-const authApp = getAuth(app);
+const authApp = auth.getAuth(app);
 
 
 /**
@@ -11,11 +12,11 @@ const authApp = getAuth(app);
  */
 function toggleSignIn(email, password) {
 
-  if (currentUser) {
+  if (auth.currentUser) {
     signOut(authApp);
   } else {
     // Sign in with email and pass.
-    signInWithEmailAndPassword(authApp, email, password).then(function (userCredential) {
+    auth.signInWithEmailAndPassword(authApp, email, password).then(function (userCredential) {
       // Return user info
       return userCredential.user;
     }).catch(function (error) {
@@ -36,7 +37,7 @@ function toggleSignIn(email, password) {
 
   document
     .getElementById('password-reset')
-    .addEventListener('click', () => sendPasswordReset(authApp, email));
+    .addEventListener('click', () => auth.sendPasswordReset(authApp, email));
 
 }
 
@@ -48,7 +49,7 @@ function handleSignUp(email, password) {
   let verification = false;
   // Create user with email and pass.
   return new Promise ( (resolve, reject) => {
-  createUserWithEmailAndPassword(authApp, email, password)
+    auth.createUserWithEmailAndPassword(authApp, email, password)
     .then((cred) => {
       verification = sendVerification(cred.user);
       resolve (verification)
@@ -74,7 +75,7 @@ function handleSignUp(email, password) {
  * Send an email verification to the user.
  */
 function sendVerification(user) {
-  sendEmailVerification(user).then(function () {
+  auth.sendEmailVerification(user).then(function () {
     // Email Verification sent!
     // alert('Email Verification Sent!');
     return user.emailVerified;
@@ -91,7 +92,7 @@ function sendVerification(user) {
  */
 function sendPasswordReset(email) {
 
-  sendPasswordResetEmail(authApp, email)
+  auth.sendPasswordResetEmail(authApp, email)
     .then(function () {
       //FIXME: cambiar por modal
       // Password Reset Email Sent!
@@ -113,11 +114,11 @@ function sendPasswordReset(email) {
 }
 
 function signInWithGoogle() {
-  const provider = new GoogleAuthProvider();
-  return signInWithPopup(authApp, provider)
+  const provider = new auth.GoogleAuthProvider();
+  return auth.signInWithPopup(authApp, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const credential = auth.GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
@@ -131,7 +132,7 @@ function signInWithGoogle() {
       // The email of the user's account used.
       const email = error.customData.email;
       // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
+      const credential = auth.GoogleAuthProvider.credentialFromError(error);
       // ...
     });
 
@@ -147,7 +148,7 @@ function signInWithGoogle() {
  */
 function initApp() {
   // Listening for auth state changes.
-  onAuthStateChanged(authApp, function (user) {
+  auth.onAuthStateChanged(authApp, function (user) {
     if (user) {
       // User is signed in.
       const displayName = user.displayName;
