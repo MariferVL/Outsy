@@ -45,14 +45,14 @@ function toggleSignIn(email, password) {
 /**
  * Handles the sign up button press.
  */
-function handleSignUp(email, password) {
+function handleSignUp(email, password, userName) {
   let verification = false;
   // Create user with email and pass.
   return new Promise ( (resolve, reject) => {
     auth.createUserWithEmailAndPassword(authApp, email, password)
     .then((cred) => {
       verification = sendVerification(cred.user);
-      resolve (verification)
+      resolve (verification);
     })
     .catch(function (error) {
       // Handle Errors here.
@@ -68,6 +68,14 @@ function handleSignUp(email, password) {
       }
       reject (error);
     });
+
+    auth.updateProfile(auth.currentUser, {
+      displayName: userName , photoURL: "https://example.com/jane-q-user/profile.jpg"
+    }).then(() => {
+      return 'Profile Updated'
+    }).catch((error) => {
+      return 'Error updating profile.'
+    });
   });
 }
 
@@ -81,7 +89,7 @@ function sendVerification(user) {
     return user.emailVerified;
   })
     .catch((error) => {
-      //FIXME: agregar modal
+      return `Error:  ${error}`;
     });
 }
 
@@ -161,5 +169,8 @@ function initApp() {
     }
   });
 }
+
+
+
 
 export { toggleSignIn, handleSignUp, signInWithGoogle };

@@ -20,6 +20,11 @@ export const signUp = `
       <div class="card bg-glass">
         <div class="card-body px-4 py-5 px-md-5">
           <form id="formSignUp"> 
+          <!-- Username input -->
+          <div class="form-outline mb-4">
+            <input type="text" id="userName" class="form-control" required/>
+            <label class="form-label" for="userName">Nombre de Usuario</label>
+          </div>
             <!-- Email input -->
             <div class="form-outline mb-4">
               <input type="email" id="email" class="form-control" required/>
