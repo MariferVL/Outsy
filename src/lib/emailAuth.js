@@ -1,10 +1,11 @@
 //   Firebase CDN import
 import app from './firebase';
 // import {getAuth, currentUser, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, onAuthStateChanged  } from 'firebase/auth';
-import * as auth  from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js'
-
+import * as auth  from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js';
+import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-database.js';
 
 const authApp = auth.getAuth(app);
+const db = getDatabase(app);
 
 
 /**
@@ -22,13 +23,12 @@ function toggleSignIn(email, password) {
     }).catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
-      //FIXME: comentado por test
-      // const errorMessage = error.message;
+      
       if (errorCode === 'auth/wrong-password') {
         //FIXME: cambiar por modal
         // alert('Contraseña Errónea.');
         //TODO: agregar mensaje al return
-        return 
+        return 'Contraseña Errónea.'
       } else {
         // alert(errorMessage);
       }
@@ -46,6 +46,7 @@ function toggleSignIn(email, password) {
  * Handles the sign up button press.
  */
 function handleSignUp(email, password, userName) {
+  console.log('username: ', userName);
   let verification = false;
   // Create user with email and pass.
   return new Promise ( (resolve, reject) => {
@@ -53,6 +54,9 @@ function handleSignUp(email, password, userName) {
     .then((cred) => {
       verification = sendVerification(cred.user);
       resolve (verification);
+      ref(db, 'users/' + cred.user.uid).set({
+        displayName: userName
+      });
     })
     .catch(function (error) {
       // Handle Errors here.
@@ -170,7 +174,21 @@ function initApp() {
   });
 }
 
-
+/**
+ * Set profile
+ * @param {*} userId 
+ * @param {*} name 
+ * @param {*} email 
+ * @param {*} imageUrl 
+ */
+// function writeUserData(userId, name, email, imageUrl) {
+//   const db = getDatabase();
+//   set(ref(db, 'users/' + userId), {
+//     username: name,
+//     email: email,
+//     profile_picture : imageUrl
+//   });
+// }
 
 
 export { toggleSignIn, handleSignUp, signInWithGoogle };
