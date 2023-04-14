@@ -1,8 +1,19 @@
 //   Firebase CDN imports
-import * as auth from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js';
-import { updateDoc, collection, query, where, addDoc, getDocs, getFirestore, serverTimestamp, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js';
+import * as auth from "https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js";
+import {
+  updateDoc,
+  collection,
+  query,
+  where,
+  addDoc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  serverTimestamp,
+  arrayUnion,
+} from "https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js";
 
-import app from './firebase';
+import app from "./firebase";
 
 const db = getFirestore(app);
 const authApp = auth.getAuth(app);
@@ -34,40 +45,40 @@ function getCurrentUserId() {
 //   return url;
 // }
 
-
 /**
  * Create a post
- * @param {*} content 
- * @param {*} image 
- * @param {*} privacy 
+ * @param {*} content
+ * @param {*} image
+ * @param {*} privacy
  * @returns post id
  */
 async function createPost(title, content, privacy) {
   const userId = getCurrentUserId();
-  const userName = getCurrentUserName();
-  const postRef = await addDoc(collection(db, 'posts'), {
-    // userId,
-    // userName,
+  const author = getCurrentUserName();
+  console.log("userName: " + author);
+  console.log("userId: " + userId);
+  const postRef = await addDoc(collection(db, "posts"), {
+    userId,
+    author,
     title,
     content,
     privacy,
     likes: [],
-    comments: []
+    comments: [],
   });
   return postRef.id;
 }
 
-
 /**
  * Edit a post
- * @param {*} postId 
- * @param {*} content 
- * @param {*} image 
- * @param {*} privacy 
+ * @param {*} postId
+ * @param {*} content
+ * @param {*} image
+ * @param {*} privacy
  */
 async function editPost(postId, post) {
-  //FIXME: 
-  await collection('posts').doc(postId).updateDoc({
+  //FIXME:
+  await collection("posts").doc(postId).updateDoc({
     title,
     content,
     privacy,
@@ -76,248 +87,341 @@ async function editPost(postId, post) {
 
 /**
  * Delete a post
- * @param {*} postId 
+ * @param {*} postId
  */
 async function deletePost(postId) {
-  await collection('posts').doc(postId).deleteDoc();
+  await collection("posts").doc(postId).deleteDoc();
 }
-
 
 /**
  * Add Comment on a post
- * @param {*} postId 
- * @param {*} userId 
- * @param {*} content 
- * @returns 
+ * @param {*} postId
+ * @param {*} userId
+ * @param {*} content
+ * @returns
  */
+/* async function addComment(postId, commentText) {
+  const userId = getCurrentUserId();
+  const author = getCurrentUserName();
+  // const commentsRef = collection(db, "posts", postId, "comments");
+  // const newCommentRef = await {
+  //   text: commentText,
+  //   userId,
+  //   author,
+  //   createdAt: serverTimestamp(),
+  // };
+  // const commentId = newCommentRef.id;
+
+  const postRef = collection(db, "posts", postId);
+  const postSnapshot = await getDoc(postRef);
+  const post = postSnapshot.data();
+
+  const newComment = {
+    text: commentText,
+    userId,
+    author,
+    createdAt: serverTimestamp(),
+  };
+  // Add the new comment to the comments array
+  post.comments.push(newComment);
+
+  // Update the post document with the new comments array
+  await updateDoc(postRef, {
+    comments: post.comments,
+  });
+
+  console.log("comments length: " , post.comments.length );
+  // Reload the comments for the post
+  if(post.comments.length > 0) getComments(postId);
+
+  // // Update the "comments" field of the post document
+  // await updateDoc(postRef, {
+  //   comments: arrayUnion(commentId),
+  // });
+
+  return commentId;
+} */
+
 async function addComment(postId, commentText) {
   const userId = getCurrentUserId();
-  //FIXME: add collection 
-  const commentsRef = collection(db, 'posts', postId, 'comments');
+  const author = getCurrentUserName();
+
+  //FIXME: add collection
+  const commentsRef = collection(db, "posts", postId, "comments");
   const newCommentRef = await addDoc(commentsRef, {
     text: commentText,
-    //FIXME: obtener usuarios.
-    // userId: getCurrentUserId(),
-    // userName: getCurrentUserName(),
+    userId,
+    author,
     createdAt: serverTimestamp(),
   });
   const commentId = newCommentRef.id;
 
   // Update the "comments" field of the post document
-  const postRef = doc(db, 'posts', postId);
+  const postRef = collection(db, "posts", postId);
   await updateDoc(postRef, {
     comments: arrayUnion(commentId),
   });
 
-
   return commentId;
 }
 
-
-
 /**
  * Like a post
- * @param {*} postId 
- * @param {*} userId 
+ * @param {*} postId
+ * @param {*} userId
  */
 async function likePost(postId) {
-  //FIXME: update  ??? spread operator??
-  await collection('posts').doc(postId).collection('likes').setDoc({
+  // if (!currentUserId) {
+  //   throw new Error("User is not authenticated");
+  // }
 
-  });
+  // const postRef = collection("posts").doc(postId);
+  // // const postRef = doc(db, "posts", postId);
 
-  const likesRef = collection(db, 'posts', postId, 'likes');
-  const newlikeRef = await addDoc(likesRef, {
-    text: likeText,
-    //FIXME: obtener usuarios.
-    // userId: getCurrentUserId(),
-    //userName: getCurrentUserName(),
-    createdAt: new Date()
+  // const postSnapshot = await postRef.get();
+
+  // if (!postSnapshot.exists) {
+  //   throw new Error(`Post document with ID ${postId} does not exist`);
+  // }
+
+  // const newlikeRef = {
+  //   currentUserId,
+  // };
+
+  // const postData = postSnapshot.data();
+  // const likesArray = (await postData.likes) || [];
+  // console.log("likesArray: ", likesArray);
+  // if (likesArray.includes(currentUserId)) {
+  //   return;
+  // } else {
+  //   console.log("entró a update like:");
+  //   // Update the "likes" field of the post document
+  //   await updateDoc(postRef, {
+  //     likes: arrayUnion(newlikeRef),
+  //   });
+  // }
+
+  const userId = getCurrentUserId();
+  const author = getCurrentUserName();
+
+  const likesRef = collection(db, "posts", postId, "likes");
+  const newLikeRef = await addDoc(likesRef, {
+    userId,
+    author,
+    createdAt: serverTimestamp(),
   });
-  const likeId = newlikeRef.id;
+  const likeId = newLikeRef.id;
 
   // Update the "likes" field of the post document
-  const postRef = doc(db, 'posts', postId);
+  const postRef = doc(db, "posts", postId);
   await updateDoc(postRef, {
     likes: arrayUnion(likeId),
   });
+
+  getPosts();
+
+  return likeId;
+
+  // getLikeCount(postId);
 }
 
-/**
- * Unlike a post
- * @param {*} postId 
- * @param {*} userId 
- */
-async function unlikePost(postId, userId) {
-  //FIXME: como recorrer array likes????   
-  await collection('posts').doc(postId).collection('likes').doc(userId).deleteDoc();
-}
-
+// /**
+//  * Unlike a post
+//  * @param {*} postId
+//  * @param {*} userId
+//  */
+// async function unlikePost(postId, userId) {
+//   const postRef = doc(db, "posts", postId);
+//   await updateDoc(postRef, {
+//     likes: arrayRemove(newlikeRef),
+//   });
+// }
 
 /**
  * Get the number of likes on a post
- * @param {*} postId 
- * @returns 
+ * @param {*} postId
+ * @returns
  */
 async function getLikeCount(postId) {
-  //FIXME: size o length
-  const likesRef = await collection('posts').doc(postId).collection('likes').getDocs();
-  return likesRef.size;
+ 
+
+  // Get the post document
+  const subcollectionRef = collection("posts").doc(postId).collection("likes");
+
+  // // Get the likes array and count its length
+  // const likesArray = postDoc.data().likes;
+
+  let totalLikes = 0;
+
+subcollectionRef.get().then(querySnapshot => {
+  querySnapshot.forEach(doc => {
+    const data = doc.data();
+    totalLikes += data.likes;
+  });
+  console.log(`Total likes: ${totalLikes}`);
+}).catch(error => {
+  console.error(error);
+});
+console.log(`Antes de return Total likes: ${totalLikes}`);
+
+  return totalLikes;
 }
-
-
-
 
 async function getPosts() {
-  const q = query(collection(db, 'posts'), where('privacy', '==', 'public'));
+  postContainer.innerHTML = "";
+
+  const q = query(collection(db, "posts"), where("privacy", "==", "public"));
   const querySnapshot = await getDocs(q);
-  postContainer.innerHTML = '';
 
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    const post = doc.data();
-    console.log('post: ' , post);
-    console.log('comments:' , post.comment);
-    const postId = doc.id;
+  await Promise.all(
+    querySnapshot.docs.map(async (doc) => {
+      // querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      const post = doc.data();
+      const postId = doc.id;
 
-    // Clear any existing posts from the page
-    const postContainer = document.getElementById('postContainer');
+      // Clear any existing posts from the page
+      const postContainer = document.getElementById("postContainer");
 
-    // Create post elements
-    const postArticle = document.createElement('article');
-    postArticle.classList.add('post');
-    const postTitle = document.createElement('h2');
-    postTitle.textContent = post.title;
-    const postContent = document.createElement('p');
-    postContent.textContent = post.content;
-    const postAuthor = document.createElement('p');
-    postAuthor.textContent = `Propuesto por: ${post.author}`;
-    const postDate = document.createElement('time');
-    const date = new Date();
-    postDate.textContent = `Publicado el: ${date.toLocaleDateString()} a las ${date.toLocaleTimeString()}`;
-    const postPrivacy = document.createElement('p');
-    postPrivacy.textContent = `Privacidad: ${post.privacy}`;
-    const postImage = document.createElement('img');
-    postImage.src = post.imageURL;
-    const postLikes = document.createElement('p');
-    postLikes.textContent = `Interesad@s: ${post.likes.length ? post.likes.length : 0}`;
-    postContainer.appendChild(postArticle);
+      // Create post elements
+      const postArticle = document.createElement("article");
+      postArticle.classList.add("post");
+      const postTitle = document.createElement("h2");
+      postTitle.textContent = post.title;
+      const postContent = document.createElement("p");
+      postContent.textContent = post.content;
+      const postAuthor = document.createElement("p");
+      postAuthor.textContent = `Propuesto por: ${post.author}`;
+      const postDate = document.createElement("time");
+      const date = new Date();
+      postDate.textContent = `Publicado el: ${date.toLocaleDateString()} a las ${date.toLocaleTimeString()}`;
+      const postPrivacy = document.createElement("p");
+      postPrivacy.textContent = `Privacidad: ${post.privacy}`;
+      const postImage = document.createElement("img");
+      postImage.src = post.imageURL;
+      const postLikes = document.createElement("p");
+      postLikes.textContent = `Interesad@s: ${getLikeCount(postId) ? post.likes.length : 0
+      }`;
+      postContainer.appendChild(postArticle);
 
-    // Create edit button
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Editar';
-    editButton.setAttribute("id", "editPost");
-    editButton.addEventListener('click', () => {
-      editPost(postId, post);
-    });
+      // Create edit button
+      const editButton = document.createElement("button");
+      editButton.textContent = "Editar";
+      editButton.setAttribute("id", "editPost");
+      editButton.addEventListener("click", () => {
+        console.log("entro al edit ");
+        editPost(postId, post);
+      });
 
-    // Create delete button
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Eliminar';
-    deleteButton.addEventListener('click', () => {
-      deletePost(postId);
-    });
+      // Create delete button
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Eliminar";
+      deleteButton.setAttribute("id", "deleteButton");
+      deleteButton.addEventListener("click", () => {
+        console.log("Entro al delete");
+        deletePost(postId);
+      });
 
-    // Create like button
-    const likeButton = document.createElement('button');
-    likeButton.textContent = 'Interesante';
-    likeButton.addEventListener('click', () => {
-      console.log('likes: ' + post.likes.length);
-      likePost(postId);
-    });
+      // Create like button
+      const likeButton = document.createElement("button");
+      likeButton.textContent = "Interesante";
+      likeButton.setAttribute("id", "likeButton");
+      likeButton.addEventListener("click", () => {
+        console.log("likes: ", post.likes.length);
+        console.log("post id: ", postId);
 
-    // // Create a span element to display the number of likes
-    // const likeCount = document.createElement('span');
-    // likeCount.setAttribute('id', `likeCount${postId}`);
-    // likeCount.innerText = post.likes ? post.likes.length : 0;
+        likePost(postId);
+      });
 
-    //Create a article element to display comments.
-    const commentContainer = document.createElement('article');
-    commentContainer.setAttribute('id', 'commentContainer');
+      // // Create a span element to display the number of likes
+      // const likeCount = document.createElement('span');
+      // likeCount.setAttribute('id', `likeCount${postId}`);
+      // likeCount.innerText = post.likes ? post.likes.length : 0;
 
-    // Create comment section
-    const commentSection = document.createElement('form');
-    commentSection.classList.add('comment-section');
-    const commentInput = document.createElement('input');
-    commentInput.type = 'text';
-    commentInput.placeholder = 'Agrega un Comentario...';
-    const commentButton = document.createElement('button');
-    commentButton.textContent = 'Comentario';
-    commentButton.addEventListener('click', () => {
-      addComment(postId, commentInput.value);
-      commentInput.value = '';
-    });
-    const commentsList = document.createElement('ul');
-    const footer = document.createElement('footer');
-    footer.appendChild(commentSection);
+      //Create a article element to display comments.
+      const commentContainer = document.createElement("article");
+      commentContainer.setAttribute("id", "commentContainer");
 
-    // Add HTML elements to post container
-    postArticle.appendChild(postTitle);
-    postArticle.appendChild(postContent);
-    postArticle.appendChild(postAuthor);
-    postArticle.appendChild(postDate);
-    postArticle.appendChild(postPrivacy);
-    postArticle.appendChild(postImage);
-    postArticle.appendChild(postLikes);
-    postArticle.appendChild(editButton);
-    postArticle.appendChild(deleteButton);
-    postArticle.appendChild(likeButton);
-    commentSection.appendChild(commentInput);
-    commentSection.appendChild(commentButton);
-    commentSection.appendChild(commentsList);
-    postArticle.appendChild(commentSection);
-    postArticle.appendChild(footer);
-    postContainer.appendChild(postArticle);
-    getComments(postId);
-  });
+      // Create comment section
+      const commentSection = document.createElement("form");
+      commentSection.classList.add("comment-section");
+      const commentInput = document.createElement("input");
+      commentInput.type = "text";
+      commentInput.placeholder = "Agrega un Comentario...";
+      const commentButton = document.createElement("button");
+      commentButton.textContent = "Comentario";
+      commentButton.addEventListener("click", () => {
+        console.log("entro al comment");
+        addComment(postId, commentInput.value);
+        commentInput.value = "";
+      });
+      const commentsList = document.createElement("ul");
+      const footer = document.createElement("footer");
+      footer.setAttribute("id", "footerComment");
+      footer.appendChild(commentSection);
+
+      // Add HTML elements to post container
+      postArticle.appendChild(postTitle);
+      postArticle.appendChild(postContent);
+      postArticle.appendChild(postAuthor);
+      postArticle.appendChild(postDate);
+      postArticle.appendChild(postPrivacy);
+      postArticle.appendChild(postImage);
+      postArticle.appendChild(postLikes);
+      postArticle.appendChild(editButton);
+      postArticle.appendChild(deleteButton);
+      postArticle.appendChild(likeButton);
+      commentSection.appendChild(commentInput);
+      commentSection.appendChild(commentButton);
+      commentSection.appendChild(commentsList);
+      postArticle.appendChild(commentSection);
+      postArticle.appendChild(footer);
+      postContainer.appendChild(postArticle);
+      getComments(postId);
+    })
+  );
 }
-
 
 /**
  * Get the post comments
- * @param {*} postId 
+ * @param {*} postId
  */
 async function getComments(postId) {
+  const footer = document.getElementById("footerComment");
+  const commentArticle = document.createElement("article");
+  commentArticle.innerHTML = "";
 
-  // Get the post document
-  const postRef = collection('posts').doc(postId);
+  const commentsRef = collection("posts").doc(postId).collection("comments");
+  const querySnapshot = await getDocs(commentsRef);
 
-  // Get the comments subcollection of the post
-  const commentsRef = postRef.collection('comments');
+  await Promise.all(
+    querySnapshot.docs.map(async (doc) => {
+      // querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
 
-  // Listen for changes in the comments collection
-  commentsRef.onSnapshot((querySnapshot) => {
-    // Clear the existing comments from the DOM
-    const commentsContainer = document.getElementById('commentContainer');
-    commentsContainer.innerHTML = '';
-
-    // Iterate through the comments and display them in the DOM
-    querySnapshot.forEach((doc) => {
       const comment = doc.data();
+      console.log("comment: ", comment);
+      // const commentId = doc.id;
       // Create commet elements
-      const commentArticle = document.createElement('article');
-      commentArticle.classList.add('post');
-      const commentContent = document.createElement('p');
+      commentArticle.classList.add("post");
+      const commentContent = document.createElement("p");
       commentContent.textContent = comment.content;
-      const commentAuthor = document.createElement('p');
+      const commentAuthor = document.createElement("p");
       commentAuthor.textContent = `Propuesto por: ${comment.author}`;
-      const commentDate = document.createElement('time');
-      const dateComment = new Date();
+      const commentDate = document.createElement("time");
+      const dateComment = comment.createdAt;
       commentDate.textContent = `Publicado el: ${dateComment.toLocaleDateString()} a las ${dateComment.toLocaleTimeString()}`;
-      commentsContainer.appendChild(commentElement);
-    });
-  });
-
-
+      commentArticle.appendChild(commentElement);
+      footer.appendChild(commentArticle);
+    })
+  );
 }
-
-
 
 //https://firebase.google.com/docs/firestore/security/rules-query?hl=es-419
 // o
 /**
  * Create a new collection if it does not exist
- * @param {*} collectionName 
+ * @param {*} collectionName
  */
 /* async function createCollectionIfNotExist(collectionName) {
   const collections = await listCollections();
@@ -333,16 +437,12 @@ async function getComments(postId) {
 // Usage:
 createCollectionIfNotExist('likes'); */
 
-
-
-
-
-
-
-
-
-
-
-
-
-export { createPost, getPosts, editPost, deletePost, addComment, likePost, unlikePost, getLikeCount }
+export {
+  createPost,
+  getPosts,
+  editPost,
+  deletePost,
+  addComment,
+  likePost,
+  getLikeCount,
+};
