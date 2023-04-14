@@ -70,7 +70,9 @@ async function createPost(title, date, location, content, image, privacy) {
   const author = getCurrentUserName();
   const now = new Date();
   const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-  const postDate = now.toLocaleDateString('en-US', options);
+  const postDate = now.toLocaleDateString('es-ES', options);
+  const formatedDate = new Date(date);
+  const dateToStr = formatedDate.toLocaleDateString('es-ES', options);
 
   // Upload the image to Firebase Storage
   const storageRef = ref(storage, `images/${image.name}`);
@@ -84,7 +86,7 @@ async function createPost(title, date, location, content, image, privacy) {
     userId,
     author,
     title,
-    date,
+    dateToStr,
     postDate,
     location,
     content,
@@ -132,7 +134,7 @@ async function addComment(postId, commentText) {
   const author = getCurrentUserName();
   const now = new Date();
   const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-  const createdAt = now.toLocaleDateString('en-US', options);
+  const createdAt = now.toLocaleDateString('es-ES', options);
 
 
   const postRef = doc(db, "posts", postId);
@@ -207,7 +209,6 @@ async function getLikeCount(postId) {
 
   // Get the like count from the server
   const snapshot = await getCountFromServer(likesRef);
-  console.log('count: ', snapshot.data().count);
 
   return snapshot.data().count;
 }
@@ -225,12 +226,8 @@ async function getPosts() {
   await Promise.all(
     querySnapshot.docs.map(async (doc) => {
       // querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
       const post = doc.data();
       const postId = doc.id;
-      console.log('post: ', post);
-
-      // Clear any existing posts from the page
 
       // Create post elements
       const postArticle = document.createElement("article");
@@ -238,7 +235,7 @@ async function getPosts() {
       const postTitle = document.createElement("h3");
       postTitle.textContent = post.title;
       const postTime = document.createElement("time");
-      postTime.textContent = post.date;
+      postTime.textContent = `Vamos el: ${post.dateToStr ? post.dateToStr : 'Indefinida'}`;
       const postLocation = document.createElement("p");
       postLocation.textContent = post.location;
       const postContent = document.createElement("p");
@@ -255,7 +252,6 @@ async function getPosts() {
       postImage.src = post.imageUrl;
       const postLikes = document.createElement("p");
       const countLikes = await getLikeCount(postId);
-      console.log(countLikes);
       postLikes.textContent = `Interesad@s: ${countLikes ? countLikes : 0}`;
       postContainer.appendChild(postArticle);
 
@@ -264,7 +260,6 @@ async function getPosts() {
       editButton.textContent = "Editar";
       editButton.setAttribute("id", "editPost");
       editButton.addEventListener("click", () => {
-        console.log("entro al edit ");
         editPost(postId, post);
       });
 
@@ -273,7 +268,6 @@ async function getPosts() {
       deleteButton.textContent = "Eliminar";
       deleteButton.setAttribute("id", "deleteButton");
       deleteButton.addEventListener("click", () => {
-        console.log("Entro al delete");
         deletePost(postId);
       });
 
@@ -282,7 +276,6 @@ async function getPosts() {
       likeButton.textContent = "Interesante";
       likeButton.setAttribute("id", "likeButton");
       likeButton.addEventListener("click", () => {
-        console.log("post id: ", postId);
         likePost(postId);
       });
 
@@ -300,31 +293,32 @@ async function getPosts() {
       const commentButton = document.createElement("button");
       commentButton.textContent = "Comentario";
       commentButton.addEventListener("click", () => {
-        console.log("entro al comment");
         addComment(postId, commentInput.value);
         commentInput.value = "";
       });
       const commentsList = document.createElement("ul");
+      commentsList.setAttribute('id', 'commentsList');
       const footer = document.createElement("footer");
       footer.setAttribute("id", "footerComment");
-      footer.appendChild(commentSection);
-
+      
       // Add HTML elements to post container
       postArticle.appendChild(postTitle);
+      postArticle.appendChild(postLocation);
+      postArticle.appendChild(postTime);
+      postArticle.appendChild(postImage);
       postArticle.appendChild(postContent);
       postArticle.appendChild(postAuthor);
       postArticle.appendChild(postDate);
       postArticle.appendChild(postPrivacy);
-      postArticle.appendChild(postImage);
       postArticle.appendChild(postLikes);
       postArticle.appendChild(editButton);
       postArticle.appendChild(deleteButton);
       postArticle.appendChild(likeButton);
       commentSection.appendChild(commentInput);
       commentSection.appendChild(commentButton);
-      commentSection.appendChild(commentsList);
-      postArticle.appendChild(commentSection);
+      footer.appendChild(commentsList);
       postArticle.appendChild(footer);
+      postArticle.appendChild(commentSection);
       postContainer.appendChild(postArticle);
       await getComments(postId);
     })
@@ -336,9 +330,8 @@ async function getPosts() {
  * @param {*} postId
  */
 async function getComments(postId) {
-  const footer = document.getElementById("footerComment");
-  const commentArticle = document.createElement("article");
-  commentArticle.innerHTML = "";
+  const commentsList = document.getElementById("commentsList");
+  commentsList.innerHTML = "";
 
   const postRef = doc(db, "posts", postId);
   const commentsRef = collection(postRef, "comments");
@@ -352,6 +345,8 @@ async function getComments(postId) {
       // const commentId = doc.id;
 
       // Create commet elements
+
+      const commentArticle = document.createElement("article");
       commentArticle.classList.add("post");
       const commentContent = document.createElement("p");
       commentContent.textContent = comment.text;
@@ -360,10 +355,12 @@ async function getComments(postId) {
       const commentDate = document.createElement("time");
       const dateComment = comment.createdAt;
       commentDate.textContent = `Publicado el: ${dateComment ? dateComment : 'Indefinida'}`;
+      const commentItem = document.createElement('li');
       commentArticle.appendChild(commentContent);
       commentArticle.appendChild(commentAuthor);
       commentArticle.appendChild(commentDate);
-      footer.appendChild(commentArticle);
+      commentItem.appendChild(commentArticle);
+      commentsList.appendChild(commentItem);
     })
   );
 }
