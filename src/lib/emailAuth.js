@@ -45,43 +45,43 @@ function toggleSignIn(email, password) {
 /**
  * Handles the sign up button press.
  */
+
 function handleSignUp(email, password, userName) {
   console.log('username: ', userName);
-  let verification = false;
+
   // Create user with email and pass.
-  return new Promise ( (resolve, reject) => {
-    auth.createUserWithEmailAndPassword(authApp, email, password)
+  return auth.createUserWithEmailAndPassword(authApp, email, password)
     .then((cred) => {
-      verification = sendVerification(cred.user);
-      resolve (verification);
-      ref(db, 'users/' + cred.user.uid).set({
-        displayName: userName
+      // Send email verification and update user profile.
+      const sendVerificationPromise = sendVerification(cred.user);
+      const updateUserProfilePromise = auth.updateProfile(cred.user, {
+        displayName: userName,
+        photoURL: "https://firebasestorage.googleapis.com/v0/b/outsy-mxg.appspot.com/o/profileImages%2FdefaultProfile.png?alt=media&token=00d73d8f-2708-4910-8166-7160e80c8d5b"
       });
+
+      return Promise.all([sendVerificationPromise, updateUserProfilePromise])
+        .then(() => {
+          // Both actions were successful.
+          return true;
+        })
+        .catch((error) => {
+          // At least one action failed.
+          throw error;
+        });
     })
-    .catch(function (error) {
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
-      //FIXME: comentado por test
-      // const errorMessage = error.message;
       if (errorCode == 'auth/weak-password') {
-                //FIXME: cambiar por modal
-        // alert('Esta contraseña es muy insegura');
+        throw new Error('Password is too weak');
       } else {
-         //FIXME: cambiar por modal
-        // alert(errorMessage);
+        // Other error occurred.
+        throw error;
       }
-      reject (error);
     });
-
-    auth.updateProfile(auth.currentUser, {
-      displayName: userName , photoURL: "https://example.com/jane-q-user/profile.jpg"
-    }).then(() => {
-      return 'Profile Updated'
-    }).catch((error) => {
-      return 'Error updating profile.'
-    });
-  });
 }
+
+
 
 /**
  * Send an email verification to the user.
