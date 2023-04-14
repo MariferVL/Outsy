@@ -123,6 +123,37 @@ describe('showPassword', () => {
   });
 });
 
+describe('validateEmail', () => {
+  let mockEmail;
+
+  beforeEach(() => {
+    // Create a mock checkbox and password input element
+    mockEmail = document.createElement('input');
+    mockEmail.type = 'email';
+    mockEmail.id = 'email';
+
+    // Add the elements to the DOM
+    document.body.appendChild(mockEmail);
+  });
+
+  afterEach(() => {
+    // Remove the elements from the DOM
+    document.body.removeChild(mockEmail);
+  });
+
+  it('validateEmail should return true for valid email addresses', () => {
+    expect(validateEmail('hola@example.com')).toBe(true);
+    expect(validateEmail('example@gmail.com')).toBe(true);
+    expect(validateEmail('hello@edu.mx')).toBe(true);
+  });
+
+  it('validateEmail should return false for invalid email addresses', () => {
+    expect(validateEmail('not an email')).toBe(false);
+    expect(validateEmail('invalid@')).toBe(false);
+    expect(validateEmail('@example.com')).toBe(false);
+  });
+});
+
 
 // describe('validateEmail', () => {
 //   test('returns true when email is valid', () => {

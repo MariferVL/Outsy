@@ -10,38 +10,29 @@ export const home = `
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="images/2.png" width="75%">
+            <img src="images/home/carrusela.png" width="100%">
             <div class="container">
               <div class="carousel-caption text-start">
-                <h1>¡Esperalo!</h1>
-                <p>¡Lo nuevo!</p>
-                <p><a class="btn btn-lg btn-primary" id="signUp2">Pónte al día</a></p>
+             
               </div>
             </div>
           </div>
           <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+            <img class="bd-placeholder-img" width="100%" height="100%" src="images/home/carruselb.png"
               aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
               <rect width="100%" height="100%" fill="#777" />
-            </svg>
             <div class="container">
               <div class="carousel-caption">
-                <h1>Busca tu Post.</h1>
-                <p>¡Los mejores post!.</p>
-                <p><a class="btn btn-lg btn-primary" href="#">Entrar</a></p>
+              
               </div>
             </div>
           </div>
           <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <rect width="100%" height="100%" fill="#777" />
-            </svg>
+          <img class="bd-placeholder-img" width="100%" height="100%" src="images/home/carruselc.png"
+          aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="#777" />
             <div class="container">
               <div class="carousel-caption text-end">
-                <h1>Tus amigos han publicado eventos.</h1>
-                <p>Eventos para compartir.</p>
-                <p><a class="btn btn-lg btn-primary" href="#">Buscar</a></p>
               </div>
             </div>
           </div>
@@ -65,18 +56,16 @@ export const home = `
         <!-- START THE FEATURETES -->
         <div  class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-muted">It’ll blow
-                your mind.</span></h2>
-            <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose
-              here.</p>
+            <h2 class="featurette-heading fw-normal lh-1">Regístrate en Outsy<span class="text-muted"></span></h2>
+            <p class="lead">Crea tu username, ingresa tu correo electrónico y crea una constraseña para unirte a 
+            nuestra comunidad, ¡Tus amigos están esperando!</p>
           </div>
           <div class="col-md-5">
-            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" src="images/home/featuresa.png" 
               preserveAspectRatio="xMidYMid slice" focusable="false">
               <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-            </svg>
+              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text>
           </div>
         </div>
 
@@ -84,18 +73,16 @@ export const home = `
 
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for
-                yourself.</span></h2>
-            <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this
-              layout would work with some actual real-world content in place.</p>
+            <h2 class="featurette-heading fw-normal lh-1">Publica los planes que tienes en mente<span class="text-muted"></span></h2>
+            <p class="lead">¿Hay alguna película que te encantaría ver o tu museo favorito tiene una exposición por tiempo limitado? 
+            ¡Compártelo con tus amigos! Cuéntales tu plan y vayan juntos…</p>
           </div>
           <div class="col-md-5 order-md-1">
-            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" src="images/home/featuresb.png" 
               preserveAspectRatio="xMidYMid slice" focusable="false">
               <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-            </svg>
+              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text>
           </div>
         </div>
 
@@ -103,20 +90,18 @@ export const home = `
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span
-                class="text-muted">Checkmate.</span>
+            <h2 class="featurette-heading fw-normal lh-1">¡No más aburrimiento los fines de semana! <span
+                class="text-muted"></span>
             </h2>
-            <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
-              intended to be actually read, simply here to give you a better view of what this would look like with some
-              actual content. Your content.</p>
+            <p class="lead">Descubre nuevas opciones para salir con tus amigos en Outsy. 
+            Encuentra los mejores planes para pasar un buen rato juntos.</p>
           </div>
           <div class="col-md-5">
-            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-              height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              height="500" src="images/home/featuresc.png" 
               preserveAspectRatio="xMidYMid slice" focusable="false">
               <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-            </svg>
+              <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text>
           </div>
         </div>
       </div><!-- /.container -->
@@ -145,13 +130,12 @@ export const home = `
                 <div class="row">
                   <div class="col-lg-4">
                     <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" alt="avatar" />
-                    <h5 class="mb-3">Anna Deynah</h5>
-                    <p>UX Designer</p>
+                      src="images/home/testimonioa.png" alt="avatar" />
+                    <h5 class="mb-3">Ana</h5>
                     <p class="text-muted">
                       <i class="fas fa-quote-left pe-2"></i>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id
-                      officiis hic tenetur quae quaerat ad velit ab hic tenetur.
+                      ¡Me encanta Outsy! Desde que cree mi perfil no me pierdo ninguna fiesta, he hecho 
+                      un montón de amigos. Además he visto amigos que veía en años
                     </p>
                     <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
                       <li><i class="fas fa-star fa-sm"></i></li>
@@ -164,13 +148,13 @@ export const home = `
 
                   <div class="col-lg-4 d-none d-lg-block">
                     <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar" />
-                    <h5 class="mb-3">John Doe</h5>
-                    <p>Web Developer</p>
+                    src="images/home/testimoniob.png"  alt="avatar" />
+                    <h5 class="mb-3">Daniel</h5>
+
                     <p class="text-muted">
                       <i class="fas fa-quote-left pe-2"></i>
-                      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-                      suscipit laboriosam, nisi ut aliquid commodi.
+                      Antes nunca veía a mis amigos, era un lío ponernos todos de acuerdo,
+                      pero con Outsy nos juntamos una vez a la semana. Siempre hay un plan difente
                     </p>
                     <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
                       <li><i class="fas fa-star fa-sm"></i></li>
@@ -185,145 +169,13 @@ export const home = `
 
                   <div class="col-lg-4 d-none d-lg-block">
                     <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar" />
-                    <h5 class="mb-3">Maria Kate</h5>
-                    <p>Photographer</p>
+                    src="images/home/testimonioc.png"  alt="avatar" />
+                    <h5 class="mb-3">Maria</h5>
                     <p class="text-muted">
                       <i class="fas fa-quote-left pe-2"></i>
-                      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                      praesentium voluptatum deleniti atque corrupti.
-                    </p>
-                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="far fa-star fa-sm"></i></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Single item -->
-            <div class="carousel-item" data-bs-interval="200">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(3).webp" alt="avatar" />
-                    <h5 class="mb-3">John Doe</h5>
-                    <p>UX Designer</p>
-                    <p class="text-muted">
-                      <i class="fas fa-quote-left pe-2"></i>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id
-                      officiis hic tenetur quae quaerat ad velit ab hic tenetur.
-                    </p>
-                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                    </ul>
-                  </div>
-
-                  <div class="col-lg-4 d-none d-lg-block">
-                    <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" />
-                    <h5 class="mb-3">Alex Rey</h5>
-                    <p>Web Developer</p>
-                    <p class="text-muted">
-                      <i class="fas fa-quote-left pe-2"></i>
-                      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-                      suscipit laboriosam, nisi ut aliquid commodi.
-                    </p>
-                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li>
-                        <i class="fas fa-star-half-alt fa-sm"></i>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="col-lg-4 d-none d-lg-block">
-                    <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(5).webp" alt="avatar" />
-                    <h5 class="mb-3">Maria Kate</h5>
-                    <p>Photographer</p>
-                    <p class="text-muted">
-                      <i class="fas fa-quote-left pe-2"></i>
-                      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                      praesentium voluptatum deleniti atque corrupti.
-                    </p>
-                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="far fa-star fa-sm"></i></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Single item -->
-            <div class="carousel-item">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(6).webp" alt="avatar" />
-                    <h5 class="mb-3">Anna Deynah</h5>
-                    <p>UX Designer</p>
-                    <p class="text-muted">
-                      <i class="fas fa-quote-left pe-2"></i>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id
-                      officiis hic tenetur quae quaerat ad velit ab hic tenetur.
-                    </p>
-                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                    </ul>
-                  </div>
-
-                  <div class="col-lg-4 d-none d-lg-block">
-                    <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(8).webp" alt="avatar" />
-                    <h5 class="mb-3">John Doe</h5>
-                    <p>Web Developer</p>
-                    <p class="text-muted">
-                      <i class="fas fa-quote-left pe-2"></i>
-                      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-                      suscipit laboriosam, nisi ut aliquid commodi.
-                    </p>
-                    <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li><i class="fas fa-star fa-sm"></i></li>
-                      <li>
-                        <i class="fas fa-star-half-alt fa-sm"></i>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="col-lg-4 d-none d-lg-block">
-                    <img class="rounded-circle shadow-1-strong mb-4"
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(7).webp" alt="avatar" />
-                    <h5 class="mb-3">Maria Kate</h5>
-                    <p>Photographer</p>
-                    <p class="text-muted">
-                      <i class="fas fa-quote-left pe-2"></i>
-                      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                      praesentium voluptatum deleniti atque corrupti.
+                      El mes pasado conocí una cafetería, fui a una exposición de arte y
+                      festejamos el cumpleaños de mi mejor amigo. Nunca creí que podría 
+                      hacer tantas cosas con mis amigos                       
                     </p>
                     <ul class="list-unstyled d-flex justify-content-center text-warning mb-0">
                       <li><i class="fas fa-star fa-sm"></i></li>
@@ -337,9 +189,8 @@ export const home = `
               </div>
             </div>
           </div>
-          <!-- Inner -->
         </div>
         <!-- Carousel wrapper -->
       </article>
     </section>
-  `
+  `;
