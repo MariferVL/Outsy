@@ -71,6 +71,13 @@ header {
   overflow-y: hidden;
 }
 
+/* Posts */
+
+
+#postImage{
+  width: 11rem;
+  height: 11rem;
+}
 
 /* FORM */
 

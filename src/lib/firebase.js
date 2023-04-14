@@ -8,7 +8,7 @@ const firebaseConfig = {
   authDomain: 'outsy-mxg.firebaseapp.com',
   databaseURL: 'https://outsy-mxg-default-rtdb.firebaseio.com',
   projectId: 'outsy-mxg',
-  storageBucket: 'outsy-mxg.appspot.com',
+  storageBucket: '',
   messagingSenderId: '1058170420655',
   appId: '1:1058170420655:web:06d17c4cc4440b35d0035a',
   measurementId: 'G-MF6SX17B18'

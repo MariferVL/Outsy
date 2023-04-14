@@ -152,20 +152,19 @@ function enableButtons(idElement) {
   const elementButton = document.getElementById(idElement);
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
+
+
   if (elementButton) {
     validateInput(emailInput, 'email');
     validateInput(passwordInput, 'pass');
+    if (idElement === 'sign-up') {
+      const usernameInput = document.getElementById('userName');
+      return [emailInput.value, passwordInput.value, usernameInput.value];    
+    } 
   }
-  return [emailInput.value, passwordInput.value];
+  return [emailInput.value, passwordInput.value, ""];    
+
 }
-
-
-const listenPost = () => document.getElementById('post').addEventListener('click', () => {
-  router.navigateTo('/post/create');
- listenPostForm();
-
-});
-
 
 /**
  * Listen when user submit info clicking button 
@@ -182,7 +181,6 @@ async function listenForm(formID, buttonID) {
     }, { once: true });
   });
 
-  //FIXME: Revisar que funcione la autenticación de google
   if (formID === 'formSignIn') {
     document.getElementById('googleAuth').addEventListener('click', (e) => {
       e.preventDefault();
@@ -190,8 +188,7 @@ async function listenForm(formID, buttonID) {
         .then(
           (useCredential) => {
             router.navigateTo('/feed');
-            // getPosts();
-            listenPost();
+            listenPostForm();
           },
           (error) => {
             // FIXME: Revisar el open modal
@@ -202,7 +199,7 @@ async function listenForm(formID, buttonID) {
   }
 
   data.then((d) => {
-    sendValidData(formID, d[0], d[1])
+    sendValidData(formID, d[0], d[1], d[2])
   })
 
   return formID, email, password;
@@ -215,19 +212,19 @@ async function listenForm(formID, buttonID) {
  * @param {*} email 
  * @param {*} password 
  */
-function sendValidData(formID, email, password) {
+function sendValidData(formID, email, password, userName) {
   if (formID === 'formSignUp') {
     const emailIgm = document.createElement('img');
     emailIgm.src = './images/emailVerification.png';
     emailIgm.className = 'emailImg';
     const main = document.getElementById('signUpView');
     main.replaceWith(emailIgm);
-    handleSignUp(email, password)
+    handleSignUp(email, password, userName);
   }
   else if (formID === 'formSignIn') {
     toggleSignIn(email, password)
     router.navigateTo('/feed');
-    listenPost();
+    listenPostForm();
 
   }
 }

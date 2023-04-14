@@ -1,22 +1,31 @@
 //   Firebase CDN imports
 import * as auth from "https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js";
+import { ref, uploadBytes, getDownloadURL, getStorage } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-storage.js";
+
 import {
   updateDoc,
   collection,
   query,
+  orderBy,
   where,
   addDoc,
   getDoc,
   getDocs,
   getFirestore,
+  getCountFromServer,
   serverTimestamp,
   arrayUnion,
+  doc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js";
 
 import app from "./firebase";
 
+
 const db = getFirestore(app);
 const authApp = auth.getAuth(app);
+const storage = getStorage(app, 'gs://outsy-mxg.appspot.com');
+
 
 /**
  * Function to get the current user's display name
@@ -45,6 +54,10 @@ function getCurrentUserId() {
 //   return url;
 // }
 
+
+
+
+
 /**
  * Create a post
  * @param {*} content
@@ -52,22 +65,36 @@ function getCurrentUserId() {
  * @param {*} privacy
  * @returns post id
  */
-async function createPost(title, content, privacy) {
+async function createPost(title, date, location, content, image, privacy) {
   const userId = getCurrentUserId();
   const author = getCurrentUserName();
-  console.log("userName: " + author);
-  console.log("userId: " + userId);
+  const now = new Date();
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+  const postDate = now.toLocaleDateString('en-US', options);
+
+  // Upload the image to Firebase Storage
+  const storageRef = ref(storage, `images/${image.name}`);
+  const snapshot = await uploadBytes(storageRef, image);
+
+  // Get the image URL
+  const imageUrl = await getDownloadURL(snapshot.ref);
+
+  // Create a new post document in Firestore with the image URL
   const postRef = await addDoc(collection(db, "posts"), {
     userId,
     author,
     title,
+    date,
+    postDate,
+    location,
     content,
     privacy,
-    likes: [],
-    comments: [],
+    imageUrl
   });
+
   return postRef.id;
 }
+
 
 /**
  * Edit a post
@@ -77,7 +104,6 @@ async function createPost(title, content, privacy) {
  * @param {*} privacy
  */
 async function editPost(postId, post) {
-  //FIXME:
   await collection("posts").doc(postId).updateDoc({
     title,
     content,
@@ -90,7 +116,8 @@ async function editPost(postId, post) {
  * @param {*} postId
  */
 async function deletePost(postId) {
-  await collection("posts").doc(postId).deleteDoc();
+  await deleteDoc(doc(db, "posts", postId));
+  return getPosts();
 }
 
 /**
@@ -100,68 +127,31 @@ async function deletePost(postId) {
  * @param {*} content
  * @returns
  */
-/* async function addComment(postId, commentText) {
-  const userId = getCurrentUserId();
-  const author = getCurrentUserName();
-  // const commentsRef = collection(db, "posts", postId, "comments");
-  // const newCommentRef = await {
-  //   text: commentText,
-  //   userId,
-  //   author,
-  //   createdAt: serverTimestamp(),
-  // };
-  // const commentId = newCommentRef.id;
-
-  const postRef = collection(db, "posts", postId);
-  const postSnapshot = await getDoc(postRef);
-  const post = postSnapshot.data();
-
-  const newComment = {
-    text: commentText,
-    userId,
-    author,
-    createdAt: serverTimestamp(),
-  };
-  // Add the new comment to the comments array
-  post.comments.push(newComment);
-
-  // Update the post document with the new comments array
-  await updateDoc(postRef, {
-    comments: post.comments,
-  });
-
-  console.log("comments length: " , post.comments.length );
-  // Reload the comments for the post
-  if(post.comments.length > 0) getComments(postId);
-
-  // // Update the "comments" field of the post document
-  // await updateDoc(postRef, {
-  //   comments: arrayUnion(commentId),
-  // });
-
-  return commentId;
-} */
-
 async function addComment(postId, commentText) {
   const userId = getCurrentUserId();
   const author = getCurrentUserName();
+  const now = new Date();
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+  const createdAt = now.toLocaleDateString('en-US', options);
 
-  //FIXME: add collection
-  const commentsRef = collection(db, "posts", postId, "comments");
+
+  const postRef = doc(db, "posts", postId);
+  const commentsRef = collection(postRef, "comments");
   const newCommentRef = await addDoc(commentsRef, {
     text: commentText,
     userId,
     author,
-    createdAt: serverTimestamp(),
+    createdAt,
   });
   const commentId = newCommentRef.id;
 
+  //A falta de 1 método tenemos 2 ;)  
   // Update the "comments" field of the post document
-  const postRef = collection(db, "posts", postId);
   await updateDoc(postRef, {
     comments: arrayUnion(commentId),
   });
 
+  await getPosts();
   return commentId;
 }
 
@@ -171,58 +161,26 @@ async function addComment(postId, commentText) {
  * @param {*} userId
  */
 async function likePost(postId) {
-  // if (!currentUserId) {
-  //   throw new Error("User is not authenticated");
-  // }
-
-  // const postRef = collection("posts").doc(postId);
-  // // const postRef = doc(db, "posts", postId);
-
-  // const postSnapshot = await postRef.get();
-
-  // if (!postSnapshot.exists) {
-  //   throw new Error(`Post document with ID ${postId} does not exist`);
-  // }
-
-  // const newlikeRef = {
-  //   currentUserId,
-  // };
-
-  // const postData = postSnapshot.data();
-  // const likesArray = (await postData.likes) || [];
-  // console.log("likesArray: ", likesArray);
-  // if (likesArray.includes(currentUserId)) {
-  //   return;
-  // } else {
-  //   console.log("entró a update like:");
-  //   // Update the "likes" field of the post document
-  //   await updateDoc(postRef, {
-  //     likes: arrayUnion(newlikeRef),
-  //   });
-  // }
-
   const userId = getCurrentUserId();
   const author = getCurrentUserName();
 
-  const likesRef = collection(db, "posts", postId, "likes");
+  const postRef = doc(db, "posts", postId);
+  const likesRef = collection(postRef, "likes");
   const newLikeRef = await addDoc(likesRef, {
     userId,
     author,
-    createdAt: serverTimestamp(),
   });
   const likeId = newLikeRef.id;
 
   // Update the "likes" field of the post document
-  const postRef = doc(db, "posts", postId);
   await updateDoc(postRef, {
     likes: arrayUnion(likeId),
   });
 
-  getPosts();
+  await getPosts();
 
   return likeId;
 
-  // getLikeCount(postId);
 }
 
 // /**
@@ -243,34 +201,25 @@ async function likePost(postId) {
  * @returns
  */
 async function getLikeCount(postId) {
- 
+  // Get the likes subcollection of the post document
+  const postRef = doc(db, "posts", postId);
+  const likesRef = collection(postRef, "likes");
 
-  // Get the post document
-  const subcollectionRef = collection("posts").doc(postId).collection("likes");
+  // Get the like count from the server
+  const snapshot = await getCountFromServer(likesRef);
+  console.log('count: ', snapshot.data().count);
 
-  // // Get the likes array and count its length
-  // const likesArray = postDoc.data().likes;
-
-  let totalLikes = 0;
-
-subcollectionRef.get().then(querySnapshot => {
-  querySnapshot.forEach(doc => {
-    const data = doc.data();
-    totalLikes += data.likes;
-  });
-  console.log(`Total likes: ${totalLikes}`);
-}).catch(error => {
-  console.error(error);
-});
-console.log(`Antes de return Total likes: ${totalLikes}`);
-
-  return totalLikes;
+  return snapshot.data().count;
 }
 
+/**
+ * 
+ */
 async function getPosts() {
+  const postContainer = document.getElementById("postContainer");
   postContainer.innerHTML = "";
 
-  const q = query(collection(db, "posts"), where("privacy", "==", "public"));
+  const q = query(collection(db, "posts"), where("privacy", "==", "public"), orderBy("postDate", "desc"));
   const querySnapshot = await getDocs(q);
 
   await Promise.all(
@@ -279,29 +228,35 @@ async function getPosts() {
       // doc.data() is never undefined for query doc snapshots
       const post = doc.data();
       const postId = doc.id;
+      console.log('post: ', post);
 
       // Clear any existing posts from the page
-      const postContainer = document.getElementById("postContainer");
 
       // Create post elements
       const postArticle = document.createElement("article");
       postArticle.classList.add("post");
-      const postTitle = document.createElement("h2");
+      const postTitle = document.createElement("h3");
       postTitle.textContent = post.title;
+      const postTime = document.createElement("time");
+      postTime.textContent = post.date;
+      const postLocation = document.createElement("p");
+      postLocation.textContent = post.location;
       const postContent = document.createElement("p");
       postContent.textContent = post.content;
       const postAuthor = document.createElement("p");
       postAuthor.textContent = `Propuesto por: ${post.author}`;
       const postDate = document.createElement("time");
-      const date = new Date();
-      postDate.textContent = `Publicado el: ${date.toLocaleDateString()} a las ${date.toLocaleTimeString()}`;
+      const date = post.postDate;
+      postDate.textContent = `Publicado el: ${date ? date : 'Indefinida'}`;
       const postPrivacy = document.createElement("p");
       postPrivacy.textContent = `Privacidad: ${post.privacy}`;
       const postImage = document.createElement("img");
-      postImage.src = post.imageURL;
+      postImage.setAttribute('id', 'postImage');
+      postImage.src = post.imageUrl;
       const postLikes = document.createElement("p");
-      postLikes.textContent = `Interesad@s: ${getLikeCount(postId) ? post.likes.length : 0
-      }`;
+      const countLikes = await getLikeCount(postId);
+      console.log(countLikes);
+      postLikes.textContent = `Interesad@s: ${countLikes ? countLikes : 0}`;
       postContainer.appendChild(postArticle);
 
       // Create edit button
@@ -327,16 +282,10 @@ async function getPosts() {
       likeButton.textContent = "Interesante";
       likeButton.setAttribute("id", "likeButton");
       likeButton.addEventListener("click", () => {
-        console.log("likes: ", post.likes.length);
         console.log("post id: ", postId);
-
         likePost(postId);
       });
 
-      // // Create a span element to display the number of likes
-      // const likeCount = document.createElement('span');
-      // likeCount.setAttribute('id', `likeCount${postId}`);
-      // likeCount.innerText = post.likes ? post.likes.length : 0;
 
       //Create a article element to display comments.
       const commentContainer = document.createElement("article");
@@ -377,7 +326,7 @@ async function getPosts() {
       postArticle.appendChild(commentSection);
       postArticle.appendChild(footer);
       postContainer.appendChild(postArticle);
-      getComments(postId);
+      await getComments(postId);
     })
   );
 }
@@ -391,58 +340,37 @@ async function getComments(postId) {
   const commentArticle = document.createElement("article");
   commentArticle.innerHTML = "";
 
-  const commentsRef = collection("posts").doc(postId).collection("comments");
+  const postRef = doc(db, "posts", postId);
+  const commentsRef = collection(postRef, "comments");
+
   const querySnapshot = await getDocs(commentsRef);
 
   await Promise.all(
     querySnapshot.docs.map(async (doc) => {
-      // querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
 
       const comment = doc.data();
-      console.log("comment: ", comment);
       // const commentId = doc.id;
+
       // Create commet elements
       commentArticle.classList.add("post");
       const commentContent = document.createElement("p");
-      commentContent.textContent = comment.content;
+      commentContent.textContent = comment.text;
       const commentAuthor = document.createElement("p");
       commentAuthor.textContent = `Propuesto por: ${comment.author}`;
       const commentDate = document.createElement("time");
       const dateComment = comment.createdAt;
-      commentDate.textContent = `Publicado el: ${dateComment.toLocaleDateString()} a las ${dateComment.toLocaleTimeString()}`;
-      commentArticle.appendChild(commentElement);
+      commentDate.textContent = `Publicado el: ${dateComment ? dateComment : 'Indefinida'}`;
+      commentArticle.appendChild(commentContent);
+      commentArticle.appendChild(commentAuthor);
+      commentArticle.appendChild(commentDate);
       footer.appendChild(commentArticle);
     })
   );
 }
 
-//https://firebase.google.com/docs/firestore/security/rules-query?hl=es-419
-// o
-/**
- * Create a new collection if it does not exist
- * @param {*} collectionName
- */
-/* async function createCollectionIfNotExist(collectionName) {
-  const collections = await listCollections();
-  const collectionExists = collections.some((col) => col.id === collectionName);
-  if (!collectionExists) {
-    await collection(collectionName).doc().set({}); 
-    console.log(`Colección de '${collectionName}' creada exitosamente.`);
-  } else {
-    console.log(`Colección de '${collectionName}' ya existe. `);
-  }
-}
 
-// Usage:
-createCollectionIfNotExist('likes'); */
 
 export {
   createPost,
   getPosts,
-  editPost,
-  deletePost,
-  addComment,
-  likePost,
-  getLikeCount,
 };

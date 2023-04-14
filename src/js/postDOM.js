@@ -1,27 +1,37 @@
-import { createPost, getPosts} from '../lib/postAuth';
+import { async } from 'regenerator-runtime';
+import { createPost, getPosts } from '../lib/postAuth';
 import Router from '../router/router';
 
 const router = new Router();
 
 export function listenPostForm() {
-    // Add event listener for the submit button on the add post form
-    document.getElementById('addPostButton').addEventListener('click', (event) => {
-        event.preventDefault();
-        const title = document.getElementById('postTitle').value;
-        const content = document.getElementById('postContent').value;
-        const privacy = document.getElementById('postPrivacy').value;
-        const image = document.getElementById('postImage').files[0];
-        //FIXME: Declarar como argumento para fn en listener.
-        const postId = createPost(title, content, privacy);
-        router.navigateTo('/feed');
-        //FIXME: postId
-        getPosts();
+    router.navigateTo('/feed');
+    getPosts();
+    document.getElementById('post').addEventListener('click', () => {
+        router.navigateTo('/post/create');
+        // Add event listener for the submit button on the add post form
+        document.getElementById('addPostButton').addEventListener('click', async (event) => {
+            event.preventDefault();
+            const title = document.getElementById('postTitle').value;
+            const date = document.getElementById('postTime').value;
+            const location = document.getElementById('postLocation').value;
+            const content = document.getElementById('postContent').value;
+            const privacy = document.getElementById('postPrivacy').value;
+            const image = document.getElementById('postImage').files[0];
+            //FIXME: Declarar como argumento para fn en listener.
+            const postId = createPost(title, date, location, content, image, privacy);
+            router.navigateTo('/feed');
+            await getPosts();
 
+
+        });
 
     });
-    
+
+
+
     // document.getElementById("editPost").addEventListener("click", (event) => {
-     //       router.navigateTo('/post');
+    //       router.navigateTo('/post');
     //     editPost(postID, post);
     // })
 }
