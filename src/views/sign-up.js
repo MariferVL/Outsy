@@ -36,8 +36,7 @@ export const signUp = `
               <input type="checkbox" id="showPassword" name="showPassword">
               <label for="showPassword">Mostrar contraseña</label>
               <ul>
-                  <li>Mínimo 8 caracteres</li>
-                  <li>Máximo 15</li>
+                  <li>8- 15 caracteres</li>
                   <li>Al menos una letra mayúscula</li>
                   <li>Al menos una letra minúscula</li>
                   <li>Al menos un dígito</li>
