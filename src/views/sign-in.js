@@ -1,6 +1,5 @@
 export const signIn = `
 <section id="signInView" class="background-radial-gradient overflow-hidden">
-  
 
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
       <div class="row gx-lg-5 align-items-center mb-5" form-content>
@@ -18,9 +17,6 @@ export const signIn = `
         </div>
   
         <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
-  
           <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
               <form id="formSignIn" class: "requires-validation" novalidate> 
@@ -52,7 +48,7 @@ export const signIn = `
                 </div>
 
                 <!-- Simple link -->
-                <button type="button" class="btn btn-link btn-floating mx-1" id="password-reset">¿Olvidaste tu constraseña?</button> 
+                <button type="button" class="btn-link btn-floating mx-1" id="password-reset">¿Olvidaste tu constraseña?</button> 
                 
                 <!-- Register buttons -->
                 <div class="text-center">
@@ -62,7 +58,7 @@ export const signIn = `
                 <button id="sign-in" class="btn btn-primary btn-block mb-4">
                   Ingresar
                 </button>
-  
+
                 <!-- Register buttons -->
                 <div class="text-center">
                   <p>o ingresa con:</p>
