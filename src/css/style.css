@@ -194,7 +194,14 @@ header {
 
 #sign-in, #sign-up {
   background-color: #F542A8;
+  border: #F542A8;
   color: white;
+}
+
+#googleAuth {
+  border: #F542A8;
+  background-color: white;
+  color: #F542A8;
 }
 
 

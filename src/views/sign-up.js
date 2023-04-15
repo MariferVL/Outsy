@@ -3,20 +3,19 @@ export const signUp = `
 <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
   <div class="row gx-lg-5 align-items-center mb-5">
     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-      <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-        La mejor App <br />
-        <span style="color: hsl(218, 81%, 75%)">para disfrutar con otros.</span>
+      <h1 class="my-5 display-5 fw-bold ls-tight" style="color: darkturquoise">
+      Bienvenido a Outsy <br />
+        <span style="color: beige">¿Alguien dijo salir?</span>
       </h1>
       <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Temporibus, expedita iusto veniam atque, magni tempora mollitia
-        dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-        ab ipsum nisi dolorem modi. Quos?
+      &nbsp;&nbsp; &nbsp;¡Estamos tan emocionados de tenerte aquí! Nuestro objetivo es
+      siempre ofrecerte un espacio seguro y divertido donde puedas
+      conectarte con tus amigos y conocidos. Sólo necesitas registrarte
+      con un correo electrónico válido para empezar a explorar y 
+      disfrutar de la experiencia Outsy.
       </p>
     </div>
     <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-      <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-      <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
       <div class="card bg-glass">
         <div class="card-body px-4 py-5 px-md-5">
           <form id="formSignUp"> 
@@ -62,6 +61,7 @@ export const signUp = `
             <button id="sign-up" class="btn btn-primary btn-block mb-4">
               Registrarme
             </button>
+            
           </form>
         </div>
       </div>
