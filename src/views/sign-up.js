@@ -55,11 +55,14 @@ export const signUp = `
               <label class="form-check-label text-black" for="appTerms">
                       Acepto los <a href="#!" class="text-blue"><u>Términos y Condiciones</u></a>
                     </label>
-            </div>
+                    </div>
             <!-- Submit button -->
+            <div class="form-check d-flex justify-content-center mb-4">
             <button id="sign-up" class="btn btn-primary btn-block mb-4">
               Registrarme
             </button>
+            </div>
+            
             
           </form>
         </div>
