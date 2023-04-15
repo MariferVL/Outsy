@@ -4,15 +4,17 @@ export const signIn = `
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
       <div class="row gx-lg-5 align-items-center mb-5" form-content>
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-            La mejor App <br />
-            <span style="color: hsl(218, 81%, 75%)">para disfrutar con otros.</span>
+          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: darkturquoise">
+            Bienvenido a Outsy <br />
+            <span style="color: beige">¿Alguien dijo salir?</span>
           </h1>
-          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Temporibus, expedita iusto veniam atque, magni tempora mollitia
-            dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-            ab ipsum nisi dolorem modi. Quos?
+          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%);text-align: justify;">
+          &nbsp;&nbsp; &nbsp;¡Estamos tan emocionados de tenerte aquí! Nuestro objetivo es
+            siempre ofrecerte un espacio seguro y divertido donde puedas
+            conectarte con tus amigos y conocidos. Sólo necesitas registrarte
+            con un correo electrónico válido para empezar a explorar y 
+            disfrutar de la experiencia Outsy.
+           
           </p>
         </div>
   
@@ -41,15 +43,17 @@ export const signIn = `
   
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="showPassword"/>
-                  <label class="form-check-label" for="showPassword">
-                    Recuerdame
-                  </label>
+                  <input class="form-check-input me-2" type="checkbox" value="" id="remember"/>
+                  <label class="form-check-label" for="remember">
+                    Recuérdame
+                  </label> 
                 </div>
 
                 <!-- Simple link -->
-                <button type="button" class="btn-link btn-floating mx-1" id="password-reset">¿Olvidaste tu constraseña?</button> 
-                
+                <div class="text-center">
+                <button type="button" class="btn btn-link btn-floating mx-1" id="password-reset">¿Olvidaste tu constraseña?</button> 
+                </div>
+
                 <!-- Register buttons -->
                 <div class="text-center">
                 <p>¿No estás registrado? <a href="#!">Registrate</a></p>
@@ -62,21 +66,11 @@ export const signIn = `
                 <!-- Register buttons -->
                 <div class="text-center">
                   <p>o ingresa con:</p>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
   
-                  <button id="googleAuth" type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-google"></i>
+                  <button id="googleAuth" type="button" class="btn btn-primary btn-block mb-4">
+                    <i class="fab fa-google"></i>&nbsp; &nbsp; Continuar con Google
                   </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-github"></i>
-                  </button>
+
                 </div>
               </form>
             </div>
