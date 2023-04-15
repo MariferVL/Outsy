@@ -83,6 +83,7 @@ header {
 
 .background-radial-gradient {
   background-image: url("../images/sign-in/fondoa.png");
+  background-repeat: no-repeat;
 }
 
 #radius-shape-1 {
