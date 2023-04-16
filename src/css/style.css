@@ -205,6 +205,17 @@ header {
   color: #F542A8;
 }
 
+/* CREATE POST */
+#addPostForm{
+  background-image: url("../images/post/fondoa.png");
+  background-repeat: no-repeat;
+}
+
+#addPostButton {
+  background-color: #82C173;
+  border: #82C173;
+  color: white;
+}
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
