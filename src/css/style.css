@@ -79,6 +79,23 @@ header {
   height: 11rem;
 }
 
+/* ABOUT US */
+.background-aboutus{
+  background-image: url("../images/about/fonabaut.png");
+  background-repeat: no-repeat;
+}
+
+#about-text{
+  color:white;
+  font-family: "Roboto";
+}
+
+
+.card {
+  border-radius: .7rem;
+}
+/* END ABOUT US*/
+
 /* FORM */
 
 .background-radial-gradient {
