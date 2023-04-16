@@ -181,7 +181,9 @@ header {
 
 
 
-/* TESTIMONIAL CARROUSEL */
+/* TESTIMONIAL CARROUSEL 
+------------------------- */
+
 .gradient-custom {
   background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
     linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
@@ -208,7 +210,8 @@ header {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Forms SignIn & Sign Up  */
+/* Forms SignIn & Sign Up  
+------------------------- */
 
 #sign-in, #sign-up {
   background-color: #F542A8;
@@ -222,7 +225,27 @@ header {
   color: #F542A8;
 }
 
-/* CREATE POST */
+/* FEED 
+------------------------- */
+/* NAVBAR */
+
+.navbar-toggler {
+  color: #fff;
+  background-color: #F542A8;
+  background: #f387c4;
+  opacity: 1;
+  border-color: transparent;
+}
+
+#navbar-feed {
+  background-color: black;
+  color: white;
+}
+
+
+/* CREATE POST 
+------------------------- */
+
 #addPostForm{
   background-image: url("../images/post/fondoa.png");
   background-repeat: no-repeat;
@@ -239,6 +262,10 @@ header {
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
+  }
+
+  .navbar {
+    padding: 0 0 3rem;
   }
 }
 
@@ -265,5 +292,13 @@ header {
 @media (min-width: 62em) {
   .featurette-heading {
     margin-top: 7rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .navbar-toggler {
+    position: relative;
+    left: 8rem;
+    bottom: 1.5rem;
   }
 }
