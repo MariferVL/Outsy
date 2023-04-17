@@ -9,7 +9,7 @@
   <meta name="keywords" content="HTML, CSS, JavaScript" />
   <meta name="keywords" content="Social, entertainment, meet, connect, app, friends" />
   <meta name="author" content="Gabriela G. Marifer V, Xóchitl L" />
-  <base href="https:///" >
+  <base href="https:///">
   <title>Outsy</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
@@ -20,6 +20,7 @@
   <!-- Custom styles -->
   <link rel="stylesheet" href="./css/style.css">
 
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,27 +29,70 @@
 </head>
 
 <body>
+  <!-- Navbar -->
+  <!-- <nav class="navbar navbar-expand-md">
+    <div class="container-fluid " id="navbar-home">
+      <a class="navbar-brand" href="">
+        <img src="images/outsylogo.png" alt="Logo" height="75" class="d-inline-block align-text-top">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="">Características</a>
+          </li>
+          <li class="nav-item">
+            <a id="about" class="nav-link active" aria-current="page" href="">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="">Testimonios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="">Ventajas</a>
+          </li>
+          <li class="nav-item">
+            <button id="signIn" type="button" class="btn btn-primary me-2">Inicia Sesión</button>
+          </li>
+          <li class="nav-item">
+            <button id="signUp" type="button" class="btn btn-primary me-2">Registrate</button>
+          </li>
+      </div>
+    </div>
+  </nav>
+ -->
+
   <section id="base">
     <div class="container">
       <header id="home"
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Outsy">
-            <use xlink:href="#outsy" />
-          </svg>
+          <img src="images/outsylogo.png" alt="Logo" height="75" class="d-inline-block align-text-top">
         </a>
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-          <li><a id="home" class="nav-link px-2 link-secondary">Home</a></li>
-          <li><a href="#features" class="nav-link px-2 link-dark">Caractéristicas</a></li>
-          <li><a id="about" class="nav-link px-2 link-dark">Nosotros</a></li>
-          <li><a href="#testimonials" class="nav-link px-2 link-dark">Testimonios</a></li>
-          <li><a id="FAQs" class="nav-link px-2 link-dark">Ventajas</a></li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
-        <div class="col-md-3 text-end">
-          <button id="signIn" type="button" class="btn btn-outline-primary me-2">Inicia Sesión</button>
-          <button id="signUp" type="button" class="btn btn-primary">Registrate</button>
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a id="home" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="#features" class="nav-link px-2 link-dark">Caractéristicas</a></li>
+            <li><a id="about" class="nav-link px-2 link-dark">Nosotros</a></li>
+            <li><a href="#testimonials" class="nav-link px-2 link-dark">Testimonios</a></li>
+            <li><a id="FAQs" class="nav-link px-2 link-dark">Ventajas</a></li>
+          </ul>
+
+          <div class="col-md-3 text-end">
+            <button id="signIn" type="button" class="btn btn-outline-primary me-2">Inicia Sesión</button>
+            <button id="signUp" type="button" class="btn btn-primary">Registrate</button>
+          </div>
         </div>
       </header>
     </div>
@@ -63,46 +107,42 @@
     <footer class="py-5">
       <div class="row">
         <div class="col-6 col-md-2 mb-3">
-          <h5>Section</h5>
+          <h5>Condiciones de Servicio</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Caractéristicas</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Ventajas</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nosotros</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Condiciones de Servicio</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Ayuda</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
           </ul>
         </div>
 
         <div class="col-6 col-md-2 mb-3">
-          <h5>Section</h5>
+          <h5>Contacto</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Caractéristicas</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Ventajas</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nosotros</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Acerca de Nosotras</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contacto</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Ayuda</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Usuarios</a></li>
           </ul>
         </div>
 
         <div class="col-6 col-md-2 mb-3">
-          <h5>Section</h5>
+          <h5>Privacidad</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Caractéristicas</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"></a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Ventajas</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nosotros</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Política de Privacidad</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Tus Datos</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Información</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Cookies</a></li>
           </ul>
         </div>
 
         <div class="col-md-5 offset-md-1 mb-3">
           <form>
-            <h5>Registrate</h5>
-            <p>¡Próximo!, esperalo</p>
+            <h5>Regístrate</h5>
+            <p>No te pierdas las actualizaciones de Outsy</p>
             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
               <label for="newsletter1" class="visually-hidden">Dirección de correo</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-              <button class="btn btn-primary" type="button">Registrate</button>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Dirección de correo">
+              <button id="registrate" class="btn btn-primary" type="button">Registrate</button>
             </div>
           </form>
         </div>
@@ -110,17 +150,14 @@
 
       <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
         <p>&copy; 2023 Outsy, Inc. Todos los derechos reservados.</p>
-        <ul class="list-unstyled d-flex">
-          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
-                <use xlink:href="#twitter" />
-              </svg></a></li>
-          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
-                <use xlink:href="#instagram" />
-              </svg></a></li>
-          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
-                <use xlink:href="#facebook" />
-              </svg></a></li>
-        </ul>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter contact-icon"
+            style="color: #f542a8;"></i></a>
+        <a href="https://web.facebook.com/" target="_blank"><i class="fab fa-facebook contact-icon"
+            style="color: #f542a8;"></i></a>
+        <a href="https://www.instagram.com/tindog__/" target="_blank"><i class="fab fa-instagram contact-icon"
+            style="color: #f542a8;"></i></a>
+        <a href="mailto:info@tindog.com" target="_blank"><i class="fas fa-envelope contact-icon"
+            style="color: #f542a8;"></i></a>
       </div>
     </footer>
   </div>
@@ -141,7 +178,7 @@
     </script>
 
   <script type="module" src="main.js"></script>
-  
+
 
 </body>
 
