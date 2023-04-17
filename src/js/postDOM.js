@@ -7,6 +7,7 @@ const router = new Router();
 export function listenPostForm() {
     router.navigateTo('/feed');
     getPosts();
+    
     document.getElementById('post').addEventListener('click', () => {
         router.navigateTo('/post/create');
         // Add event listener for the submit button on the add post form
@@ -18,7 +19,6 @@ export function listenPostForm() {
             const content = document.getElementById('postContent').value;
             const privacy = document.getElementById('postPrivacy').value;
             const image = document.getElementById('postImage').files[0];
-            //FIXME: Declarar como argumento para fn en listener.
             const postId = createPost(title, date, location, content, image, privacy);
             router.navigateTo('/feed');
             await getPosts();

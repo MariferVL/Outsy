@@ -214,7 +214,7 @@ async function getLikeCount(postId) {
 }
 
 /**
- * 
+ * Get and print each post saved in firestore
  */
 async function getPosts() {
   const postContainer = document.getElementById("postContainer");
@@ -258,7 +258,7 @@ async function getPosts() {
       // Create edit button
       const editButton = document.createElement("button");
       editButton.textContent = "Editar";
-      editButton.setAttribute("id", "editPost");
+      editButton.setAttribute("id", "edit" + postId);
       editButton.addEventListener("click", () => {
         editPost(postId, post);
       });
@@ -266,7 +266,7 @@ async function getPosts() {
       // Create delete button
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "Eliminar";
-      deleteButton.setAttribute("id", "deleteButton");
+      deleteButton.setAttribute("id", "delete" + postId);
       deleteButton.addEventListener("click", () => {
         deletePost(postId);
       });
@@ -274,7 +274,7 @@ async function getPosts() {
       // Create like button
       const likeButton = document.createElement("button");
       likeButton.textContent = "Interesante";
-      likeButton.setAttribute("id", "likeButton");
+      likeButton.setAttribute("id", "like" + postId);
       likeButton.addEventListener("click", () => {
         likePost(postId);
       });
@@ -297,9 +297,8 @@ async function getPosts() {
         commentInput.value = "";
       });
       const commentsList = document.createElement("ul");
-      commentsList.setAttribute('id', 'commentsList');
+      commentsList.setAttribute('id', 'commentsList' + postId);
       const footer = document.createElement("footer");
-      footer.setAttribute("id", "footerComment");
       
       // Add HTML elements to post container
       postArticle.appendChild(postTitle);
@@ -330,7 +329,7 @@ async function getPosts() {
  * @param {*} postId
  */
 async function getComments(postId) {
-  const commentsList = document.getElementById("commentsList");
+  const commentsList = document.getElementById('commentsList' + postId);
   commentsList.innerHTML = "";
 
   const postRef = doc(db, "posts", postId);
