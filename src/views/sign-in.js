@@ -1,4 +1,35 @@
 export const signIn = `
+<!-- Navbar -->
+<section id="base">
+  <div class="container">
+    <header id="home"
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <img src="images/outsylogo.png" alt="Logo" height="75" class="d-inline-block align-text-top">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i
+          class="fas fa-angle-double-down fa-lg" style="color: #82c173;"></i>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a id="home" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="#features" class="nav-link px-2 link-dark">Características</a></li>
+          <li><a id="about" class="nav-link px-2 link-dark">Nosotros</a></li>
+          <li><a href="#testimonials" class="nav-link px-2 link-dark">Testimonios</a></li>
+          <li><a id="FAQs" class="nav-link px-2 link-dark">Ventajas</a></li>
+          <li> <button id="signIn" type="button" class="btn btn-outline-primary me-2">Inicia Sesión</button></li>
+          <li><button id="signUp" type="button" class="btn btn-primary">Registrate</button></li>
+        </ul>
+      </div>
+    </header>
+  </div>
+
+  <!-- Form -->
+
 <section id="signInView" class="background-radial-gradient overflow-hidden">
 
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
