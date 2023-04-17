@@ -8,7 +8,7 @@ body {
 
 header {
   overflow: hidden;
-  padding: 2rem 6rem;
+  padding: 2rem 1rem;
   transition: 0.4s;
   position: fixed;
   width: 100%;
@@ -252,7 +252,6 @@ header {
 
 .navbar-toggler {
   color: #fff;
-  background-color: #F542A8;
   opacity: 1;
   border-color: transparent;
 }
