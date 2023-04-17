@@ -71,12 +71,33 @@ header {
   overflow-y: hidden;
 }
 
-/* Posts */
+/* NAVBAR
+---------------------------------------------------*/
+#navbar-home{
+  background-color: transparent;
+  color:black
+}
 
+#signIn, #signUp, #registrate {
+  background-color: #F542A8;
+  border: #F542A8;
+  color: white;
+}
+
+
+/* FOOTER 
+--------------------------------------------------*/
+.link-dark {
+  color: black;
+}
+
+
+/* POST 
+-------------------------------------------------- */
 
 #postImage{
-  width: 11rem;
-  height: 11rem;
+  width: 544px;
+  height: 544px;
 }
 
 /* ABOUT US */
@@ -87,7 +108,7 @@ header {
 
 #about-text{
   color:white;
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
 }
 
 
@@ -232,7 +253,6 @@ header {
 .navbar-toggler {
   color: #fff;
   background-color: #F542A8;
-  background: #f387c4;
   opacity: 1;
   border-color: transparent;
 }
