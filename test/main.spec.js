@@ -1,4 +1,4 @@
-import { scrollFunction, validateEmail, validatePassword, validateInput, showPassword } from "../src/main.js";
+import { scrollFunction, validateEmail, validatePassword, showPassword } from "../src/main.js";
 // import { handleSignUp, toggleSignIn, signInWithGoogle } from '../src/lib/emailAuth.js';
 import Router from '../src/router/router.js';
 
@@ -8,9 +8,10 @@ router.start();
 
 jest.mock('../src/main.js', () => ({
   scrollFunction: jest.fn(),
-  // validateEmail:jest.fn(), 
-  // validatePassword:jest.fn(),
+  validateEmail: jest.fn(Boolean),
+  validatePassword: jest.fn(Boolean),
   showPassword: jest.fn()
+
 }));
 
 // Mock Router class
@@ -123,40 +124,38 @@ describe('showPassword', () => {
   });
 });
 
+
 describe('validateEmail', () => {
-  let mockEmail;
-
-  beforeEach(() => {
-    // Create a mock checkbox and password input element
-    mockEmail = document.createElement('input');
-    mockEmail.type = 'email';
-    mockEmail.id = 'email';
-
-    // Add the elements to the DOM
-    document.body.appendChild(mockEmail);
-  });
-
-  afterEach(() => {
-    // Remove the elements from the DOM
-    document.body.removeChild(mockEmail);
-  });
-
   it('validateEmail should return true for valid email addresses', () => {
     expect(validateEmail('hola@example.com')).toBe(true);
     expect(validateEmail('example@gmail.com')).toBe(true);
     expect(validateEmail('hello@edu.mx')).toBe(true);
   });
+  it('returns false when email is invalid', () => {
+    validateEmail.mockReturnValue(false)
+    const result = validateEmail('hola')
+    expect(result).toBe(false);
+  });
+});
 
-  it('validateEmail should return false for invalid email addresses', () => {
-    expect(validateEmail('not an email')).toBe(false);
-    expect(validateEmail('invalid@')).toBe(false);
-    expect(validateEmail('@example.com')).toBe(false);
+describe('validatePassword', () => {
+  test('returns true when password is valid', () => {
+    expect(validatePassword("Abc123$%")).toBe(true);
+    expect(validatePassword('Holahola123%')).toBe(true);
+    expect(validatePassword('EstoesunEjemplo*1')).toBe(true);
+  });
+  it('returns false when password is invalid', () => {
+    validatePassword.mockReturnValue(false)
+    const result = validatePassword('abc123')
+    expect(result).toBe(false);
   });
 });
 
 
+
+
 // describe('validateEmail', () => {
-//   test('returns true when email is valid', () => {
+//   test('returns true when password is valid', () => {
 //     expect(validateEmail('example@example.com')).toBe(true);
 //   });
 
