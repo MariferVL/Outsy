@@ -21,10 +21,19 @@ export function listenPostForm() {
             const image = document.getElementById('postImage').files[0];
             const postId = createPost(title, date, location, content, image, privacy);
             router.navigateTo('/feed');
-            await getPosts();
-
-
+            await getPosts(router);
         });
+
+        // document.getElementById("commentsList").addEventListener("click", (event) => {
+        //     const postId = event.target.id;
+        //     const post = event.target;
+        //     console.log("postid:", postId);
+        //     console.log("post: ", post);
+        //     router.navigateTo('/post/edit');
+        //     // editPost(postId, post);
+
+        //   });
+
 
     });
 

@@ -19,13 +19,14 @@ import {
   deleteDoc
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js";
 
+import Router from "../router/router";
 import app from "./firebase";
 
 
 const db = getFirestore(app);
 const authApp = auth.getAuth(app);
 const storage = getStorage(app, 'gs://outsy-mxg.appspot.com');
-
+const router = new Router();
 
 /**
  * Function to get the current user's display name
@@ -260,7 +261,10 @@ async function getPosts() {
       editButton.textContent = "Editar";
       editButton.setAttribute("id", "edit" + postId);
       editButton.addEventListener("click", () => {
-        editPost(postId, post);
+        console.log("postid:", postId);
+        console.log("post: ", post);
+        router.navigateTo("/post/edit");
+        // editPost(postId, post);
       });
 
       // Create delete button
