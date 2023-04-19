@@ -246,7 +246,7 @@ async function getPosts() {
       nameSpan.textContent = `Propuesto por: ${post.author}`;
 
       const smallColleagues = document.createElement('small');
-      smallColleagues.classList.add('text-primary');
+      smallColleagues.classList.add('text-primary', "location");
       smallColleagues.textContent = `Lugar: ${post.location ? post.location : 'Indefinida'}`;
     
 

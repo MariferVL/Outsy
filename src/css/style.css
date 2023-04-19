@@ -341,8 +341,6 @@ hr {
   margin-bottom: 8px
 }
 
-
-
 .ellipsis i {
   margin-top: 3px;
   cursor: pointer;
@@ -352,6 +350,10 @@ hr {
   font-size: 25px;
   border: none;
   background-color: transparent;
+}
+
+.location {
+  color:#46b9bd
 }
 
 .fa-grin-stars {
