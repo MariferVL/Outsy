@@ -19,7 +19,7 @@ export const home = `
                         <a class="nav-link active" aria-current="características" href="#features">Características</a>
                     </li>
                     <li class="nav-item">
-                        <a id="about" class="nav-link" href="#">Nosotros</a>
+                        <a id="about" class="nav-link" >Nosotros</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#testimonials">Testimonios</a>
