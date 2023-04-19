@@ -166,9 +166,9 @@ h5, #copy {
 
 
 /* ABOUT US */
-.background-aboutus{
+.aboutus{
   background-image: url("../images/about/fonabaut.png");
-  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #about-text{
@@ -305,7 +305,7 @@ h5, #copy {
 ------------------------- */
 
 
-#signInView, #signUpView{
+#signInView, #signUpView, #aboutus{
   margin-top: 8rem;
 }
 

@@ -56,7 +56,7 @@ export const about = `
   </div>
 
   <!-- About Us -->
-<section class="background-aboutus">
+<section class="aboutus">
   <div class="container py-5">
     <div class="row d-flex justify-content-center">
       <div id="about-text" class="col-md-10 col-xl-8 text-center">
