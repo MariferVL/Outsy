@@ -305,8 +305,13 @@ h5, #copy {
 ------------------------- */
 
 
-#signInView, #signUpView, #aboutus{
+#signInView, #signUpView, .aboutus{
   margin-top: 8rem;
+}
+
+
+.ourPictures{
+  margin-left: 8rem;
 }
 
 

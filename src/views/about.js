@@ -54,11 +54,12 @@ export const about = `
       </nav>
     </header>
   </div>
+  </section>
 
   <!-- About Us -->
 <section class="aboutus">
   <div class="container py-5">
-    <div class="row d-flex justify-content-center">
+    <div i="ourPictures" class="row d-flex justify-content-center">
       <div id="about-text" class="col-md-10 col-xl-8 text-center">
         <h1 class="fw-bold mb-4">Acerca de Nosotras</h1>
         <p class="mb-4 pb-2 mb-md-5 pb-md-0">
