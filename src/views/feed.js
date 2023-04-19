@@ -1,5 +1,5 @@
 export const feed = `  
-<body class="bg-light">  
+ 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-dark">
 <div class="container-fluid " id="navbar-feed">
@@ -46,43 +46,16 @@ export const feed = `
 </nav>
 
 <!-- Posts -->
-  <main id="feed" class="container">
-  <section id="posts">
-  <div class="my-3 p-3 bg-body rounded shadow-sm">
+<section id="posts">
     <h2 class="border-bottom pb-2 mb-0">Publicaciones Recientes</h2>
+    <div class="container mt-5 mb-5">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-6" id="postContainer">
 
-    <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-md-6"  id="postContainer">
-        <div class="card">
-          <div class="d-flex text-muted pt-3" >
-              
-          </div>
+            </div>
         </div>
     </div>
-</div>
-
-
-
-
-    <!--<div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-        <div class="d-flex justify-content-between">
-          <strong class="text-gray-dark">Full Name</strong>
-        </div>
-        <span class="d-block">@username</span>
-      </div>
-    <div class="d-flex text-muted pt-3"></div>-->
-  </div>
-
 </section>
 
-</main>
 
-<!-- Post Example
-<div class="container mt-5 mb-5">
-    
-</div> -->
-
-
-      <script src="../src/js/offcanvas-navbar.js"></script>
-  </body>
   `;

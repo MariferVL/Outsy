@@ -1,6 +1,6 @@
 //   Firebase CDN imports
-import * as auth from "https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js";
-import { ref, uploadBytes, getDownloadURL, getStorage } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-storage.js";
+import * as auth from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js';
+import { ref, uploadBytes, getDownloadURL, getStorage } from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-storage.js';
 
 import {
   updateDoc,
@@ -17,10 +17,10 @@ import {
   arrayUnion,
   doc,
   deleteDoc
-} from "https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js";
+} from 'https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js';
 
-import Router from "../router/router";
-import app from "./firebase";
+import Router from '../router/router';
+import app from './firebase';
 
 
 const db = getFirestore(app);
@@ -83,7 +83,7 @@ async function createPost(title, date, location, content, image, privacy) {
   const imageUrl = await getDownloadURL(snapshot.ref);
 
   // Create a new post document in Firestore with the image URL
-  const postRef = await addDoc(collection(db, "posts"), {
+  const postRef = await addDoc(collection(db, 'posts'), {
     userId,
     author,
     title,
@@ -107,7 +107,7 @@ async function createPost(title, date, location, content, image, privacy) {
  * @param {*} privacy
  */
 async function editPost(postId, post) {
-  await collection("posts").doc(postId).updateDoc({
+  await collection('posts').doc(postId).updateDoc({
     title,
     content,
     privacy,
@@ -119,7 +119,7 @@ async function editPost(postId, post) {
  * @param {*} postId
  */
 async function deletePost(postId) {
-  await deleteDoc(doc(db, "posts", postId));
+  await deleteDoc(doc(db, 'posts', postId));
   return getPosts();
 }
 
@@ -138,8 +138,8 @@ async function addComment(postId, commentText) {
   const createdAt = now.toLocaleDateString('es-ES', options);
 
 
-  const postRef = doc(db, "posts", postId);
-  const commentsRef = collection(postRef, "comments");
+  const postRef = doc(db, 'posts', postId);
+  const commentsRef = collection(postRef, 'comments');
   const newCommentRef = await addDoc(commentsRef, {
     text: commentText,
     userId,
@@ -149,7 +149,7 @@ async function addComment(postId, commentText) {
   const commentId = newCommentRef.id;
 
   //A falta de 1 método tenemos 2 ;)  
-  // Update the "comments" field of the post document
+  // Update the 'comments' field of the post document
   await updateDoc(postRef, {
     comments: arrayUnion(commentId),
   });
@@ -167,15 +167,15 @@ async function likePost(postId) {
   const userId = getCurrentUserId();
   const author = getCurrentUserName();
 
-  const postRef = doc(db, "posts", postId);
-  const likesRef = collection(postRef, "likes");
+  const postRef = doc(db, 'posts', postId);
+  const likesRef = collection(postRef, 'likes');
   const newLikeRef = await addDoc(likesRef, {
     userId,
     author,
   });
   const likeId = newLikeRef.id;
 
-  // Update the "likes" field of the post document
+  // Update the 'likes' field of the post document
   await updateDoc(postRef, {
     likes: arrayUnion(likeId),
   });
@@ -190,7 +190,7 @@ async function likePost(postId) {
 //  * @param {*} userId
 //  */
 // async function unlikePost(postId, userId) {
-//   const postRef = doc(db, "posts", postId);
+//   const postRef = doc(db, 'posts', postId);
 //   await updateDoc(postRef, {
 //     likes: arrayRemove(newlikeRef),
 //   });
@@ -203,8 +203,8 @@ async function likePost(postId) {
  */
 async function getLikeCount(postId) {
   // Get the likes subcollection of the post document
-  const postRef = doc(db, "posts", postId);
-  const likesRef = collection(postRef, "likes");
+  const postRef = doc(db, 'posts', postId);
+  const likesRef = collection(postRef, 'likes');
 
   // Get the like count from the server
   const snapshot = await getCountFromServer(likesRef);
@@ -216,115 +216,188 @@ async function getLikeCount(postId) {
  * Get and print each post saved in firestore
  */
 async function getPosts() {
-  const postContainer = document.getElementById("postContainer");
-  postContainer.innerHTML = "";
+  const postContainer = document.getElementById('postContainer');
+  postContainer.innerHTML = '';
 
-  const q = query(collection(db, "posts"), where("privacy", "==", "public"), orderBy("postDate", "desc"));
+  const q = query(collection(db, 'posts'), where('privacy', '==', 'public'), orderBy('postDate', 'desc'));
   const querySnapshot = await getDocs(q);
 
   await Promise.all(
     querySnapshot.docs.map(async (doc) => {
-      // querySnapshot.forEach((doc) => {
       const post = doc.data();
       const postId = doc.id;
 
-      // Create post elements
-      const postArticle = document.createElement("article");
-      postArticle.classList.add("post");
-      const postTitle = document.createElement("h3");
-      postTitle.textContent = post.title;
-      const postTime = document.createElement("time");
-      postTime.textContent = `Vamos el: ${post.dateToStr ? post.dateToStr : 'Indefinida'}`;
-      const postLocation = document.createElement("p");
-      postLocation.textContent = post.location;
-      const postContent = document.createElement("p");
-      postContent.textContent = post.content;
-      const postAuthor = document.createElement("p");
-      postAuthor.textContent = `Propuesto por: ${post.author}`;
-      const postDate = document.createElement("time");
+      // Create post element
+      const cardDiv = document.createElement('div');
+      cardDiv.classList.add('card-feed');
+      
+      const flexBetweenDiv = document.createElement('div');
+      flexBetweenDiv.classList.add('d-flex', 'justify-content-between', 'p-2', 'px-3');
+
+      const flexRowDiv = document.createElement('div');
+      flexRowDiv.classList.add('d-flex', 'flex-row', 'align-items-center');
+
+
+      const flexColDiv = document.createElement('div');
+      flexColDiv.classList.add('d-flex', 'flex-column', 'ml-2');
+
+      const nameSpan = document.createElement('span');
+      nameSpan.classList.add('font-weight-bold');
+      nameSpan.textContent = `Propuesto por: ${post.author}`;
+
+      const smallColleagues = document.createElement('small');
+      smallColleagues.classList.add('text-primary');
+      smallColleagues.textContent = `Lugar: ${post.location ? post.location : 'Indefinida'}`;
+    
+
+      const flexRowEllipsisDiv = document.createElement('div');
+      flexRowEllipsisDiv.classList.add('d-flex', 'flex-row', 'mt-1', 'ellipsis');
+
       const date = post.postDate;
-      postDate.textContent = `Publicado el: ${date ? date : 'Indefinida'}`;
-      const postPrivacy = document.createElement("p");
-      postPrivacy.textContent = `Privacidad: ${post.privacy}`;
-      const postImage = document.createElement("img");
-      postImage.setAttribute('id', 'postImage');
-      postImage.src = post.imageUrl;
-      const postLikes = document.createElement("p");
-      const countLikes = await getLikeCount(postId);
-      postLikes.textContent = `Interesad@s: ${countLikes ? countLikes : 0}`;
-      postContainer.appendChild(postArticle);
+      const smallTimeAgo = document.createElement('small');
+      smallTimeAgo.classList.add('mr-2');
+      smallTimeAgo.textContent = `${date ? date : 'Indefinida'}`;
+
+      const iEllipsis = document.createElement('i');
+      iEllipsis.classList.add('fa', 'fa-ellipsis-h');
+
+      const imgFluid = document.createElement('img');
+      imgFluid.setAttribute('src', post.imageUrl);
+      imgFluid.classList.add('img-fluid', 'postImage');
+      
+      const pDiv = document.createElement('div');
+      pDiv.classList.add('p-2');
+
+      const pTextJustify = document.createElement('p');
+      pTextJustify.classList.add('text-justify');
+      pTextJustify.textContent = post.content;
+      
+      const eventDate = document.createElement('time');
+      eventDate.classList.add('text-justify');
+      eventDate.textContent = `Vamos el: ${post.dateToStr ? post.dateToStr : 'Indefinida'}`;
+
+      const hr1 = document.createElement('hr');
+
+      const flexBetweenIconsDiv = document.createElement('div');
+      flexBetweenIconsDiv.classList.add('d-flex', 'justify-content-between', 'align-items-center');
+
+      const flexRowIconsDiv = document.createElement('div');
+      flexRowIconsDiv.classList.add('d-flex', 'flex-row', 'icons', 'd-flex', 'align-items-center');
+
+      const likeButton = document.createElement('button');
+      likeButton.setAttribute('id', 'like' + postId);
+      likeButton.classList.add('btn-icon');
+      const iHeart = document.createElement('i');
+      iHeart.classList.add('fa', 'fa-grin-stars', 'fa-sm');
+    
+      likeButton.addEventListener('click', () => {
+        likePost(postId).then(() => {
+          getPosts();
+
+        })
+
+      });
+
+
+      const flexRowMutedDiv = document.createElement('div');
+      flexRowMutedDiv.classList.add('d-flex', 'flex-row', 'muted-color');
 
       // Create edit button
-      const editButton = document.createElement("button");
-      editButton.textContent = "Editar";
-      editButton.setAttribute("id", "edit" + postId);
-      editButton.addEventListener("click", () => {
-        console.log("postid:", postId);
-        console.log("post: ", post);
-        router.navigateTo("/post/edit");
+      const editButton = document.createElement('button');
+      editButton.setAttribute('id', 'edit' + postId);
+      editButton.classList.add('btn-icon');
+      const iEdit = document.createElement('i');
+      iEdit.classList.add('fa', 'fa-pen', 'fa-sm');
+      editButton.addEventListener('click', () => {
+        console.log('postid:', postId);
+        console.log('post: ', post);
+        router.navigateTo('/post/edit');
         // editPost(postId, post);
       });
 
       // Create delete button
-      const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Eliminar";
-      deleteButton.setAttribute("id", "delete" + postId);
-      deleteButton.addEventListener("click", () => {
+      const deleteButton = document.createElement('button');
+      deleteButton.setAttribute('id', 'delete' + postId);
+      deleteButton.classList.add('btn-icon');
+      const iDelete = document.createElement('i');
+      iDelete.classList.add('fa', 'fa-trash', 'fa-sm');
+
+      deleteButton.addEventListener('click', () => {
         deletePost(postId);
       });
 
-      // Create like button
-      const likeButton = document.createElement("button");
-      likeButton.textContent = "Interesante";
-      likeButton.setAttribute("id", "like" + postId);
-      likeButton.addEventListener("click", () => {
-        likePost(postId).then( () => {
-          getPosts();
-        })
-        
-      });
+
+      const spanLikes = document.createElement('span');
+      const countLikes = await getLikeCount(postId);
+      spanLikes.textContent = `${countLikes ? countLikes : 0}`
 
 
-      //Create a article element to display comments.
-      const commentContainer = document.createElement("article");
-      commentContainer.setAttribute("id", "commentContainer");
+      const hr2 = document.createElement('hr');
+ 
+      const commentsArt = document.createElement('article');
+      commentsArt.classList.add('comments');
+      commentsArt.setAttribute('id', 'comment' + postId);
 
-      // Create comment section
-      const commentSection = document.createElement("form");
-      commentSection.classList.add("comment-section");
-      const commentInput = document.createElement("input");
-      commentInput.type = "text";
-      commentInput.placeholder = "Agrega un Comentario...";
-      const commentButton = document.createElement("button");
-      commentButton.textContent = "Comentario";
-      commentButton.addEventListener("click", () => {
-        addComment(postId, commentInput.value);
-        commentInput.value = "";
-      });
-      const commentsList = document.createElement("ul");
-      commentsList.setAttribute('id', 'commentsList' + postId);
-      const footer = document.createElement("footer");
+      const commentsDiv = document.createElement('div');
       
+      const commentForm = document.createElement('form');
+      commentForm.className = 'comment-input';
+      const inputElement = document.createElement('input');
+      inputElement.type = 'text';
+      inputElement.placeholder = 'Agrega un Comentario...';
+      inputElement.classList.add('form-control', 'comInput');
+
+      const fontsDiv = document.createElement('div');
+      fontsDiv.className = 'fonts';
+
+      const commentButton = document.createElement('button');
+      commentButton.classList.add('btn-icon');
+      const imgComment1 = document.createElement('i');
+      imgComment1.className = 'fa fa-comment-pen fa-sm';
+      commentButton.addEventListener('click', () => {
+        addComment(postId, inputElement.value);
+        inputElement.value = '';
+      });
+
+
       // Add HTML elements to post container
-      postArticle.appendChild(postTitle);
-      postArticle.appendChild(postLocation);
-      postArticle.appendChild(postTime);
-      postArticle.appendChild(postImage);
-      postArticle.appendChild(postContent);
-      postArticle.appendChild(postAuthor);
-      postArticle.appendChild(postDate);
-      postArticle.appendChild(postPrivacy);
-      postArticle.appendChild(postLikes);
-      postArticle.appendChild(editButton);
-      postArticle.appendChild(deleteButton);
-      postArticle.appendChild(likeButton);
-      commentSection.appendChild(commentInput);
-      commentSection.appendChild(commentButton);
-      footer.appendChild(commentsList);
-      postArticle.appendChild(footer);
-      postArticle.appendChild(commentSection);
-      postContainer.appendChild(postArticle);
+
+      likeButton.appendChild(iHeart);
+      flexRowIconsDiv.appendChild(likeButton);
+      flexRowIconsDiv.appendChild(spanLikes);
+      editButton.appendChild(iEdit);
+      flexRowMutedDiv.appendChild(editButton);
+      deleteButton.appendChild(iDelete);
+      flexRowMutedDiv.appendChild(deleteButton);
+      flexBetweenIconsDiv.appendChild(flexRowIconsDiv);
+      flexBetweenIconsDiv.appendChild(flexRowMutedDiv);
+
+      commentButton.appendChild(imgComment1);
+      fontsDiv.appendChild(commentButton);
+      commentForm.appendChild(inputElement);
+      commentForm.appendChild(fontsDiv);
+      commentsDiv.appendChild(commentForm);
+      pDiv.appendChild(pTextJustify);
+      pDiv.appendChild(hr1);
+      pDiv.appendChild(flexBetweenIconsDiv);
+      pDiv.appendChild(hr2);
+      pDiv.appendChild(commentsArt);
+      pDiv.appendChild(commentsDiv);
+      flexRowEllipsisDiv.appendChild(smallTimeAgo);
+      flexRowEllipsisDiv.appendChild(iEllipsis);
+      flexColDiv.appendChild(nameSpan);
+      flexColDiv.appendChild(smallColleagues);
+      flexRowDiv.appendChild(flexColDiv);
+      flexBetweenDiv.appendChild(flexRowDiv);
+      flexBetweenDiv.appendChild(flexRowEllipsisDiv);
+      cardDiv.appendChild(flexBetweenDiv);
+      cardDiv.appendChild(imgFluid);
+      cardDiv.appendChild(pDiv);
+      postContainer.appendChild(cardDiv)
+
       await getComments(postId);
+
+
     })
   );
 }
@@ -334,11 +407,12 @@ async function getPosts() {
  * @param {*} postId
  */
 async function getComments(postId) {
-  const commentsList = document.getElementById('commentsList' + postId);
-  commentsList.innerHTML = "";
+  console.log('postId: ', postId);
+  const comments = document.getElementById('comment' + postId);
+  comments.innerHTML = '';
 
-  const postRef = doc(db, "posts", postId);
-  const commentsRef = collection(postRef, "comments");
+  const postRef = doc(db, 'posts', postId);
+  const commentsRef = collection(postRef, 'comments');
 
   const querySnapshot = await getDocs(commentsRef);
 
@@ -346,25 +420,35 @@ async function getComments(postId) {
     querySnapshot.docs.map(async (doc) => {
 
       const comment = doc.data();
-      // const commentId = doc.id;
 
-      // Create commet elements
+      const flexRowComment1Div = document.createElement('div');
+      flexRowComment1Div.classList.add('d-flex', 'flex-row', 'mb-2');
 
-      const commentArticle = document.createElement("article");
-      commentArticle.classList.add("post");
-      const commentContent = document.createElement("p");
-      commentContent.textContent = comment.text;
-      const commentAuthor = document.createElement("p");
-      commentAuthor.textContent = `Propuesto por: ${comment.author}`;
-      const commentDate = document.createElement("time");
+      const commentDiv1 = document.createElement('div');
+      commentDiv1.className = 'd-flex flex-row mb-2';
+
+      const nameComment = document.createElement('span');
+      nameComment.className = 'name';
+      nameComment.textContent = comment.author;
+
+      const commentTextSmall = document.createElement('small');
+      commentTextSmall.className = 'comment-text';
+      commentTextSmall.textContent = comment.text;
+
+      const statusDiv = document.createElement('div');
+      statusDiv.className = 'd-flex flex-row align-items-center status';
+
+      const timeSmall = document.createElement('small');
       const dateComment = comment.createdAt;
-      commentDate.textContent = `Publicado el: ${dateComment ? dateComment : 'Indefinida'}`;
-      const commentItem = document.createElement('li');
-      commentArticle.appendChild(commentContent);
-      commentArticle.appendChild(commentAuthor);
-      commentArticle.appendChild(commentDate);
-      commentItem.appendChild(commentArticle);
-      commentsList.appendChild(commentItem);
+      timeSmall.textContent = `${dateComment ? dateComment : 'Indefinida'}`;
+
+      commentDiv1.appendChild(nameComment);
+      commentDiv1.appendChild(commentTextSmall);
+      statusDiv.appendChild(timeSmall);
+      commentDiv1.appendChild(statusDiv);
+      flexRowComment1Div.appendChild(commentDiv1);
+      comments.appendChild(flexRowComment1Div);
+
     })
   );
 }

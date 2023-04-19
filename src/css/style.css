@@ -164,10 +164,6 @@ h5, #copy {
 }
 
 
-/* POST 
--------------------------------------------------- */
-
-
 
 /* ABOUT US */
 .background-aboutus{
@@ -184,6 +180,7 @@ h5, #copy {
 .card {
   border-radius: .7rem;
 }
+
 /* END ABOUT US*/
 
 /* FORM */
@@ -326,7 +323,85 @@ h5, #copy {
 #navbar-feed {
   background-color: black;
   color: white;
+  padding: 0%;
 }
+
+.card-feed {
+  border: none;
+  margin-bottom: 3rem;
+}
+
+.ellipsis {
+  color: #a09c9c;
+}
+
+hr {
+  color: #a09c9c;
+  margin-top: 4px;
+  margin-bottom: 8px
+}
+
+
+
+.ellipsis i {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.btn-icon {
+  font-size: 25px;
+  border: none;
+  background-color: transparent;
+}
+
+.fa-grin-stars {
+  color:#50cacead
+}
+
+.fa-pen{
+  color: #ef64b3af
+}
+
+.fa-trash{
+  color: #a09c9c;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.comment-text {
+  font-size: 12px;
+}
+
+.status small {
+  margin-right: 10px;
+  color: #5ce1e6;
+}
+
+.form-control {
+  border-radius: 26px;
+}
+
+.comment-input {
+  position: relative
+}
+
+
+.fonts { 
+  position: absolute;
+  right: 13px;
+  top:8px;
+  color: #a09c9c
+}
+
+.comInput:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #8bbafe;
+  outline: 0;
+  box-shadow: none;
+} 
 
 
 /* CREATE POST 
@@ -335,9 +410,14 @@ h5, #copy {
   padding-bottom: 0px;
 }
 
+.border-bottom {
+  margin-left: 11rem; 
+}
+
 #addPostForm{
   background-image: url("../images/post/fondoa.png");
   background-size: cover;
+  margin: 0%;
 }
 
 #addPostButton {
@@ -368,13 +448,16 @@ div.container:nth-child(1) {
 }
 
 
+/* RESPONSIVE 
+------------------------- */
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
 
   .navbar {
-    padding: 0 0 3rem;
+    padding: 0
   }
 }
 
