@@ -47,10 +47,10 @@ export const post =
 
 <!-- Form Create Post -->
 <section id="addPostForm">
-<div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+<div class="container px-4 py-5 px-md-5 justify-content-center text-lg-start my-5">
     <div class="row gx-lg-5 align-items-center mb-5">
-        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-            <div class="card bg-glass">
+        <div id="box" class="col-lg-9 mb-5 mb-lg-0 position-relative">
+            <div class="card-post bg-glass-post">
                 <div class="card-body px-4 py-5 px-md-5">
                   <h2 class="text-center" style="color: #82C173">Cuéntale a tus amigos qué quieres hacer</h2><br>
                     <form method="POST" enctype="multipart/form-data">
@@ -91,7 +91,7 @@ export const post =
                     </div>
                         <!-- Submit button -->
                         <div class="form-check d-flex justify-content-center mb-4">
-                            <button id="addPostButton" class="btn btn-primary btn-block mb-4" type="submit">Create
+                            <button id="addPostButton" class="btn-outsy" type="submit">Guarda
                                 post</button>
                         </div>
 

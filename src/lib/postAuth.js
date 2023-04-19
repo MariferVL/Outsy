@@ -180,8 +180,6 @@ async function likePost(postId) {
     likes: arrayUnion(likeId),
   });
 
-  await getPosts();
-
   return likeId;
 
 }
@@ -280,7 +278,10 @@ async function getPosts() {
       likeButton.textContent = "Interesante";
       likeButton.setAttribute("id", "like" + postId);
       likeButton.addEventListener("click", () => {
-        likePost(postId);
+        likePost(postId).then( () => {
+          getPosts();
+        })
+        
       });
 
 

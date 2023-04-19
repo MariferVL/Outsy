@@ -1,7 +1,6 @@
-import { handleSignUp, toggleSignIn, signInWithGoogle } from './lib/emailAuth.js';
+import {handleSignUp, toggleSignIn, signInWithGoogle} from './lib/emailAuth.js'
 import { listenPostForm } from './js/postDOM.js';
 import Router from './router/router.js';
-
 
 
 const router = new Router();
@@ -65,11 +64,35 @@ document.addEventListener('DOMContentLoaded', function () {
     router.navigateTo('/about');
   };
 
+  //FIXME: Cargar imagen loading
+  // /* <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_poqmycwy.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player> */
+
+  // const loadingImage = document.createElement('lottie-player');
+  // loadingImage.className = "loading";
+  // loadingImage.src = 'https://assets10.lottiefiles.com/packages/lf20_poqmycwy.json';
+  // loadingImage.background = "transparent";
+  // loadingImage.speed = "1";
+  // loadingImage.autoplay = true;
+  // loadingImage.loop = true;
+
+  // // Add the image element to the DOM
+  // document.body.appendChild(loadingImage);
+
+  // // Wait for the SPA to fully load
+  // window.addEventListener('load', function() {
+  //   // Remove the image element from the DOM
+  //   document.body.removeChild(loadingImage);
+  // })
+
   document.getElementById('signIn').addEventListener('click', signInHandler);
   document.getElementById('signUp').addEventListener('click', signUpHandler);
-  // document.getElementById('signUp2').addEventListener('click', signUpHandler);
   document.getElementById('about').addEventListener('click', aboutHandler);
 })()
+
+
+/**
+ * Create an image element while the SPA is being loaded.
+ */
 
 
 /**
@@ -204,6 +227,9 @@ async function listenForm(formID, buttonID) {
 
   return formID, email, password;
 }
+
+
+
 
 
 /**

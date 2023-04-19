@@ -2,29 +2,56 @@ export const about = `
 <!-- Navbar -->
 <section id="base">
   <div class="container">
-    <header id="home"
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <img src="images/outsylogo.png" alt="Logo" height="75" class="d-inline-block align-text-top">
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i
-          class="fas fa-angle-double-down fa-lg" style="color: #82c173;"></i>
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-          <li><a id="home" class="nav-link px-2 link-secondary">Home</a></li>
-          <li><a href="#features" class="nav-link px-2 link-dark">Características</a></li>
-          <li><a id="about" class="nav-link px-2 link-dark">Nosotros</a></li>
-          <li><a href="#testimonials" class="nav-link px-2 link-dark">Testimonios</a></li>
-          <li><a id="FAQs" class="nav-link px-2 link-dark">Ventajas</a></li>
-          <li> <button id="signIn" type="button" class="btn btn-outline-primary me-2">Inicia Sesión</button></li>
-          <li><button id="signUp" type="button" class="btn btn-primary">Registrate</button></li>
-        </ul>
-      </div>
+    <header id="home">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#home">
+                <img src="images/outsylogo.png" alt="Logo Outsy" height="75">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="características" href="#features">Características</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="about" class="nav-link" href="#">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonios</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="signIn" type="button" class="btn-outsy">Inicia Sesión</button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="signUp" type="button" class="btn-outsy">Registrate</button>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> -->
+                    <!-- <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li> -->
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button  class="btn-search" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+      </nav>
     </header>
   </div>
 

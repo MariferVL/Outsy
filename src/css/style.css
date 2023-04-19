@@ -6,29 +6,33 @@ body {
   color: #5a5a5a;
 }
 
-header {
-  overflow: hidden;
-  padding: 2rem 1rem;
-  transition: 0.4s;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  right: 0;
-  z-index: 99;
+#main{
+  margin-top: 8rem;
 }
+
+.loading {
+width: 19rem;
+height: 19rem;;
+}
+
 
 .carousel img{
   object-fit: cover;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
-.form-control-dark {
-  border-color: var(--bs-gray);
+
+.form-control:focus,.form-check-input:focus {
+  border-color: #f542a77d;
+  box-shadow: 0 0 0 .25rem #f542a742;
 }
-.form-control-dark:focus {
-  border-color: #fff;
-  box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+
+.form-check-input:checked {
+  background-color: #f542a742;
+  border-color: #ffffff;
 }
+
+
 
 .text-small {
   font-size: 85%;
@@ -73,14 +77,73 @@ header {
 
 /* NAVBAR
 ---------------------------------------------------*/
-#navbar-home{
-  background-color: transparent;
-  color:black
+header {
+  overflow: hidden;
+  padding: 2rem 1rem;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 99;
 }
 
-#signIn, #signUp, #registrate {
-  background-color: #F542A8;
-  border: #F542A8;
+#logo{
+  margin-right: 7rem;
+}
+
+.nav-link{
+  color: #42aaad !important;
+  font-weight: bolder;
+  font-size: 1rem;
+  margin: 0 1.1rem;
+}
+
+
+
+
+.btn-outsy {
+  background: transparent;
+  border-color: #f542a8;
+  margin: 0 0.4rem;
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  text-shadow: 1px 1px 3px #ffffff;
+  -webkit-box-shadow: 0px 1px 3px #cec9d1;
+  -moz-box-shadow: 0px 1px 3px #cec9d1;
+  box-shadow: 0px 1px 3px #cec9d1;
+  color: #f542a8;
+  font-size: 13px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.btn-outsy:hover {
+  background: #5ce1e6;
+  text-decoration: none;
+  border: none;
+  color: white;
+}
+
+.btn-search {
+  background: transparent;
+  border-color: #f542a8;
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  color: #f542a8;
+  font-size: 13px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.btn-search:hover {
+  background: #5ce1e6;
+  text-decoration: none;
+  border: none;
   color: white;
 }
 
@@ -91,14 +154,20 @@ header {
   color: black;
 }
 
+h5, #copy {
+  color:#42aaad;
+}
+
+.svg-inline--fa {
+  font-size: 2rem;
+  margin: 0 1rem;
+}
+
 
 /* POST 
 -------------------------------------------------- */
 
-#postImage{
-  width: 544px;
-  height: 544px;
-}
+
 
 /* ABOUT US */
 .background-aboutus{
@@ -146,6 +215,10 @@ header {
 .bg-glass {
   background-color: hsla(0, 0%, 100%, 0.9) !important;
   backdrop-filter: saturate(200%) blur(25px);
+}
+
+.emailImg {
+  width: 100%;
 }
 
 
@@ -234,17 +307,11 @@ header {
 /* Forms SignIn & Sign Up  
 ------------------------- */
 
-#sign-in, #sign-up {
-  background-color: #F542A8;
-  border: #F542A8;
-  color: white;
+
+#signInView, #signUpView{
+  margin-top: 8rem;
 }
 
-#googleAuth {
-  border: #F542A8;
-  background-color: white;
-  color: #F542A8;
-}
 
 /* FEED 
 ------------------------- */
@@ -264,10 +331,13 @@ header {
 
 /* CREATE POST 
 ------------------------- */
+.navbar {
+  padding-bottom: 0px;
+}
 
 #addPostForm{
   background-image: url("../images/post/fondoa.png");
-  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #addPostButton {
@@ -276,8 +346,28 @@ header {
   color: white;
 }
 
-/* RESPONSIVE CSS
--------------------------------------------------- */
+.bg-glass-post {
+  background-color: hsla(0, 0%, 100%, 0.9) !important;
+  backdrop-filter: saturate(200%) blur(0.3rem);
+}
+
+
+div.container:nth-child(1) {
+  margin: 0rem !important;
+}
+
+
+.card-post {
+  padding: 2rem 6rem;
+  margin-left: 1rem;
+}
+
+
+#box {
+  margin-left: 10rem;
+}
+
+
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
