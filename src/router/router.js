@@ -15,6 +15,7 @@ class Router {
       this.container.innerHTML = route.template;
       document.title = route.title;
       window.history.pushState({ path }, '', path);
+      window.scrollTo(0, 0);
     }
   }
 

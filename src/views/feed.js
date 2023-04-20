@@ -1,10 +1,12 @@
+import outsylogo from "../images/outsylogo.png";
+
 export const feed = `  
  
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-dark">
 <div class="container-fluid " id="navbar-feed">
   <a class="navbar-brand" href="">
-    <img src="images/outsylogo.png" alt="Logo" height="75" class="d-inline-block align-text-top">
+    <img src="${outsylogo}" alt="Logo" height="75" class="d-inline-block align-text-top">
   </a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

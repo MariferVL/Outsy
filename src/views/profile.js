@@ -1,4 +1,3 @@
-
 export const profile = `
 <body class="bg-light">
     

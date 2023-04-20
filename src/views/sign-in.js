@@ -1,3 +1,6 @@
+import outsylogo from "../images/outsylogo.png";
+
+
 export const signIn = `
 <<!-- Navbar -->
 <section id="base">
@@ -6,7 +9,7 @@ export const signIn = `
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#home">
-                <img src="images/outsylogo.png" alt="Logo Outsy" height="75">
+                <img src="${outsylogo}" alt="Logo Outsy" height="75">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

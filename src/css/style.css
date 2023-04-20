@@ -100,8 +100,6 @@ header {
 }
 
 
-
-
 .btn-outsy {
   background: transparent;
   border-color: #f542a8;
@@ -333,7 +331,8 @@ h5, #copy {
 
 .card-feed {
   border: none;
-  margin-bottom: 3rem;
+  margin-bottom: 3.3rem;
+
 }
 
 .ellipsis {
@@ -345,6 +344,7 @@ hr {
   margin-top: 4px;
   margin-bottom: 8px
 }
+
 
 .ellipsis i {
   margin-top: 3px;
@@ -358,11 +358,15 @@ hr {
 }
 
 .location {
-  color:#46b9bd
+  color: #5ce1e6;
 }
 
 .fa-grin-stars {
   color:#50cacead
+}
+
+#likes {
+  margin: 0 0 0.3rem -0.3rem;
 }
 
 .fa-pen{
@@ -379,11 +383,12 @@ hr {
 
 .comment-text {
   font-size: 12px;
+  margin: 0.3rem 1rem;
 }
 
 .status small {
-  margin-right: 10px;
   color: #5ce1e6;
+  margin: 0.3rem 0 0 18rem;
 }
 
 .form-control {
@@ -418,7 +423,7 @@ hr {
 }
 
 .border-bottom {
-  margin-left: 11rem; 
+  margin: 3rem 0 0 11rem;
 }
 
 #addPostForm{

@@ -1,3 +1,17 @@
+import outsylogo from "../images/outsylogo.png";
+import carrusela from "../images/home/carrusela.png";
+import carruselb from "../images/home/carruselb.png";
+import carruselc from "../images/home/carruselc.png";
+import featuresa from "../images/home/featuresa.png";
+import featuresb from "../images/home/featuresb.png";
+import featuresc from "../images/home/featuresc.png";
+import testimonioa from "../images/home/testimonioa.png";
+import testimoniob from "../images/home/testimoniob.png";
+import testimonioc from "../images/home/testimonioc.png";
+
+
+
+
 export const home = `
 <!-- Navbar -->
 <section id="base">
@@ -6,7 +20,7 @@ export const home = `
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#home">
-                <img src="images/outsylogo.png" alt="Logo Outsy" height="75">
+                <img src="${outsylogo}" alt="Logo Outsy" height="75">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -68,7 +82,7 @@ export const home = `
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="images/home/carrusela.png" width="100%">
+            <img src="${carrusela}" width="100%">
             <div class="container">
               <div class="carousel-caption text-start">
              
@@ -76,7 +90,7 @@ export const home = `
             </div>
           </div>
           <div class="carousel-item">
-            <img class="bd-placeholder-img" width="100%" height="100%" src="images/home/carruselb.png"
+            <img class="bd-placeholder-img" width="100%" height="100%" src="${carruselb}"
               aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
               <rect width="100%" height="100%" fill="#777" />
             <div class="container">
@@ -86,7 +100,7 @@ export const home = `
             </div>
           </div>
           <div class="carousel-item">
-          <img class="bd-placeholder-img" width="100%" height="100%" src="images/home/carruselc.png"
+          <img class="bd-placeholder-img" width="100%" height="100%" src="${carruselc}"
           aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
           <rect width="100%" height="100%" fill="#777" />
             <div class="container">
@@ -120,7 +134,7 @@ export const home = `
           </div>
           <div class="col-md-5">
             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-              height="500" src="images/home/featuresa.png" 
+              height="500" src="${featuresa}" 
               preserveAspectRatio="xMidYMid slice" focusable="false">
               <title>Placeholder</title>
               <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text>
@@ -137,7 +151,7 @@ export const home = `
           </div>
           <div class="col-md-5 order-md-1">
             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-              height="500" src="images/home/featuresb.png" 
+              height="500" src="${featuresb}" 
               preserveAspectRatio="xMidYMid slice" focusable="false">
               <title>Placeholder</title>
               <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text>
@@ -156,7 +170,7 @@ export const home = `
           </div>
           <div class="col-md-5">
             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-              height="500" src="images/home/featuresc.png" 
+              height="500" src="${featuresc}" 
               preserveAspectRatio="xMidYMid slice" focusable="false">
               <title>Placeholder</title>
               <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text>
@@ -188,7 +202,7 @@ export const home = `
                 <div class="row">
                   <div class="col-lg-4">
                     <img class="rounded-circle shadow-1-strong mb-4"
-                      src="images/home/testimonioa.png" alt="avatar" />
+                      src="${testimonioa}" alt="avatar" />
                     <h5 class="mb-3">Ana</h5>
                     <p class="text-muted">
                       <i class="fas fa-quote-left pe-2"></i>
@@ -206,7 +220,7 @@ export const home = `
 
                   <div class="col-lg-4 d-none d-lg-block">
                     <img class="rounded-circle shadow-1-strong mb-4"
-                    src="images/home/testimoniob.png"  alt="avatar" />
+                    src="${testimoniob}"  alt="avatar" />
                     <h5 class="mb-3">Daniel</h5>
 
                     <p class="text-muted">
@@ -227,7 +241,7 @@ export const home = `
 
                   <div class="col-lg-4 d-none d-lg-block">
                     <img class="rounded-circle shadow-1-strong mb-4"
-                    src="images/home/testimonioc.png"  alt="avatar" />
+                    src="${testimonioc}"  alt="avatar" />
                     <h5 class="mb-3">Maria</h5>
                     <p class="text-muted">
                       <i class="fas fa-quote-left pe-2"></i>

@@ -1,3 +1,10 @@
+import outsylogo from "../images/outsylogo.png";
+import marifer from "../images/about/marifer.png";
+import xochitl from "../images/about/xochitl.png";
+import gaby from "../images/about/gaby.png";
+
+
+
 export const about = `
 <!-- Navbar -->
 <section id="base">
@@ -6,7 +13,7 @@ export const about = `
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#home">
-                <img src="images/outsylogo.png" alt="Logo Outsy" height="75">
+                <img src="${outsylogo}" alt="Logo Outsy" height="75">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -75,7 +82,7 @@ export const about = `
         <div class="card">
           <div class="card-body py-4 mt-2">
             <div class="d-flex justify-content-center mb-4">
-              <img src= "images/about/marifer.png"
+              <img src= "${marifer}"
                 class="photos-about shadow-1-strong" width="100" height="100" />
             </div>
             <h5 class="font-weight-bold">Marifer</h5>
@@ -93,7 +100,7 @@ export const about = `
         <div class="card">
           <div class="card-body py-4 mt-2">
             <div class="d-flex justify-content-center mb-4">
-              <img src="images/about/xochitl.png"
+              <img src="${xochitl}"
                 class="photos-about shadow-1-strong" width="100" height="100" />
             </div>
             <h5 class="font-weight-bold">Xochitl</h5>
@@ -110,7 +117,7 @@ export const about = `
         <div class="card">
           <div class="card-body py-4 mt-2">
             <div class="d-flex justify-content-center mb-4">
-              <img src="images/about/gaby.png"
+              <img src="${gaby}"
                 class="photos-about shadow-1-strong" width="100" height="100" />
             </div>
             <h5 class="font-weight-bold">Gaby</h5>
