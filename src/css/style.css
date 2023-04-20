@@ -32,8 +32,6 @@ height: 19rem;;
   border-color: #ffffff;
 }
 
-
-
 .text-small {
   font-size: 85%;
 }
@@ -361,7 +359,7 @@ hr {
   color: #5ce1e6;
 }
 
-.fa-grin-stars {
+.fa-grin-stars, .fa-comment {
   color:#50cacead
 }
 
@@ -400,11 +398,13 @@ hr {
 }
 
 
+
 .fonts { 
   position: absolute;
   right: 13px;
   top:8px;
-  color: #a09c9c
+  color: #a09c9c;
+  top: 0px;
 }
 
 .comInput:focus {
