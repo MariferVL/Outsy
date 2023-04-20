@@ -5,7 +5,7 @@
   },
   "hosting": {
     "site": "outsy",
-    "public": "src",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",

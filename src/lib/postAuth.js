@@ -107,11 +107,43 @@ async function createPost(title, date, location, content, image, privacy) {
  * @param {*} privacy
  */
 async function editPost(postId, post) {
-  await collection('posts').doc(postId).updateDoc({
-    title,
-    content,
-    privacy,
-  });
+
+  const titleInput = document.getElementById('postTitle');
+  titleInput.value = post.title;
+  const eventDateInput = document.getElementById('postTime');
+  eventDateInput.value = post.postDate;
+  const locationInput = document.getElementById('postLocation');
+  locationInput.value = post.location;
+  const contentInput = document.getElementById('postContent');
+  contentInput.value = post.content;
+  const privacyInput = document.getElementById('postPrivacy');
+  privacyInput.value = post.privacy;
+  
+ 
+
+  document.getElementById('addPostButton').addEventListener('click', async (event) => {
+    event.preventDefault();
+    const title = document.getElementById('postTitle').value;
+    const postDate = document.getElementById('postTime').value;
+    const location = document.getElementById('postLocation').value;
+    const content = document.getElementById('postContent').value;
+    const privacy = document.getElementById('postPrivacy').value;
+
+    const postRef = doc(db, 'posts', postId);
+
+
+    await updateDoc(postRef, {
+      title,
+      postDate,
+      location,
+      content,
+      privacy,
+    });
+
+    router.navigateTo('/feed');
+    await getPosts(router);
+});
+    
 }
 
 /**
@@ -230,13 +262,12 @@ async function getPosts() {
       // Create post element
       const cardDiv = document.createElement('div');
       cardDiv.classList.add('card-feed');
-      
+
       const flexBetweenDiv = document.createElement('div');
       flexBetweenDiv.classList.add('d-flex', 'justify-content-between', 'p-2', 'px-3');
 
       const flexRowDiv = document.createElement('div');
       flexRowDiv.classList.add('d-flex', 'flex-row', 'align-items-center');
-
 
       const flexColDiv = document.createElement('div');
       flexColDiv.classList.add('d-flex', 'flex-column', 'ml-2');
@@ -246,16 +277,16 @@ async function getPosts() {
       nameSpan.textContent = `Propuesto por: ${post.author}`;
 
       const smallColleagues = document.createElement('small');
-      smallColleagues.classList.add('text-primary', "location");
-      smallColleagues.textContent = `Lugar: ${post.location ? post.location : 'Indefinida'}`;
-    
+      smallColleagues.setAttribute('id',"title"  + postId);
+      smallColleagues.textContent = post.title;
 
       const flexRowEllipsisDiv = document.createElement('div');
       flexRowEllipsisDiv.classList.add('d-flex', 'flex-row', 'mt-1', 'ellipsis');
 
       const date = post.postDate;
       const smallTimeAgo = document.createElement('small');
-      smallTimeAgo.classList.add('mr-2');
+      smallTimeAgo.classList.add('mr-2'); + postId
+      smallTimeAgo.setAttribute('id',"location"  + postId);
       smallTimeAgo.textContent = `${date ? date : 'Indefinida'}`;
 
       const iEllipsis = document.createElement('i');
@@ -263,16 +294,23 @@ async function getPosts() {
 
       const imgFluid = document.createElement('img');
       imgFluid.setAttribute('src', post.imageUrl);
+      imgFluid.setAttribute('id',"postImg"  + postId);
       imgFluid.classList.add('img-fluid', 'postImage');
-      
+
       const pDiv = document.createElement('div');
       pDiv.classList.add('p-2');
 
       const pTextJustify = document.createElement('p');
+      pTextJustify.setAttribute('id',"postContent" + postId);
       pTextJustify.classList.add('text-justify');
       pTextJustify.textContent = post.content;
-      
+
+      const locationSmall = document.createElement('p');
+      smallColleagues.setAttribute('id',"location"  + postId);
+      locationSmall.textContent = `Lugar: ${post.location ? post.location : 'Indefinida'}`;
+
       const eventDate = document.createElement('time');
+      eventDate.setAttribute('id',"eventDate"  + postId);
       eventDate.classList.add('text-justify');
       eventDate.textContent = `Vamos el: ${post.dateToStr ? post.dateToStr : 'Indefinida'}`;
 
@@ -289,13 +327,11 @@ async function getPosts() {
       likeButton.classList.add('btn-icon');
       const iHeart = document.createElement('i');
       iHeart.classList.add('fa', 'fa-grin-stars', 'fa-sm');
-    
+
       likeButton.addEventListener('click', () => {
         likePost(postId).then(() => {
           getPosts();
-
         })
-
       });
 
 
@@ -312,7 +348,7 @@ async function getPosts() {
         console.log('postid:', postId);
         console.log('post: ', post);
         router.navigateTo('/post/edit');
-        // editPost(postId, post);
+        editPost(postId, post);
       });
 
       // Create delete button
@@ -328,18 +364,19 @@ async function getPosts() {
 
 
       const spanLikes = document.createElement('span');
+      spanLikes.setAttribute("id", "likes");
       const countLikes = await getLikeCount(postId);
       spanLikes.textContent = `${countLikes ? countLikes : 0}`
 
 
       const hr2 = document.createElement('hr');
- 
+
       const commentsArt = document.createElement('article');
       commentsArt.classList.add('comments');
       commentsArt.setAttribute('id', 'comment' + postId);
 
       const commentsDiv = document.createElement('div');
-      
+
       const commentForm = document.createElement('form');
       commentForm.className = 'comment-input';
       const inputElement = document.createElement('input');
@@ -353,7 +390,7 @@ async function getPosts() {
       const commentButton = document.createElement('button');
       commentButton.classList.add('btn-icon');
       const imgComment1 = document.createElement('i');
-      imgComment1.className = 'fa fa-comment-pen fa-sm';
+      imgComment1.className = 'fa fa-comment fa-sm';
       commentButton.addEventListener('click', () => {
         addComment(postId, inputElement.value);
         inputElement.value = '';
@@ -378,6 +415,8 @@ async function getPosts() {
       commentForm.appendChild(fontsDiv);
       commentsDiv.appendChild(commentForm);
       pDiv.appendChild(pTextJustify);
+      pDiv.appendChild(locationSmall);
+      pDiv.appendChild(eventDate);
       pDiv.appendChild(hr1);
       pDiv.appendChild(flexBetweenIconsDiv);
       pDiv.appendChild(hr2);
