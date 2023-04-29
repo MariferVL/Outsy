@@ -478,6 +478,7 @@ async function getComments(postId) {
       statusDiv.className = 'd-flex flex-row align-items-center status';
 
       const timeSmall = document.createElement('small');
+      timeSmall.className = "commentDate";
       const dateComment = comment.createdAt;
       timeSmall.textContent = `${dateComment ? dateComment : 'Indefinida'}`;
 

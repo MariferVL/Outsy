@@ -6,23 +6,25 @@ body {
   color: #5a5a5a;
 }
 
-#main{
+#main {
   margin-top: 8rem;
 }
 
 .loading {
-width: 19rem;
-height: 19rem;;
+  width: 19rem;
+  height: 19rem;
+  ;
 }
 
 
-.carousel img{
+.carousel img {
   object-fit: cover;
   opacity: 0.9;
 }
 
 
-.form-control:focus,.form-check-input:focus {
+.form-control:focus,
+.form-check-input:focus {
   border-color: #f542a77d;
   box-shadow: 0 0 0 .25rem #f542a742;
 }
@@ -49,7 +51,7 @@ height: 19rem;;
   user-select: none;
 }
 
-.rounded-circle{
+.rounded-circle {
   width: 150px;
 }
 
@@ -86,11 +88,11 @@ header {
   z-index: 99;
 }
 
-#logo{
+#logo {
   margin-right: 7rem;
 }
 
-.nav-link{
+.nav-link {
   color: #42aaad !important;
   font-weight: bolder;
   font-size: 1rem;
@@ -150,8 +152,9 @@ header {
   color: black;
 }
 
-h5, #copy {
-  color:#42aaad;
+h5,
+#copy {
+  color: #42aaad;
 }
 
 .svg-inline--fa {
@@ -162,13 +165,13 @@ h5, #copy {
 
 
 /* ABOUT US */
-.aboutus{
+.aboutus {
   background-image: url("../images/about/fonabaut.png");
   background-size: cover;
 }
 
-#about-text{
-  color:white;
+#about-text {
+  color: white;
   font-family: "Roboto", sans-serif;
 }
 
@@ -222,6 +225,7 @@ h5, #copy {
 .carousel {
   margin-bottom: 4rem;
 }
+
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   bottom: 3rem;
@@ -243,11 +247,13 @@ h5, #copy {
   margin-bottom: 1.5rem;
   text-align: center;
 }
+
 /* rtl:begin:ignore */
 .marketing .col-lg-4 p {
   margin-right: .75rem;
   margin-left: .75rem;
 }
+
 /* rtl:end:ignore */
 
 
@@ -255,7 +261,8 @@ h5, #copy {
 ------------------------- */
 
 .featurette-divider {
-  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+  margin: 5rem 0;
+  /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
@@ -279,6 +286,7 @@ h5, #copy {
     radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
   background-blend-mode: screen, color-dodge, overlay, difference, normal;
 }
+
 .carousel-indicators {
   border-radius: 50%;
   width: 10px;
@@ -301,12 +309,14 @@ h5, #copy {
 ------------------------- */
 
 
-#signInView, #signUpView, .aboutus{
+#signInView,
+#signUpView,
+.aboutus {
   margin-top: 8rem;
 }
 
 
-#ourPictures{
+#ourPictures {
   margin-left: 8rem;
 }
 
@@ -359,19 +369,20 @@ hr {
   color: #5ce1e6;
 }
 
-.fa-grin-stars, .fa-comment {
-  color:#50cacead
+.fa-grin-stars,
+.fa-comment {
+  color: #50cacead
 }
 
 #likes {
   margin: 0 0 0.3rem -0.3rem;
 }
 
-.fa-pen{
+.fa-pen {
   color: #ef64b3af
 }
 
-.fa-trash{
+.fa-trash {
   color: #a09c9c;
 }
 
@@ -381,7 +392,12 @@ hr {
 
 .comment-text {
   font-size: 12px;
-  margin: 0.3rem 1rem;
+  margin: 0.3rem 1.1rem;
+
+}
+
+.commentDate {
+  margin-left: 0px !important;
 }
 
 .status small {
@@ -399,10 +415,10 @@ hr {
 
 
 
-.fonts { 
+.fonts {
   position: absolute;
   right: 13px;
-  top:8px;
+  top: 8px;
   color: #a09c9c;
   top: 0px;
 }
@@ -413,7 +429,7 @@ hr {
   border-color: #8bbafe;
   outline: 0;
   box-shadow: none;
-} 
+}
 
 
 /* CREATE POST 
@@ -426,7 +442,7 @@ hr {
   margin: 3rem 0 0 11rem;
 }
 
-#addPostForm{
+#addPostForm {
   background-image: url("../images/post/fondoa.png");
   background-size: cover;
   margin: 0%;
@@ -474,6 +490,7 @@ div.container:nth-child(1) {
 }
 
 @media (min-width: 40em) {
+
   /* Bump up size of carousel content */
   .carousel-caption p {
     margin-bottom: 1.25rem;
