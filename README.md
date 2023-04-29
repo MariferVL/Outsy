@@ -9,7 +9,9 @@
  <br/>
 
 
-<img src="https://user-images.githubusercontent.com/120422565/225204263-d123165f-1434-4208-9bf6-14d43daadf2d.png" alt="Logo" width="660px">
+
+
+<img src="https://user-images.githubusercontent.com/99364311/235281958-f39c0eee-4f47-4cef-b98b-2c8c734abefe.png" alt="Logo" width="660px">
 <br/>
  <br/>
  <br/>
@@ -25,9 +27,9 @@
        </summary>
     <br/>
     <br/>
-    <a href="https://github.com/MariferVL/Data-Lovers" target="_blank"><strong>Acceso a Documentos »</strong></a>
+    <a href="https://github.com/MariferVL/Social-Network" target="_blank"><strong>Acceso a Documentos »</strong></a>
     <br/>
-     <a href="https://marifervl.github.io/CardValidation-Part2/src/" target="_blank"><strong>Acceso a Despliegue »</strong></a>
+     <a href="https://outsy.web.app/" target="_blank"><strong>Acceso a Despliegue »</strong></a>
     <br/>
 
   </p>
@@ -384,6 +386,14 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
  <br/>
 
 ## 5. Demo
+ <br/>
+
+
+https://user-images.githubusercontent.com/99364311/235281995-30663797-3afa-4d6d-887d-11dbd15d29b2.mp4
+
+
+
+ <br/>
 
 <p align="left"><a href="#volver">Volver</a></p>
 
