@@ -3,14 +3,6 @@
 <div align="center">
 
 
-<h1 align="center"><b> Outsy </br></h1>
-<h2 align="center">Proyecto Social-Network </br> < L > </b></h2>
- <br/>
- <br/>
-
-
-
-
 <img src="https://user-images.githubusercontent.com/99364311/235281958-f39c0eee-4f47-4cef-b98b-2c8c734abefe.png" alt="Logo" width="660px">
 <br/>
  <br/>
@@ -27,7 +19,7 @@
        </summary>
     <br/>
     <br/>
-    <a href="https://github.com/MariferVL/Social-Network" target="_blank"><strong>Acceso a Documentos »</strong></a>
+    <a href="https://github.com/MariferVL/Outsy" target="_blank"><strong>Acceso a Documentos »</strong></a>
     <br/>
      <a href="https://outsy.web.app/" target="_blank"><strong>Acceso a Despliegue »</strong></a>
     <br/>
@@ -42,18 +34,15 @@
 * [1. Acerca del proyecto](#1-acerca-del-proyecto)
 * [2. Objetivos de aprendizaje cumplidos](#2-objetivos-de-aprendizaje-cumplidos)
 * [3. Proyecto](#3-proyecto)
-* [4. Producto](#4-producto)
-* [5. Demo](#5-demo)
-* [6. Referencias](#6-referencias)
+* [4. Demo](#4-demo)
+* [5. Referencias](#5-referencias)
 
 ***
 
 ## 1. Acerca del proyecto
 
-Según [Forbes](https://www.forbes.com/sites/bernardmarr/2018/05/21/how-much-data-do-we-create-every-day-the-mind-blowing-stats-everyone-should-read),
-el <b>90%</b> de la data que existe hoy ha sido creada por nosotros durante los últimos dos años, generandoses <b>2.5 millones</b> de <b>terabytes</b> de datos por día, una cifra sin precedentes.
-Es por esto que para la realización de este proyecto hemos utilizado/reciclado una de las billones de fuentes de información disponibles en la web.
-Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b>Javascript</b> y <b>UX/UI</b> en conjunto con los nuesvos aprendizajes de manejo de <b>APIS</b>. Así se creó una plataforma que permite a los usuarios conocer los aspectos básicos de su <b>carta astral</b> mediante su fecha, hora y lugar de nacimiento.
+El proyecto "Outsy" es una aplicación de red social que tiene como objetivo reconectar a las personas a través de eventos sociales. Con el uso de Firebase y Firestore, se crea un perfil en la aplicación donde los usuarios pueden publicar eventos sociales a los que les gustaría asistir y buscar compañeros para acompañarlos. En cada publicación, se pueden agregar toda la información necesaria del evento y una foto para captar la atención de los usuarios de Outsy. Además, los usuarios pueden recibir comentarios y reacciones de interés sobre su evento. En caso de no estar satisfecho con un evento, se puede editar o eliminar. "Outsy" utiliza tecnologías como Firestore, Firebase, HTML, CSS, Bootstrap y JavaScript para brindar una experiencia intuitiva y atractiva. 
+Únete a "Outsy" y descubre nuevas conexiones sociales a través de eventos inolvidables.
 
 
 ### Lenguaje de programación
@@ -78,16 +67,16 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
         - [x] Uso de selectores de CSS
         </li>
         <li>
-        - [] Modelo de caja (box model): borde, margen, padding
+        - [x] Modelo de caja (box model): borde, margen, padding
         </li>
         <li>
-        - [] Uso de flexbox en CSS
+        - [x] Uso de flexbox en CSS
         </li>
          <li>
-        - [] Uso de flexbox en CSS
+        - [x] Uso de flexbox en CSS
         </li>
          <li>
-        - [] Uso de CSS Grid Layout
+        - [x] Uso de CSS Grid Layout
         </li>
       </ul>
     </details>
@@ -96,16 +85,16 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
      <summary>2. Web APIs</summary>
      <ul>
       <li>
-        - [] Uso de selectores del DOM
+        - [x] Uso de selectores del DOM
       </li>
       <li>
-        - [] Manejo de eventos del DOM (listeners, propagación, delegación)
+        - [x] Manejo de eventos del DOM (listeners, propagación, delegación)
       </li>
       <li>
-        - [] Manipulación dinámica del DOM
+        - [x] Manipulación dinámica del DOM
       </li>
         <li>
-        - [] Ruteado
+        - [x] Ruteado
       </li>
     </ul>
   </details>
@@ -114,49 +103,49 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
      <summary>3. JavaScript</summary>
       <ul>
         <li>
-          - [] Arrays (arreglos)
+          - [x] Arrays (arreglos)
         </li>
         <li>
-          - [] Objetos (key, value)
+          - [x] Objetos (key, value)
         </li>
         <li>
-          - [] Diferenciar entre tipos de datos primitivos y no primitivos
+          - [x] Diferenciar entre tipos de datos primitivos y no primitivos
         </li>
         <li>
-          - [] Variables (declaración, asignación, ámbito)
+          - [x] Variables (declaración, asignación, ámbito)
         </li>
         <li>
-          - [] Uso de condicionales (if-else, switch, operador ternario, lógica booleana)
+          - [x] Uso de condicionales (if-else, switch, operador ternario, lógica booleana)
         </li>
         <li>
-          - [] Uso de bucles/ciclos (while, for, for..of)
+          - [x] Uso de bucles/ciclos (while, for, for..of)
         </li>
         <li>
-          - [] Funciones (params, args, return)
+          - [x] Funciones (params, args, return)
         </li>
         <li>
-          - [] Pruebas unitarias (unit tests)
+          - [x] Pruebas unitarias (unit tests)
         </li>
         <li>
-          - [] Uso de mocks y espías
+          - [x] Uso de mocks y espías
         </li>
         <li>
-          - [] Módulos de ECMAScript (ES Modules)
+          - [x] Módulos de ECMAScript (ES Modules)
         </li>
         <li>
-          - [] Uso de linter (ESLINT)
+          - [x] Uso de linter (ESLINT)
         </li>
         <li>
-          - [] Uso de identificadores descriptivos (Nomenclatura y Semántica)
+          - [x] Uso de identificadores descriptivos (Nomenclatura y Semántica)
         </li>
         <li>
-          - [] Diferenciar entre expresiones (expressions) y sentencias (statements)
+          - [x] Diferenciar entre expresiones (expressions) y sentencias (statements)
         </li>
         <li>
-          - [] Callbacks
+          - [x] Callbacks
         </li>
         <li>
-          - [] Promesas
+          - [x] Promesas
         </li>
       </ul>
   </details>
@@ -201,10 +190,10 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
      <summary>6. Diseño de producto</summary>
       <ul>
         <li>
-          - [] Crear prototipos de alta fidelidad que incluyan interacciones
+          - [x] Crear prototipos de alta fidelidad que incluyan interacciones
         </li>
         <li>
-          - [] Seguir los principios básicos de diseño visual
+          - [x] Seguir los principios básicos de diseño visual
         </li>
       </ul>  
   </details>
@@ -212,7 +201,7 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
      <summary>7. Investigación</summary>
       <ul>
         <li>
-          - [ ] Planear y ejecutar testeos de usabilidad de prototipos en distintos niveles de fidelidad
+          - [x] Planear y ejecutar testeos de usabilidad de prototipos en distintos niveles de fidelidad
         </li>
       </ul>  
   </details>
@@ -220,10 +209,10 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
      <summary>8. Firebase</summary>
       <ul>
         <li>
-          - [ ] Firebase Auth
+          - [x] Firebase Auth
         </li>
          <li>
-          - [ ] Firestore 
+          - [x] Firestore 
         </li>
       </ul>  
   </details>
@@ -236,13 +225,13 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
   <summary><b>Hito 1</b></summary>
   <ul>
    <li>
-    - [] Pasa linter (npm run pretest)
+    - [x] Pasa linter (npm run pretest)
    </li>
     <li>
-    - [] Pasa tests (npm test)
+    - [x] Pasa tests (npm test)
    </li>
    <li> 
-    - [] Pruebas unitarias cubren un mínimo del 70% de statements, functions y lines y branches
+    - [x] Pruebas unitarias cubren un mínimo del 70% de statements, functions y lines y branches
    </li>
     <li>
     - [x] Incluye Definición del producto clara e informativa en README
@@ -251,25 +240,25 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
     - [x] Incluye historias de usuario en README
     </li>
     <li>
-    - [] Incluye sketch de la solución (prototipo de baja fidelidad) en README
+    - [x] Incluye sketch de la solución (prototipo de baja fidelidad) en README
    </li>
     <li>
-    - [] Incluye Diseño de la Interfaz de Usuario (prototipo de alta fidelidad) en README
+    - [x] Incluye Diseño de la Interfaz de Usuario (prototipo de alta fidelidad) en README
    </li>
     <li>
-    - [] Incluye el listado de problemas que detectaste a través de tests de usabilidad en el README
+    - [x] Incluye el listado de problemas que detectaste a través de tests de usabilidad en el README
     </li>
     <li>
-    - [] UI: Muestra lista y/o tabla con datos y/o indicadores
+    - [x] UI: Muestra lista y/o tabla con datos y/o indicadores
    </li>
     <li>
-    - [] UI: Permite ordenar data por uno o más campos (asc y desc)
+    - [x] UI: Permite ordenar data por uno o más campos (asc y desc)
     </li>
     <li>
-    - [] UI: Permite filtrar data en base a una condición
+    - [x] UI: Permite filtrar data en base a una condición
     </li>
     <li>
-    - [] UI: Es responsive
+    - [x] UI: Es responsive
     </li>
   </ul>  
 </details>
@@ -366,26 +355,11 @@ Parte de este proceso implicó la aplicación de conocimiento del <b>DOM</b>, <b
 <img height="350" alt="prototipo-alta-fidelidad" src="https://user-images.githubusercontent.com/120422565/225206876-dd363d2b-8a01-475d-a666-dd0603437e5e.svg">
 <br/>
 </div>
-
- 
- ### Código
-<div align="center">
-
-</div>
-
 <br/>
 <p align="left"><a href="#volver">Volver</a></p>
  <br/>
 
-## 4. Producto
-
-
-
-<br/>
-<p align="left"><a href="#volver">Volver</a></p>
- <br/>
-
-## 5. Demo
+## 4. Demo
  <br/>
 
 
@@ -397,7 +371,7 @@ https://user-images.githubusercontent.com/99364311/235281995-30663797-3afa-4d6d-
 
 <p align="left"><a href="#volver">Volver</a></p>
 
-## 6. Referencias
+## 5. Referencias
 
 - [StackOverflow](https://stackoverflow.com/)
 - [MDN WebDocs](https://developer.mozilla.org/en-US/)
