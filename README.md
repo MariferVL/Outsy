@@ -3,7 +3,7 @@
 <div align="center">
 
 
-<h1 align="center"><b> 🗨utsy </br></h1>
+<h1 align="center"><b> Outsy </br></h1>
 <h2 align="center">Proyecto Social-Network </br> < L > </b></h2>
  <br/>
  <br/>
